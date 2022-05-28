@@ -8,7 +8,7 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
@@ -16,16 +16,24 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.4",
     "gatsby": "^4.9.3",
+    "gatsby-plugin-alias-imports": "^1.0.5",
+    "gatsby-plugin-postcss": "^5.15.0",
     "gatsby-plugin-sass": "^5.9.0",
+    "gatsby-source-strapi": "^2.0.0",
+    "gatsby-transformer-remark": "^5.15.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "sass": "^1.49.9"
+    "sass": "^1.49.9",
+    "tailwindcss": "^3.0.23",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.13",
+    "@types/uuid": "^8.3.4",
     "typescript": "^4.6.2"
   }
 }
