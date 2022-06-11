@@ -13,8 +13,10 @@ function Navigation() {
   }, []);
 
   return (
-    <div className="bg-black text-white w-[200px]">
-      <span className="text-2xl">저스틴 블로그</span>
+    <div className="p-[20px] bg-black text-white w-[200px]">
+      <Link to={"/"}>
+        <span className="text-2xl font-bold">Justin Lee</span>
+      </Link>
       <ul>
         {navItems.map((el, index) => {
           return (

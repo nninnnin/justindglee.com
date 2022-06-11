@@ -1,5 +1,5 @@
 import React from "react";
-import Navigation from "@components/Navigation";
+import Layout from "@components/Layout";
 import "@styles/index.scss";
 
 const imageUrls = [
@@ -85,24 +85,5 @@ const imageUrls = [
 ];
 
 export default function IndexPage() {
-  return (
-    <div className="bg-slate-300 flex flex-row w-screen h-screen">
-      <Navigation />
-
-      <p className="flex-1 max-w-[700px] mx-auto">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-        recusandae, odit quia nemo doloremque natus delectus reiciendis quos
-        magnam similique expedita, accusantium eligendi? Exercitationem velit
-        illum aliquam iusto illo, fugiat officia porro laboriosam? Quas harum
-        consectetur possimus atque veniam sit nemo obcaecati qui repellendus
-        voluptates, quisquam laborum commodi. Minima iste explicabo laudantium
-        distinctio ab unde, non, dolorum delectus nihil fuga aliquid nesciunt
-        accusantium dolore quas? Quo qui deserunt odit ipsum adipisci aliquid
-        labore iusto vel placeat quia dignissimos laboriosam voluptates
-        distinctio temporibus, optio voluptas pariatur inventore tenetur
-        perspiciatis quasi. Voluptatibus porro suscipit exercitationem
-        obcaecati! Vero unde dolor iste magni facere.
-      </p>
-    </div>
-  );
+  return <Layout contents={"이곳은 테크"} />;
 }
