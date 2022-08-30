@@ -2,15 +2,15 @@ import React from "react";
 import Navigation from "@components/Navigation";
 
 interface Props {
-  contents: React.ReactNode;
+  children: React.ReactNode;
 }
 
-function Layout({ contents }: Props) {
+function Layout({ children }: Props) {
   return (
-    <div className="container flex flex-row w-screen h-screen">
+    <div className="flex flex-col w-screen h-screen m-0 p-0">
       <Navigation />
 
-      <p className="flex-1 max-w-[700px] mx-auto p-[30px]">{contents}</p>
+      <div className="flex-1 max-w-[700px] mx-auto p-[30px]">{children}</div>
     </div>
   );
 }
