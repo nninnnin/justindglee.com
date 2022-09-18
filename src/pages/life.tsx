@@ -5,6 +5,8 @@ import "@styles/index.scss";
 
 export default function IndexPage() {
   useEffect(() => {
+    console.log("?", process.env.STRAPI_API_URL);
+
     (async () => {
       const {
         data: { data: posts },
