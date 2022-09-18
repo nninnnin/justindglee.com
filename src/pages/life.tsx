@@ -18,5 +18,5 @@ export default function IndexPage() {
     })();
   }, []);
 
-  return <Layout contents={"이곳은 생활"} />;
+  return <Layout>이곳은 생활</Layout>;
 }
