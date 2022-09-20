@@ -11,9 +11,9 @@ export default function IndexPage() {
     (async () => {
       const {
         data: { data: posts },
-      } = await axios(`${process.env.STRAPI_API_URL}/api/posts`, {
+      } = await axios(`${process.env.GATSBY_STRAPI_API_URL}/api/posts`, {
         headers: {
-          Authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
+          Authorization: `Bearer ${process.env.GATSBY_STRAPI_TOKEN}`,
         },
       });
 
