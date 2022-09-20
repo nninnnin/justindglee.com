@@ -29,6 +29,7 @@ module.exports = {
         alias: {
           "@styles": "./public/styles",
           "@components": "./src/components",
+          "@src": "./src",
         },
         extensions: ["js, jsx, tsx, sass, scss, css"],
       },

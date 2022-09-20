@@ -6,6 +6,7 @@ function Navigation() {
   const [navItems, setNavItems] = useState([
     { id: "", title: "기술", route: "/tech" },
     { id: "", title: "생활", route: "/life" },
+    { id: "", title: "포트폴리오", route: "https://justindglee.netlify.com" },
   ]);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ function Navigation() {
         <span className="text-2xl font-bold">저스틴 블로그</span>
       </Link>
 
-      <ul>
+      <ul className="mt-3">
         {navItems.map((el, index) => {
           return (
             <Link key={el.id ? el.id : index} to={el.route}>
