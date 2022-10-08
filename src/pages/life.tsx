@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import Layout from "@components/Layout";
 import "@styles/index.scss";
 import { Post } from "@src/types/index";
+import PostList from "@components/PostList";
 
-export default function IndexPage() {
+export default function Life() {
   const [lifePosts, setLifePosts] = useState([]);
 
   useEffect(() => {
@@ -17,8 +18,6 @@ export default function IndexPage() {
         },
       });
 
-      console.log(posts);
-
       setLifePosts(posts.filter((el: Post) => el.attributes.type === "life"));
     })();
   }, []);
@@ -28,19 +27,7 @@ export default function IndexPage() {
       이곳은 생활
       <br />
       <br />
-      <ul>
-        {lifePosts.map(
-          (post: {
-            attributes: { title: string; contents: string; createdAt: string };
-          }) => {
-            return (
-              <li className="cursor-pointer m-2">
-                제목: {post.attributes.title} / 내용: {post.attributes.contents}
-              </li>
-            );
-          }
-        )}
-      </ul>
+      <PostList posts={lifePosts} />
     </Layout>
   );
 }

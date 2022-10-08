@@ -6,7 +6,6 @@ function Navigation() {
   const [navItems, setNavItems] = useState([
     { id: "", title: "기술", route: "/tech" },
     { id: "", title: "생활", route: "/life" },
-    { id: "", title: "포트폴리오", route: "https://justindglee.netlify.com" },
   ]);
 
   useEffect(() => {
