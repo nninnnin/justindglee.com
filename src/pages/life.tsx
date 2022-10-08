@@ -24,9 +24,8 @@ export default function Life() {
 
   return (
     <Layout>
-      이곳은 생활
-      <br />
-      <br />
+      <h1 className="text-2xl pb-2">생활</h1>
+
       <PostList posts={lifePosts} />
     </Layout>
   );

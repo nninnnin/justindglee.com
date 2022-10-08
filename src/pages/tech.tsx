@@ -24,9 +24,8 @@ export default function Tech() {
 
   return (
     <Layout>
-      이곳은 기술
-      <br />
-      <br />
+      <h1 className="text-2xl pb-2">기술</h1>
+
       <PostList posts={techPosts} />
     </Layout>
   );
