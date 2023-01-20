@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+
 import Layout from "@components/Layout";
 import "@styles/index.scss";
 import { Post } from "@src/types/index";

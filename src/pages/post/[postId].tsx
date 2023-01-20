@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 import Layout from "@components/Layout";
 
@@ -18,7 +19,6 @@ const PostDetail = ({ postId }: { postId: string }) => {
       );
 
       const result = await response.json();
-
       setTitle(result.data.attributes.title);
       setContents(result.data.attributes.contents);
     })();
@@ -27,7 +27,12 @@ const PostDetail = ({ postId }: { postId: string }) => {
   return (
     <Layout>
       <h1 className="text-2xl">{title}</h1>
-      <p className="py-3">{contents}</p>
+      <p className="py-3">
+        <ReactMarkdown
+          children={contents}
+          transformImageUri={(src) => process.env.GATSBY_STRAPI_API_URL + src}
+        />
+      </p>
     </Layout>
   );
 };
