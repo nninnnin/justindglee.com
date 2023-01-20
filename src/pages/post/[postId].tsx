@@ -28,10 +28,7 @@ const PostDetail = ({ postId }: { postId: string }) => {
     <Layout>
       <h1 className="text-2xl">{title}</h1>
       <p className="py-3">
-        <ReactMarkdown
-          children={contents}
-          transformImageUri={(src) => process.env.GATSBY_STRAPI_API_URL + src}
-        />
+        <ReactMarkdown children={contents} transformImageUri={(src) => src} />
       </p>
     </Layout>
   );
