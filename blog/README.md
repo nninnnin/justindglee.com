@@ -1,5 +1,9 @@
 # Justin blog
 
+## 소개
+
+개발자 저스틴의 블로그 입니다.
+
 ## 실행 방법
 
 - 실행 시 `gatsby build` 로 빌드하고, `gatsby serve` 로 빌드된 결과물을 가상서버에서 실행하여 로컬호스트(포트 9000)에서 확인
@@ -14,3 +18,4 @@
 
 - Gatsby의 buildtime rendering (SSG) 적용 [ ]
 - Markdown newline style 적용 [ ]
+- Strapi 배포 대상을 해당 cms 폴더로 변경 (현재는 다른 레포지토리로 분리되어있음) [ ]
