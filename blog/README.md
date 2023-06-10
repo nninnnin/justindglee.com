@@ -12,5 +12,5 @@
 
 ## 할일들
 
-- 마크다운 문법으로 표현된 사진이 이미지태그로 렌더링되도록 구현 필요 []
-- 글 목록 리스트 깔끔하게 수정 []
+- Gatsby의 buildtime rendering (SSG) 적용 [ ]
+- Markdown newline style 적용 [ ]
