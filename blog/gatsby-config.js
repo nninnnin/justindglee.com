@@ -6,10 +6,25 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: ``,
+    title: `저스틴 블로그`,
     siteUrl: `https://www.yourdomain.tld`,
   },
   plugins: [
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          {
+            resolve: "gatsby-remark-classes",
+            options: {
+              classMap: {
+                paragraph: "para",
+              },
+            },
+          },
+        ],
+      },
+    },
     {
       resolve: "gatsby-plugin-sass",
       options: {
@@ -40,6 +55,16 @@ module.exports = {
         apiURL: process.env.GATSBY_STRAPI_API_URL,
         accessToken: process.env.GATSBY_STRAPI_TOKEN,
         collectionTypes: ["post"],
+        singleTypes: [],
+        remoteFileHeaders: {
+          /**
+           * Customized request headers
+           * For http request with a image or other files need authorization
+           * For expamle: Fetch a CDN file which has a security config when gatsby building needs
+           */
+          Referer: "https://justindglee.com",
+          // Authorization: "Bearer eyJhabcdefg_replace_it_with_your_own_token",
+        },
       },
     },
   ],
