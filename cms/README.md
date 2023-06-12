@@ -2,10 +2,10 @@
 
 ## 실행
 
-개발 환경에서는 `strapi develop` 을 입력하면 됩니다.
+개발 환경에서는 `npm run dev` 을 입력하면 됩니다.
 
 개발 중 production의 데이터베이스를 불러와 사용하고 싶을 경우
-`NODE_ENV=production strapi develop` 을 입력하면 됩니다.
+`NODE_ENV=production npm run dev` 을 입력하면 됩니다.
 
 ### 환경변수
 
