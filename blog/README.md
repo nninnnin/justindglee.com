@@ -9,6 +9,8 @@
 - 실행 시 `gatsby build` 로 빌드하고, `gatsby serve` 로 빌드된 결과물을 가상서버에서 실행하여 로컬호스트(포트 9000)에서 확인
 - `gatsby build` 시 NODE_ENV=production 또는 development 로 옵션을 주어 `.env.production` 또는 `.env.development` 에 해당하는 환경변수 사용 가능
 
+- `/___graphiql` 에서 쿼리테스트 가능, strapi와의 연동으로 strapi document node 또한 쿼리할 수 있습니다.
+
 ### 환경변수
 
 - `GATSBY_STRAPI_API_URL`: 스트라피가 배포된 서버 주소
@@ -19,3 +21,9 @@
 - Gatsby의 buildtime rendering (SSG) 적용 [ ]
 - Markdown newline style 적용 [ ]
 - Strapi 배포 대상을 해당 cms 폴더로 변경 (현재는 다른 레포지토리로 분리되어있음) [ ]
+
+---
+
+### Issues
+
+- gatsby-source-strapi로 graphql schema를 연동할 수 없었고, graphql-source-strapi-graphql 플러그인을 사용해 해결하였음

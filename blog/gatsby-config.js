@@ -50,21 +50,11 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-strapi",
+      resolve: "gatsby-source-strapi-graphql",
       options: {
         apiURL: process.env.GATSBY_STRAPI_API_URL,
-        accessToken: process.env.GATSBY_STRAPI_TOKEN,
-        collectionTypes: ["post"],
-        singleTypes: [],
-        remoteFileHeaders: {
-          /**
-           * Customized request headers
-           * For http request with a image or other files need authorization
-           * For expamle: Fetch a CDN file which has a security config when gatsby building needs
-           */
-          Referer: "https://justindglee.com",
-          // Authorization: "Bearer eyJhabcdefg_replace_it_with_your_own_token",
-        },
+        token: process.env.GATSBY_STRAPI_TOKEN,
+        collectionTypes: ["Post"],
       },
     },
   ],
