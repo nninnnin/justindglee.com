@@ -18,9 +18,8 @@
 
 ## 할일들
 
-- Gatsby의 buildtime rendering (SSG) 적용 [ ]
-- Markdown newline style 적용 [ ]
-- Strapi 배포 대상을 해당 cms 폴더로 변경 (현재는 다른 레포지토리로 분리되어있음) [ ]
+- Markdown newline style 적용
+- 이미지 저장 및 뷰 적용
 
 ---
 
