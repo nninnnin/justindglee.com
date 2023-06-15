@@ -9,7 +9,9 @@ Icon
 .Spotlight-V100
 .Trashes
 ._*
-
+!/public
+public/uploads/*
+!public/uploads/.gitkeep
 
 ############################
 # Linux
@@ -80,8 +82,6 @@ $RECYCLE.BIN/
 ssl
 .idea
 nbproject
-public/uploads/*
-!public/uploads/.gitkeep
 
 ############################
 # Node.js
