@@ -1,11 +1,17 @@
+export interface PostQueryResult {
+  allStrapiPost: {
+    edges: Array<{
+      node: Post;
+    }>;
+  };
+}
+
 export interface Post {
   id: number;
-  attributes: {
-    contents: string;
-    createdAt: string;
-    publishedAt: string;
-    title: string;
-    type: string;
-    updatedAt: string;
-  };
+  title: string;
+  contents: string;
+  type: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "gatsby";
-import ReactMarkdown from "react-markdown";
 
 import { Post } from "@src/types/index";
 
@@ -16,7 +15,7 @@ const PostList = ({ posts }: Props) => {
           <Link to={`/post/${post.id}`} key={`key-${post.id}`}>
             <li className="cursor-pointer m-2">
               <h2 className="font-medium">
-                {postIndex + 1} | {post.attributes.title}{" "}
+                {postIndex + 1} | {post.title}{" "}
               </h2>
             </li>
           </Link>
