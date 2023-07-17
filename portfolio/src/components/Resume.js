@@ -272,10 +272,10 @@ const Section = styled.div`
 
   @media only screen and (max-width: 480px) {
     height: 100svh;
-    padding: 5vh 0;
 
     display: flex;
     flex-direction: column;
+    justify-content: center;
 
     scroll-snap-align: start;
 
@@ -290,6 +290,7 @@ const Section = styled.div`
 
     &:first-child {
       padding-top: 0;
+      scroll-snap-align: unset;
       height: calc(100svh - 82.19px);
     }
   }

@@ -25,7 +25,6 @@ const Container = styled.div`
 
   margin: 0 auto;
 
-  // snapping scroll
   @media only screen and (max-width: 480px) {
     height: 100svh;
     overflow: auto;
