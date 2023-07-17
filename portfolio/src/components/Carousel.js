@@ -5,9 +5,9 @@ const Carousel = ({ images }) => {
   return (
     <Container>
       {images.map((image) => (
-        <Image>
+        <ImageWrapper>
           <img alt={image.alt} src={image.src} />
-        </Image>
+        </ImageWrapper>
       ))}
     </Container>
   );
@@ -16,17 +16,24 @@ const Carousel = ({ images }) => {
 const Container = styled.div`
   flex: 1;
 
+  @media only screen and (max-width: 480px) {
+    max-height: 50vh;
+  }
+
+  background-color: violet;
   position: relative;
   display: flex;
   overflow: hidden;
 `;
 
-const Image = styled.div`
+const ImageWrapper = styled.div`
   min-width: 100%;
+
+  background-color: red;
 
   img {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
   }
 `;
 

@@ -1,52 +1,118 @@
+import styled from "styled-components";
 import React from "react";
 import Carousel from "./Carousel";
+import TechStack from "./TechStack";
 
 const Resume = () => {
   return (
     <div>
-      <section>
+      <Section>
         <div class="desc">
           <h1>찹스틱스 소비자 플랫폼</h1>
           <p>
             찹스틱스의 소비자 플랫폼의 클라이언트를 개발하였습니다. 판매자
             플랫폼을 통해 등록된 상품의 내용을 확인, 카트에 담고 주문할 수
-            있습니다. TypeScript와 Next.js 그리고 React Query(GraphQL)를
-            사용하였습니다.
+            있습니다.
           </p>
+
+          <TechStack
+            stacks={[
+              {
+                name: "TypeScript",
+                bgc: "#2F75C0",
+              },
+              {
+                name: "Next.js",
+                bgc: "black",
+              },
+              {
+                name: "Recoil",
+                bgc: "black",
+              },
+              {
+                name: "React Query",
+                bgc: "orangered",
+              },
+              {
+                name: "GraphQL",
+                bgc: "#DF33A7",
+              },
+              {
+                name: "아임포트(포트원)",
+                bgc: "#F5682C",
+              },
+            ]}
+          />
         </div>
-        <img alt="portal2" src="/chopsticks-consumer.gif" />
-      </section>
+        <Image alt="portal2" src="/chopsticks-consumer.gif" />
+      </Section>
 
       <hr />
 
-      <section>
+      <Section>
         <div class="desc">
           <h1>찹스틱스 판매자 플랫폼</h1>
           <p>
             찹스틱스의 판매자 플랫폼의 클라이언트를 개발하였습니다. 판매자로
             승인된 샵의 정보를 등록하고, 해당 샵의 상품들을 등록할 수 있습니다.
-            TypeScript와 React 그리고 Apollo Client(GraphQL)를 사용하였습니다.
           </p>
+
+          <TechStack
+            stacks={[
+              {
+                name: "TypeScript",
+                bgc: "#2F75C0",
+              },
+              {
+                name: "Apollo Client",
+                bgc: "black",
+              },
+              {
+                name: "GraphQL",
+                bgc: "#DF33A7",
+              },
+              {
+                name: "React hook form",
+                bgc: "#EC5990",
+              },
+            ]}
+          />
         </div>
-        <img
+
+        <Image
           alt="portal2"
           src="/chopsticks-seller.gif"
           style={{
             objectPosition: "left top",
           }}
         />
-      </section>
+      </Section>
 
       <hr />
 
-      <section>
+      <Section>
         <div class="desc">
           <h1>바닐라코딩 포털 서비스</h1>
           <p>
             바닐라코딩 포털 서비스를 기획, 디자인 및 개발하였습니다. 코스
-            신청서를 작성, 결제하고 코스 컨텐츠를 확인할 수 있습니다. Next.js를
-            사용하여 개발하였습니다.
+            신청서를 작성, 결제하고 코스 컨텐츠를 확인할 수 있습니다.
           </p>
+          <TechStack
+            stacks={[
+              {
+                name: "Figma",
+                bgc: ["#EB4C1D", "#F86F5F", "#9D56F8", "#19B6F7", "#0ACA7F"],
+              },
+              {
+                name: "Next.js",
+                bgc: "black",
+              },
+              {
+                name: "아임포트(포트원)",
+                bgc: "#F5682C",
+              },
+            ]}
+          />
         </div>
         <Carousel
           images={[
@@ -60,19 +126,33 @@ const Resume = () => {
             },
           ]}
         />
-      </section>
+      </Section>
 
       <hr />
 
-      <section>
+      <Section>
         <div class="desc">
           <h1>바닐라코딩 앱</h1>
           <p>
             퍼즐앱을 개발하였습니다. 자료구조 개념을 사용하여 알파벳 순서를
-            맞추는 게임을 할 수 있습니다. Expo가 아닌 순수 React Native와
-            TypeScript를 사용하였고, 전역 상태관리와 서버 데이터 가져오기에는
-            Apollo client(GraphQL)를 사용했습니다.
+            맞추는 게임을 할 수 있습니다.
           </p>
+          <TechStack
+            stacks={[
+              {
+                name: "React Native",
+                bgc: "#5ED3F4",
+              },
+              {
+                name: "TypeScript",
+                bgc: "#2F75C0",
+              },
+              {
+                name: "GraphQL",
+                bgc: "#DF33A7",
+              },
+            ]}
+          />
         </div>
         <Carousel
           images={[
@@ -86,58 +166,164 @@ const Resume = () => {
             },
           ]}
         />
-      </section>
+      </Section>
 
       <hr />
 
-      <section>
+      <Section>
         <div class="desc">
           <h1>복주머니 모바일 웹</h1>
           <p>
             설날에 사용될 수 있는 복주머니 모바일 웹을 개발했습니다. 복주머니에
-            메시지를 담아 상대방의 방에 두고 올 수 있습니다. React(CRA)를
-            사용하였고, 전역 상태관리에는 Context API를 사용하였습니다.
+            메시지를 담아 상대방의 방에 두고 올 수 있습니다.
           </p>
+          <TechStack
+            stacks={[
+              {
+                name: "React",
+                bgc: "#5ED3F4",
+              },
+              {
+                name: "React Router",
+                bgc: "red",
+              },
+            ]}
+          />
         </div>
-        <img
+        <Image
           alt="bok1"
           src="/bok-1.png"
           style={{
             objectFit: "contain",
           }}
         />
-      </section>
+      </Section>
 
       <hr />
 
-      <section>
+      <Section>
         <div class="desc">
           <h1>피크닉 정원만들기 전시</h1>
           <p>
             키오스크 전시공간 피크닉의 전시 "정원만들기" 에 사용될 키오스크를
-            개발하였습니다. JavaScript를 사용하였으며, 드래그 앤 드롭 등의
-            기능을 외부 라이브러리 의존없이 모두 직접 개발하였습니다.
+            개발하였습니다. 드래그 앤 드롭 등의 기능을 라이브러리 의존없이 직접
+            구현하였습니다.
           </p>
+          <TechStack
+            stacks={[
+              {
+                name: "JavaScript",
+                bgc: "#F0D91D",
+                color: "black",
+              },
+              {
+                name: "Netlify",
+                bgc: "#32E6E2",
+                color: "white",
+              },
+            ]}
+          />
         </div>
-        <img alt="piet1" src="/piet-1.gif" />
-      </section>
+        <Image alt="piet1" src="/piet-1.gif" />
+      </Section>
 
       <hr />
 
-      <section>
+      <Section>
         <div class="desc">
           <h1>피크닉 사울레이터 전시</h1>
           <p>
             이미지 슬라이더 전시공간 피크닉의 전시 "창문을 통해 어렴풋이" 에
             사용될 키오스크를 개발하였습니다. 인스타그램 링크로 이미지를 가져와
-            슬라이더로 표현합니다. CORS 이슈를 해결하기 위해 proxy server를
-            개발하였습니다.
+            슬라이더로 표현합니다.
           </p>
+          <TechStack
+            stacks={[
+              {
+                name: "JavaScript",
+                bgc: "#F0D91D",
+                color: "black",
+              },
+              {
+                name: "Node.js",
+                bgc: "#659D5D",
+                color: "white",
+              },
+              {
+                name: "Heroku",
+                bgc: "#5F478A",
+                color: "white",
+              },
+            ]}
+          />
         </div>
-        <img alt="saul1" src="/saul-1.gif" />
-      </section>
+
+        <Image alt="saul1" src="/saul-1.gif" />
+      </Section>
     </div>
   );
 };
+
+const Section = styled.div`
+  h1 {
+    font-size: 1.2em;
+    margin-top: 1em;
+  }
+
+  @media only screen and (max-width: 480px) {
+    height: 100svh;
+    padding: 5vh 0;
+
+    display: flex;
+    flex-direction: column;
+
+    scroll-snap-align: start;
+
+    .desc {
+      font-size: 1.5em;
+    }
+
+    img {
+      height: 50vh;
+      max-height: 50vh;
+    }
+
+    &:first-child {
+      padding-top: 0;
+      height: calc(100svh - 82.19px);
+    }
+  }
+
+  @media only screen and (min-width: 481px) {
+    border-top: dashed gainsboro 1px;
+    border-bottom: 1px dashed gainsboro;
+
+    display: flex;
+
+    .desc {
+      flex: 1;
+      font-size: 16px;
+      padding-left: 1em;
+      padding-right: 0.5em;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 1.1em;
+    }
+  }
+`;
+
+const Image = styled.img`
+  width: 100%;
+
+  @media only screen and (min-width: 481px) {
+    flex: 1;
+    width: 300px;
+    background-color: gainsboro;
+  }
+`;
 
 export default Resume;

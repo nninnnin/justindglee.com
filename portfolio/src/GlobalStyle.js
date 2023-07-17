@@ -21,18 +21,20 @@ export default createGlobalStyle`
   }
 
   body {
-    /* background-color: orangered; */
-    background-color: #fff;
-    /* color: white; */
     font-family: "Pretendard-Light", "sans-serif";
     font-weight: 300;
     font-size: 0.8rem;
+    
+    @media only screen and (max-width: 480px) {
+      height: 100svh;
+      overflow: hidden;
+    }
   }
 
   h1 {
     margin: 0;
     font-weight: 400;
-    font-family: "Pretendard-Regular", "sans-serif";
+    font-family: "Pretendard-Light", "sans-serif";
   }
 
   ul, ol, li {
@@ -51,7 +53,10 @@ export default createGlobalStyle`
   }
 
   img {
-    width: 300px;
+    height: 300px;
+    max-height: 300px;
+    object-fit: cover;
+    object-position: center;
   }
 
   hr {

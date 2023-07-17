@@ -19,17 +19,24 @@ function App() {
 
 const Container = styled.div`
   background-color: white;
-  width: 100%;
-  max-width: 360px;
-  margin: 0 auto;
+  width: 90%;
+  max-width: 100%;
   min-height: 100vh;
 
+  margin: 0 auto;
+
+  // snapping scroll
   @media only screen and (max-width: 480px) {
-    img {
-      width: 100%;
-      max-height: 300px;
-      object-fit: cover;
+    height: 100svh;
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+
+    &::-webkit-scrollbar {
+      display: none;
     }
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   @media only screen and (min-width: 481px) {
@@ -37,36 +44,6 @@ const Container = styled.div`
 
     border-left: 1px solid gainsboro;
     border-right: 1px solid gainsboro;
-
-    section {
-      height: 100mm;
-      border-top: dashed gainsboro 1px;
-      border-bottom: 1px dashed gainsboro;
-
-      display: flex;
-
-      .desc {
-        flex: 1;
-      }
-
-      h1 {
-        padding: 1em;
-        padding-bottom: 0;
-      }
-
-      p {
-        font-size: 16px;
-        padding-left: 1em;
-      }
-
-      img {
-        flex: 1;
-        background-color: gainsboro;
-        object-fit: cover;
-        object-position: center;
-        border-left: 1px solid white;
-      }
-    }
   }
 `;
 

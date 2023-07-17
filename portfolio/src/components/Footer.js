@@ -24,6 +24,8 @@ const Container = styled.footer`
 
   display: grid;
   place-items: center;
+
+  scroll-snap-align: end;
 `;
 
 const Contact = styled.div`

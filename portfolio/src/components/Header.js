@@ -8,8 +8,8 @@ const Header = ({ children }) => {
 const Container = styled.h1`
   letter-spacing: 9px;
 
-  padding: 2em;
-  padding-left: 1em;
+  padding: 1em;
+  scroll-snap-align: start;
 
   @media only screen and (max-width: 480px) {
     padding-left: 0;
