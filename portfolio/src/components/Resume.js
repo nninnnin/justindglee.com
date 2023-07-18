@@ -15,7 +15,9 @@ const Resume = () => {
           <p>
             찹스틱스의 소비자 플랫폼의 클라이언트를 개발하였습니다. 판매자
             플랫폼을 통해 등록된 상품의 내용을 확인, 카트에 담고 주문할 수
-            있습니다.
+            있습니다. <br />
+            <a href="https://chopsticks.market">여기</a>에서 운영중인 서비스를
+            확인할 수 있습니다.
           </p>
 
           <TechStack
@@ -139,6 +141,12 @@ const Resume = () => {
           <p>
             퍼즐앱을 개발하였습니다. 자료구조 개념을 사용하여 알파벳 순서를
             맞추는 게임을 할 수 있습니다.
+            <br />
+            <br />
+            <a href="https://play.google.com/store/apps/details?id=com.crowd.wordie&pli=1">
+              여기
+            </a>
+            에서 플레이스토어에 배포된 앱을 확인할 수 있습니다.
           </p>
           <TechStack
             stacks={[
@@ -211,6 +219,10 @@ const Resume = () => {
             키오스크 전시공간 피크닉의 전시 "정원만들기" 에 사용될 키오스크를
             개발하였습니다. 드래그 앤 드롭 등의 기능을 라이브러리 의존없이 직접
             구현하였습니다.
+            <br />
+            <br />
+            <a href="https://piknic-piet-oudolf.netlify.app/">여기</a>에서
+            배포된 내용을 확인할 수 있습니다.
           </p>
           <TechStack
             stacks={[
@@ -284,7 +296,7 @@ const Section = styled.div`
     scroll-snap-align: start;
 
     .desc {
-      font-size: 1.5em;
+      font-size: 1.3em;
     }
 
     img {

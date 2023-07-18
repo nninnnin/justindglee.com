@@ -20,7 +20,8 @@ const Container = styled.div`
   flex-wrap: wrap;
 
   & > span {
-    margin-top: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
     margin-right: 5px;
   }
 
