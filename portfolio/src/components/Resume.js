@@ -3,6 +3,9 @@ import React from "react";
 import Carousel from "./Carousel";
 import TechStack from "./TechStack";
 
+import ChopsticksConsumerGif from "../images/chopsticks-consumer.gif";
+import ChopsticksSellerGif from "../images/chopsticks-seller.gif";
+
 const Resume = () => {
   return (
     <div>
@@ -44,7 +47,7 @@ const Resume = () => {
             ]}
           />
         </div>
-        <Image alt="portal2" src="/chopsticks-consumer.gif" />
+        <Image alt="portal2" src={ChopsticksConsumerGif} />
       </Section>
 
       <hr />
@@ -81,7 +84,7 @@ const Resume = () => {
 
         <Image
           alt="portal2"
-          src="/chopsticks-seller.gif"
+          src={ChopsticksSellerGif}
           style={{
             objectPosition: "left top",
           }}
@@ -272,6 +275,7 @@ const Section = styled.div`
 
   @media only screen and (max-width: 480px) {
     height: 100svh;
+    margin-top: 0;
 
     display: flex;
     flex-direction: column;
@@ -284,8 +288,8 @@ const Section = styled.div`
     }
 
     img {
-      height: 50vh;
-      max-height: 50vh;
+      height: 40svh;
+      max-height: 40svh;
     }
 
     &:first-child {

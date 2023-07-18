@@ -46,7 +46,8 @@ const Badge = styled.span`
   padding-top: 6px;
 
   font-size: 12px;
-  font-family: "Pretendard-Medium";
+  font-family: "Pretendard", "sans-serif";
+  font-weight: 500;
 `;
 
 export default TechStack;

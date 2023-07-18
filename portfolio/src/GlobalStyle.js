@@ -1,19 +1,8 @@
 import { createGlobalStyle } from "styled-components";
+import PretendardFontFaces from "./fonts/Pretendard/pretendard.css";
 
 export default createGlobalStyle`
-  @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Pretendard-Light';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
-    /* font-weight: 400; */
-    font-style: normal;
-  }
+  ${PretendardFontFaces}
 
   html, body {
     margin: 0;
@@ -21,7 +10,7 @@ export default createGlobalStyle`
   }
 
   body {
-    font-family: "Pretendard-Light", "sans-serif";
+    font-family: "Pretendard", "sans-serif";
     font-weight: 300;
     font-size: 0.8rem;
     
@@ -34,7 +23,7 @@ export default createGlobalStyle`
   h1 {
     margin: 0;
     font-weight: 400;
-    font-family: "Pretendard-Light", "sans-serif";
+    font-family: "Pretendard", "sans-serif";
   }
 
   ul, ol, li {

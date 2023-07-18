@@ -17,7 +17,7 @@ const Container = styled.div`
   flex: 1;
 
   @media only screen and (max-width: 480px) {
-    max-height: 50vh;
+    max-height: 40svh;
   }
 
   background-color: violet;
