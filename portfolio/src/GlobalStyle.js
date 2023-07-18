@@ -1,9 +1,6 @@
 import { createGlobalStyle } from "styled-components";
-import PretendardFontFaces from "./fonts/Pretendard/pretendard.css";
 
 export default createGlobalStyle`
-  ${PretendardFontFaces}
-
   html, body {
     margin: 0;
     padding: 0;
