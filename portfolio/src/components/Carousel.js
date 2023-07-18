@@ -20,7 +20,6 @@ const Container = styled.div`
     max-height: 40svh;
   }
 
-  background-color: violet;
   position: relative;
   display: flex;
   overflow: hidden;
@@ -29,11 +28,12 @@ const Container = styled.div`
 const ImageWrapper = styled.div`
   min-width: 100%;
 
-  background-color: red;
-
   img {
     width: 100%;
+    height: 100%;
+    max-height: 300px;
     min-height: 100%;
+    object-fit: cover;
   }
 `;
 

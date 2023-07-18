@@ -43,7 +43,6 @@ export default createGlobalStyle`
 
   img {
     height: 300px;
-    max-height: 300px;
     object-fit: cover;
     object-position: center;
   }
