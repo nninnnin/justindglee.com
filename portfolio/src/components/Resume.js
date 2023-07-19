@@ -1,10 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import React from "react";
 import Carousel from "./Carousel";
 import TechStack from "./TechStack";
 
 import ChopsticksConsumerGif from "../images/chopsticks-consumer.gif";
-import ChopsticksSellerGif from "../images/chopsticks-seller.gif";
+import ChopsticksSellerWebM from "../images/chopsticks-seller.webm";
+import ChopsticksSellerMP4 from "../images/chopsticks-seller.mp4";
 
 const Resume = () => {
   return (
@@ -49,7 +50,7 @@ const Resume = () => {
             ]}
           />
         </div>
-        <Image alt="portal2" src={ChopsticksConsumerGif} />
+        <Image alt="chopsticks-consumer" src={ChopsticksConsumerGif} />
       </Section>
 
       <hr />
@@ -84,13 +85,10 @@ const Resume = () => {
           />
         </div>
 
-        <Image
-          alt="portal2"
-          src={ChopsticksSellerGif}
-          style={{
-            objectPosition: "left top",
-          }}
-        />
+        <Video autoPlay loop muted playsInline>
+          <source src={ChopsticksSellerWebM} type="video/webm" />
+          <source src={ChopsticksSellerMP4} type="video/mp4" />
+        </Video>
       </Section>
 
       <hr />
@@ -125,10 +123,10 @@ const Resume = () => {
               alt: "portal1",
               src: "/portal-1.png",
             },
-            {
-              alt: "portal2",
-              src: "/portal-2.gif",
-            },
+            // {
+            //   alt: "portal2",
+            //   src: "/portal-2.gif",
+            // },
           ]}
         />
       </Section>
@@ -299,7 +297,8 @@ const Section = styled.div`
       font-size: 1.3em;
     }
 
-    img {
+    img,
+    video {
       height: 40svh;
       max-height: 40svh;
     }
@@ -333,7 +332,7 @@ const Section = styled.div`
   }
 `;
 
-const Image = styled.img`
+const mediaStyle = css`
   width: 100%;
 
   @media only screen and (min-width: 481px) {
@@ -341,6 +340,15 @@ const Image = styled.img`
     width: 300px;
     background-color: gainsboro;
   }
+`;
+
+const Image = styled.img`
+  ${mediaStyle}
+`;
+
+const Video = styled.video`
+  ${mediaStyle}
+  object-fit: cover;
 `;
 
 export default Resume;
