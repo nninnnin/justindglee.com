@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import React from "react";
+import useMapIds from "../hooks/useMapIds.ts";
 
 const Carousel = ({ images }) => {
+  const imagesWithKey = useMapIds(images);
+
   return (
     <Container>
-      {images.map((image) => (
-        <ImageWrapper>
+      {imagesWithKey.map((image) => (
+        <ImageWrapper key={image.id}>
           <img alt={image.alt} src={image.src} />
         </ImageWrapper>
       ))}

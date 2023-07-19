@@ -1,12 +1,15 @@
-import styled from "styled-components";
 import React from "react";
+import styled from "styled-components";
+import useMapIds from "../hooks/useMapIds.ts";
 
 const TechStack = ({ stacks }) => {
+  const stacksWithId = useMapIds(stacks);
+
   return (
     <Container>
-      {stacks.map((stack) => {
+      {stacksWithId.map((stack) => {
         return (
-          <Badge bgc={stack.bgc} color={stack.color}>
+          <Badge key={stack.id} bgc={stack.bgc} color={stack.color}>
             {stack.name}
           </Badge>
         );

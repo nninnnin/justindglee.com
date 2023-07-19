@@ -11,7 +11,7 @@ const Resume = () => {
   return (
     <div>
       <Section>
-        <div class="desc">
+        <div className="desc">
           <h1>찹스틱스 소비자 플랫폼</h1>
           <p>
             찹스틱스의 소비자 플랫폼의 클라이언트를 개발하였습니다. 판매자
@@ -56,7 +56,7 @@ const Resume = () => {
       <hr />
 
       <Section>
-        <div class="desc">
+        <div className="desc">
           <h1>찹스틱스 판매자 플랫폼</h1>
           <p>
             찹스틱스의 판매자 플랫폼의 클라이언트를 개발하였습니다. 판매자로
@@ -94,7 +94,7 @@ const Resume = () => {
       <hr />
 
       <Section>
-        <div class="desc">
+        <div className="desc">
           <h1>바닐라코딩 포털 서비스</h1>
           <p>
             바닐라코딩 포털 서비스를 기획, 디자인 및 개발하였습니다. 코스
@@ -134,7 +134,7 @@ const Resume = () => {
       <hr />
 
       <Section>
-        <div class="desc">
+        <div className="desc">
           <h1>바닐라코딩 앱</h1>
           <p>
             퍼즐앱을 개발하였습니다. 자료구조 개념을 사용하여 알파벳 순서를
@@ -180,7 +180,7 @@ const Resume = () => {
       <hr />
 
       <Section>
-        <div class="desc">
+        <div className="desc">
           <h1>복주머니 모바일 웹</h1>
           <p>
             설날에 사용될 수 있는 복주머니 모바일 웹을 개발했습니다. 복주머니에
@@ -211,7 +211,7 @@ const Resume = () => {
       <hr />
 
       <Section>
-        <div class="desc">
+        <div className="desc">
           <h1>피크닉 정원만들기 전시</h1>
           <p>
             키오스크 전시공간 피크닉의 전시 "정원만들기" 에 사용될 키오스크를
@@ -243,7 +243,7 @@ const Resume = () => {
       <hr />
 
       <Section>
-        <div class="desc">
+        <div className="desc">
           <h1>피크닉 사울레이터 전시</h1>
           <p>
             이미지 슬라이더 전시공간 피크닉의 전시 "창문을 통해 어렴풋이" 에
