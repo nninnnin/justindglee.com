@@ -4,6 +4,7 @@ import Carousel from "./Carousel";
 import TechStack from "./TechStack";
 
 import ChopsticksConsumerGif from "../images/chopsticks-consumer.gif";
+// import ChopsticksSellerGif from "../images/chopsticks-seller.gif";
 import ChopsticksSellerWebM from "../images/chopsticks-seller.webm";
 import ChopsticksSellerMP4 from "../images/chopsticks-seller.mp4";
 
@@ -85,6 +86,7 @@ const Resume = () => {
           />
         </div>
 
+        {/* <Image src={ChopsticksSellerGif} /> */}
         <Video autoPlay loop muted playsInline>
           <source src={ChopsticksSellerWebM} type="video/webm" />
           <source src={ChopsticksSellerMP4} type="video/mp4" />

@@ -292,6 +292,16 @@ module.exports = function (webpackEnv) {
         }),
         // This is only used in production mode
         new CssMinimizerPlugin(),
+        new ImageMinimizerPlugin({
+          minimizer: {
+            implementation: ImageMinimizerPlugin.imageminMinify,
+            options: {
+              plugins: [
+                ["gifsicle", { interlaced: true, optimizationLevel: 3 }],
+              ],
+            },
+          },
+        }),
       ],
     },
     resolve: {
