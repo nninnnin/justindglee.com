@@ -44,7 +44,7 @@ const Badge = ({
 }) => {
   return (
     <Container>
-      <img src={Icons[icon]} width={10} />
+      <img alt={`${icon}-icon`} src={Icons[icon]} width={10} />
       {children}
     </Container>
   );

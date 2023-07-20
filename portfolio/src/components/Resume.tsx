@@ -7,7 +7,6 @@ import ChopsticksConsumerGif from "../images/chopsticks-consumer.gif";
 // import ChopsticksSellerGif from "../images/chopsticks-seller.gif";
 import ChopsticksSellerWebM from "../images/chopsticks-seller.webm";
 import ChopsticksSellerMP4 from "../images/chopsticks-seller.mp4";
-import TypeScriptIcon from "../icons/ts.svg";
 
 const Resume = () => {
   return (
