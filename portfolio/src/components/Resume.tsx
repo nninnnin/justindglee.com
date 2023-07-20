@@ -1,12 +1,13 @@
 import styled, { css } from "styled-components";
 import React from "react";
-import Carousel from "./Carousel";
-import TechStack from "./TechStack";
+import Carousel from "./Carousel.js";
+import TechStack from "./TechStack.tsx";
 
 import ChopsticksConsumerGif from "../images/chopsticks-consumer.gif";
 // import ChopsticksSellerGif from "../images/chopsticks-seller.gif";
 import ChopsticksSellerWebM from "../images/chopsticks-seller.webm";
 import ChopsticksSellerMP4 from "../images/chopsticks-seller.mp4";
+import TypeScriptIcon from "../icons/ts.svg";
 
 const Resume = () => {
   return (
@@ -26,27 +27,27 @@ const Resume = () => {
             stacks={[
               {
                 name: "TypeScript",
-                bgc: "#2F75C0",
+                icon: "typescript",
               },
               {
                 name: "Next.js",
-                bgc: "black",
+                icon: "nextjs",
               },
               {
                 name: "Recoil",
-                bgc: "black",
+                icon: "recoil",
               },
               {
                 name: "React Query",
-                bgc: "orangered",
+                icon: "reactquery",
               },
               {
                 name: "GraphQL",
-                bgc: "#DF33A7",
+                icon: "graphql",
               },
               {
                 name: "아임포트(포트원)",
-                bgc: "#F5682C",
+                icon: "portone",
               },
             ]}
           />
@@ -69,19 +70,19 @@ const Resume = () => {
             stacks={[
               {
                 name: "TypeScript",
-                bgc: "#2F75C0",
+                icon: "typescript",
               },
               {
                 name: "Apollo Client",
-                bgc: "black",
+                icon: "graphql",
               },
               {
                 name: "GraphQL",
-                bgc: "#DF33A7",
+                icon: "graphql",
               },
               {
                 name: "React hook form",
-                bgc: "#EC5990",
+                icon: "hookform",
               },
             ]}
           />
@@ -107,15 +108,15 @@ const Resume = () => {
             stacks={[
               {
                 name: "Figma",
-                bgc: ["#EB4C1D", "#F86F5F", "#9D56F8", "#19B6F7", "#0ACA7F"],
+                icon: "typescript",
               },
               {
                 name: "Next.js",
-                bgc: "black",
+                icon: "nextjs",
               },
               {
                 name: "아임포트(포트원)",
-                bgc: "#F5682C",
+                icon: "portone",
               },
             ]}
           />
@@ -153,15 +154,15 @@ const Resume = () => {
             stacks={[
               {
                 name: "React Native",
-                bgc: "#5ED3F4",
+                icon: "react",
               },
               {
                 name: "TypeScript",
-                bgc: "#2F75C0",
+                icon: "typescript",
               },
               {
                 name: "GraphQL",
-                bgc: "#DF33A7",
+                icon: "graphql",
               },
             ]}
           />
@@ -193,11 +194,11 @@ const Resume = () => {
             stacks={[
               {
                 name: "React",
-                bgc: "#5ED3F4",
+                icon: "react",
               },
               {
                 name: "React Router",
-                bgc: "red",
+                icon: "reactrouter",
               },
             ]}
           />
@@ -229,13 +230,11 @@ const Resume = () => {
             stacks={[
               {
                 name: "JavaScript",
-                bgc: "#F0D91D",
-                color: "black",
+                icon: "javascript",
               },
               {
                 name: "Netlify",
-                bgc: "#32E6E2",
-                color: "white",
+                icon: "netlify",
               },
             ]}
           />
@@ -257,18 +256,15 @@ const Resume = () => {
             stacks={[
               {
                 name: "JavaScript",
-                bgc: "#F0D91D",
-                color: "black",
+                icon: "javascript",
               },
               {
                 name: "Node.js",
-                bgc: "#659D5D",
-                color: "white",
+                icon: "nodejs",
               },
               {
                 name: "Heroku",
-                bgc: "#5F478A",
-                color: "white",
+                icon: "heroku",
               },
             ]}
           />
