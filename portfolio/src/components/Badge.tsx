@@ -15,6 +15,7 @@ import NodejsIcon from "../icons/nodejs.svg";
 import HerokuIcon from "../icons/heroku.svg";
 import ReactQueryIcon from "../icons/reactquery.svg";
 import RecoilImage from "../icons/recoil.png";
+import ApolloImage from "../icons/apollo.png";
 
 export const Icons = {
   figma: FigmaIcon,
@@ -31,6 +32,7 @@ export const Icons = {
   heroku: HerokuIcon,
   reactquery: ReactQueryIcon,
   recoil: RecoilImage,
+  apollo: ApolloImage,
 };
 
 const Badge = ({

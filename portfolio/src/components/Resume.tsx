@@ -74,7 +74,7 @@ const Resume = () => {
               },
               {
                 name: "Apollo Client",
-                icon: "graphql",
+                icon: "apollo",
               },
               {
                 name: "GraphQL",
