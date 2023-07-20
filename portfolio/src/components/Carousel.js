@@ -36,7 +36,7 @@ const ImageWrapper = styled.div`
     height: 100%;
     max-height: 300px;
     min-height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 `;
 

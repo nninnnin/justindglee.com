@@ -40,7 +40,7 @@ export default createGlobalStyle`
 
   img {
     height: 300px;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
   }
 

@@ -51,6 +51,7 @@ const Resume = () => {
             ]}
           />
         </div>
+
         <Image alt="chopsticks-consumer" src={ChopsticksConsumerGif} />
       </Section>
 
@@ -340,7 +341,6 @@ const mediaStyle = css`
   @media only screen and (min-width: 481px) {
     flex: 1;
     width: 300px;
-    background-color: gainsboro;
   }
 `;
 
