@@ -297,7 +297,6 @@ const Section = styled.div`
 
     img,
     video {
-      height: 40svh;
       max-height: 40svh;
     }
 
