@@ -7,7 +7,9 @@ export interface PostQueryResult {
 }
 
 export interface Post {
+  index: number;
   id: number;
+  strapiId: number;
   title: string;
   contents: string;
   type: string;

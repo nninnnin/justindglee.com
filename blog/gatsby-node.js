@@ -1,16 +1,11 @@
 const path = require("path");
+const { go, filter, map } = require("fxjs");
 
 exports.createPages = async ({ graphql, actions }) => {
   const blogPostTemplate = path.resolve(`./src/components/PostDetails.tsx`);
-
-  const generatePage = (edge) =>
-    actions.createPage({
-      path: `/post/${edge.node.id}`,
-      component: blogPostTemplate,
-      context: {
-        post: edge.node,
-      },
-    });
+  const postListTemplate = path.resolve(
+    `./src/components/PostListTemplate.tsx`
+  );
 
   const {
     data: {
@@ -35,9 +30,51 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  edges.forEach((edge) => generatePage(edge));
-};
+  const lifePosts = filter((post) => post.node.type === "life", edges).map(
+    (edge, index) => ({
+      index: index + 1,
+      ...edge.node,
+    })
+  );
 
-exports.onCreateNode = ({ node, actions }) => {
-  console.log(node);
+  const techPosts = filter((post) => post.node.type === "tech", edges).map(
+    (edge, index) => ({
+      index: index + 1,
+      ...edge.node,
+    })
+  );
+
+  go(lifePosts, (posts) =>
+    actions.createPage({
+      path: "/life",
+      component: postListTemplate,
+      context: {
+        header: "생활",
+        posts,
+      },
+    })
+  );
+
+  go(techPosts, (posts) =>
+    actions.createPage({
+      path: "/tech",
+      component: postListTemplate,
+      context: {
+        header: "기술",
+        posts,
+      },
+    })
+  );
+
+  console.log([...lifePosts, ...techPosts]);
+
+  [...lifePosts, ...techPosts].forEach((post) =>
+    actions.createPage({
+      path: `/${post.type}/${post.index}`,
+      component: blogPostTemplate,
+      context: {
+        post,
+      },
+    })
+  );
 };
