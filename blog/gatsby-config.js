@@ -44,5 +44,11 @@ module.exports = {
         collectionTypes: ["Post"],
       },
     },
+    {
+      resolve: "gatsby-plugin-styled-components",
+      options: {
+        displayName: true,
+      },
+    },
   ],
 };
