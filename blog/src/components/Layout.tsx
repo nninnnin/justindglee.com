@@ -10,7 +10,7 @@ function Layout({ children }: Props) {
     <div className="flex flex-col w-screen h-screen m-0 p-0">
       <Navigation />
 
-      <div className="contents-viewer flex-1 w-3/4 mx-auto p-[30px]">
+      <div className="contents-viewer flex-1 w-[640px] mx-auto p-[30px]">
         {children}
       </div>
     </div>
