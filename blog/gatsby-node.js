@@ -8,7 +8,7 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/post/${edge.node.id}`,
       component: blogPostTemplate,
       context: {
-        id: edge.node.id,
+        post: edge.node,
       },
     });
 
@@ -36,4 +36,8 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   edges.forEach((edge) => generatePage(edge));
+};
+
+exports.onCreateNode = ({ node, actions }) => {
+  console.log(node);
 };

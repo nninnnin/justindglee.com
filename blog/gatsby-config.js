@@ -7,24 +7,11 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `저스틴 블로그`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://justindglee.com`,
   },
   plugins: [
-    {
-      resolve: "gatsby-transformer-remark",
-      options: {
-        plugins: [
-          {
-            resolve: "gatsby-remark-classes",
-            options: {
-              classMap: {
-                paragraph: "para",
-              },
-            },
-          },
-        ],
-      },
-    },
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
     {
       resolve: "gatsby-plugin-sass",
       options: {
