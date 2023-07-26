@@ -2,14 +2,17 @@ import { map } from "fxjs";
 import { useMemo } from "react";
 import { v4 as uuid } from "uuid";
 
-export default function useMapIds(list: {}[]) {
-  const result = useMemo(
-    map((elem) => {
-      return {
+type ElementWithId = Partial<Element> & { id: string };
+
+export default function useMapIds<Element>(list: Element[]): ElementWithId[] {
+  const result = useMemo<ElementWithId[]>(
+    map(
+      (elem: Element) => ({
         id: uuid(),
         ...elem,
-      };
-    }, list),
+      }),
+      list
+    ),
     [list]
   );
 
