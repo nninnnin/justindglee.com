@@ -8,7 +8,7 @@ interface Props {
 
 const ListItem = ({ index, description }: Props) => {
   return (
-    <li className="cursor-pointer m-2">
+    <li className="cursor-pointer m-2 flex">
       <Index>{index}</Index> | <Description>{description}</Description>
     </li>
   );

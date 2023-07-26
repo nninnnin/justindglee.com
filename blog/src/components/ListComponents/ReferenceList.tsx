@@ -1,10 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
 import { Reference } from "@src/types";
-import {
-  Index as ReferenceIndex,
-  Description as ReferenceCaption,
-} from "./styles";
 import ListItem from "./ListItem";
 
 interface Props {
