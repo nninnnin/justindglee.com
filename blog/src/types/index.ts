@@ -17,3 +17,12 @@ export interface Post {
   updatedAt: string;
   publishedAt: string;
 }
+
+export interface Reference {
+  index: number;
+  id: number;
+  strapiId: number;
+  url: string;
+  caption: string;
+  createdAt: string;
+}

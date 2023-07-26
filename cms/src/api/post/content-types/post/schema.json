@@ -26,11 +26,7 @@
     },
     "type": {
       "type": "enumeration",
-      "enum": [
-        "tech",
-        "life",
-        "idea"
-      ]
+      "enum": ["tech", "life", "idea"]
     }
   }
 }

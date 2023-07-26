@@ -3,9 +3,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
 
 function Navigation() {
-  const [navItems, setNavItems] = useState([
-    { id: "", title: "기술", route: "/tech" },
-    { id: "", title: "생활", route: "/life" },
+  const [navItems, setNavItems] = useState<
+    Array<{ id: null | string; title: string; route: string }>
+  >([
+    { id: null, title: "기술", route: "/tech" },
+    { id: null, title: "생활", route: "/life" },
+    { id: null, title: "자료실", route: "/reference" },
+    // { id: null, title: "작업물", route: "/portfolio" },
   ]);
 
   useEffect(() => {
@@ -13,19 +17,20 @@ function Navigation() {
   }, []);
 
   return (
-    <div className="p-[20px] bg-transparent text-grey w-full">
+    <div className="nav glassmorph text-grey font-[500] w-full h-full p-[20px]">
       <Link to={"/"}>
-        <span className="text-2xl font-bold">저스틴 블로그</span>
+        <span className="logo text-2xl">저스틴 블로그</span>
       </Link>
 
-      <ul className="mt-3">
+      <ul className="mt-5">
         {navItems.map((el, index) => {
           return (
-            <Link key={el.id ? el.id : index} to={el.route}>
-              <li className="hover:bg-white hover:text-black cursor-pointer">
-                {el.title}
-              </li>
-            </Link>
+            <div key={el.id ?? index}>
+              <hr />
+              <Link to={el.route}>
+                <li className="cursor-pointer py-3">{el.title}</li>
+              </Link>
+            </div>
           );
         })}
       </ul>

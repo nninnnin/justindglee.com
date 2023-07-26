@@ -1,25 +1,33 @@
 import React from "react";
+import { useLocation } from "@reach/router";
 
 import Layout from "@components/Layout";
-import PostList from "@components/PostList";
+import PostList from "@components/ListComponents/PostList";
 import "@styles/index.scss";
-import { Post } from "@src/types";
+import { Post, Reference } from "@src/types";
+import ReferenceList from "./ListComponents/ReferenceList";
 
 interface Props {
   pageContext: {
     header: string;
-    posts: Array<Post>;
+    posts?: Array<Post>;
+    references?: Array<Reference>;
   };
 }
 
 export default function PostListTemplate({
-  pageContext: { header, posts },
+  pageContext: { header, posts, references },
 }: Props) {
+  const params = useLocation();
+
+  console.log(params);
+
   return (
     <Layout>
-      <h1 className="text-2xl pb-2">{header}</h1>
+      <h1 className="header">{header}</h1>
 
-      <PostList posts={posts} />
+      {posts && <PostList posts={posts} />}
+      {references && <ReferenceList references={references} />}
     </Layout>
   );
 }

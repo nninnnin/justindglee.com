@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import Layout from "@components/Layout";
 import ReactMarkdown from "react-markdown";
+import { HeadingComponent } from "react-markdown/lib/ast-to-react";
 
 interface Props {
   pageContext: {
@@ -14,6 +15,7 @@ interface Props {
 
 const CustomParagraph = ({ children }: { children: React.ReactNode }) => (
   <p
+    className="text-white"
     style={{
       margin: "10px 0",
       wordBreak: "keep-all",
@@ -24,22 +26,14 @@ const CustomParagraph = ({ children }: { children: React.ReactNode }) => (
   </p>
 );
 
-const CustomBlockquote = ({ children }: { children: React.ReactNode }) => (
-  <blockquote
-    style={{ margin: "12px 0", backgroundColor: "lawngreen", padding: "1.5em" }}
-  >
-    {children}
-  </blockquote>
-);
+const Blockquote = styled.blockquote`
+  margin: 12px 0;
+  padding: 0 1.5em;
+  border-left: 3px solid gainsboro;
+`;
 
 const H1 = styled.h1`
   font-size: 2.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-`;
-
-const H2 = styled.h2`
-  font-size: 1.5em;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 `;
@@ -51,14 +45,24 @@ const H3 = styled.h3`
 
 const Image = styled.img`
   margin: 2em 0;
+  border: 1px solid gainsboro;
+  background-color: #fff;
 `;
+
 const HR = styled.hr`
   margin: 2em 0;
 `;
 
-const Contents = styled.p`
-  font-size: 0.9em;
+const UL = styled.ul`
+  padding-left: 1.3rem;
+  list-style-type: decimal;
+
+  & > li {
+    margin-top: 4px;
+  }
 `;
+
+const Contents = styled.p``;
 
 const PostDetail = ({ pageContext }: Props) => {
   const { post } = pageContext;
@@ -66,17 +70,21 @@ const PostDetail = ({ pageContext }: Props) => {
 
   return (
     <Layout>
-      <h1 className="text-[1.8em] mb-2">{title}</h1>
+      <h1 className="header">
+        <span className="">기술 : </span>
+        {title}
+      </h1>
+
       <Contents>
         <ReactMarkdown
           components={{
             p: CustomParagraph,
-            blockquote: CustomBlockquote,
-            h1: H1 as typeof CustomParagraph,
-            h2: H2 as typeof CustomParagraph,
-            h3: H3 as typeof CustomParagraph,
+            blockquote: Blockquote as typeof CustomParagraph,
+            h1: H1 as HeadingComponent,
+            h3: H3 as HeadingComponent,
             img: Image as typeof CustomParagraph,
             hr: HR as typeof CustomParagraph,
+            ul: UL as typeof CustomParagraph,
           }}
           remarkPlugins={[]}
         >

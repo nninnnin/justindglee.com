@@ -3,15 +3,24 @@ import Navigation from "@components/Navigation";
 
 interface Props {
   children: React.ReactNode;
+  hasPadding?: boolean;
 }
 
-function Layout({ children }: Props) {
+function Layout({ children, hasPadding = true }: Props) {
   return (
-    <div className="flex flex-col w-screen h-screen m-0 p-0">
-      <Navigation />
+    <div className={`bg-blue-600 flex w-screen h-screen`}>
+      <div className="w-[200px] h-full fixed">
+        <Navigation />
+      </div>
 
-      <div className="contents-viewer flex-1 w-[640px] mx-auto p-[30px]">
-        {children}
+      <div className="flex-1 ml-[200px] py-10">
+        <div
+          className={`contents-viewer glassmorph overflow-auto mx-auto w-[640px] h-full ${
+            hasPadding && "p-[30px] pt-[26px]"
+          }`}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const {
     data: {
-      allStrapiPost: { edges },
+      allStrapiPost: { edges: posts },
     },
   } = await graphql(`
     query {
@@ -30,19 +30,42 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  const lifePosts = filter((post) => post.node.type === "life", edges).map(
+  const {
+    data: {
+      allStrapiReference: { nodes: references },
+    },
+  } = await graphql(`
+    query {
+      allStrapiReference {
+        nodes {
+          strapiId
+          id
+          url
+          createdAt
+          caption
+        }
+      }
+    }
+  `);
+
+  const lifePosts = filter((post) => post.node.type === "life", posts).map(
     (edge, index) => ({
       index: index + 1,
       ...edge.node,
     })
   );
 
-  const techPosts = filter((post) => post.node.type === "tech", edges).map(
+  const techPosts = filter((post) => post.node.type === "tech", posts).map(
     (edge, index) => ({
       index: index + 1,
       ...edge.node,
     })
   );
+
+  const referencePosts = references.map((node, index) => ({
+    index: index + 1,
+    ...node,
+  }));
 
   go(lifePosts, (posts) =>
     actions.createPage({
@@ -66,7 +89,16 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   );
 
-  console.log([...lifePosts, ...techPosts]);
+  go(referencePosts, (references) =>
+    actions.createPage({
+      path: "/reference",
+      component: postListTemplate,
+      context: {
+        header: "자료실",
+        references,
+      },
+    })
+  );
 
   [...lifePosts, ...techPosts].forEach((post) =>
     actions.createPage({
