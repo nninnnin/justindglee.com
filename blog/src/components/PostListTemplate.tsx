@@ -1,5 +1,4 @@
 import React from "react";
-import { useLocation } from "@reach/router";
 
 import Layout from "@components/Layout";
 import PostList from "@components/ListComponents/PostList";
@@ -18,10 +17,6 @@ interface Props {
 export default function PostListTemplate({
   pageContext: { header, posts, references },
 }: Props) {
-  const params = useLocation();
-
-  console.log(params);
-
   return (
     <Layout>
       <h1 className="header">{header}</h1>

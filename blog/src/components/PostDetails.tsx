@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import React from "react";
-import Layout from "@components/Layout";
 import ReactMarkdown from "react-markdown";
 import { HeadingComponent } from "react-markdown/lib/ast-to-react";
+import { useLocation } from "@reach/router";
+import { routes } from "./Navigation";
+
+import Layout from "@components/Layout";
 
 interface Props {
   pageContext: {
@@ -53,7 +56,9 @@ const HR = styled.hr`
   margin: 2em 0;
 `;
 
-const UL = styled.ul`
+const UL = styled.ul.withConfig({
+  shouldForwardProp: (prop) => !["ordered"].includes(prop),
+})`
   padding-left: 1.3rem;
   list-style-type: decimal;
 
@@ -62,20 +67,24 @@ const UL = styled.ul`
   }
 `;
 
-const Contents = styled.p``;
-
 const PostDetail = ({ pageContext }: Props) => {
   const { post } = pageContext;
   const { title, contents } = post;
 
+  const params = useLocation();
+
+  const postType =
+    Object.values(routes).find(({ route }) => params.pathname.includes(route))
+      ?.title ?? "";
+
   return (
     <Layout>
       <h1 className="header">
-        <span className="">기술 : </span>
+        <span>{postType} : </span>
         {title}
       </h1>
 
-      <Contents>
+      <div>
         <ReactMarkdown
           components={{
             p: CustomParagraph,
@@ -90,7 +99,7 @@ const PostDetail = ({ pageContext }: Props) => {
         >
           {contents}
         </ReactMarkdown>
-      </Contents>
+      </div>
     </Layout>
   );
 };
