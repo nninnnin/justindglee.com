@@ -9,6 +9,8 @@
   "author": "Justin Lee",
   "license": "ISC",
   "dependencies": {
-    "fxjs": "^0.21.3"
+    "fxjs": "^0.21.3",
+    "gatsby-plugin-google-analytics": "^5.11.0",
+    "gatsby-plugin-google-gtag": "^5.11.0"
   }
 }
