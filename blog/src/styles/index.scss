@@ -23,6 +23,10 @@ h2 {
   margin-bottom: 0.5em;
 }
 
+p {
+  word-break: keep-all;
+}
+
 .text-theme {
   color: var(--theme-color);
 }
@@ -87,16 +91,12 @@ h2 {
     padding: 1em;
 
     font-size: 0.9em;
-    word-break: keep-all;
 
     h1 {
       font-size: 1.5em;
     }
 
     address {
-      bottom: 1em;
-      right: 1em;
-
       padding: 0.5em;
       border-radius: 0.5rem;
     }

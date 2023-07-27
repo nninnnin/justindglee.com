@@ -21,7 +21,7 @@ const CustomParagraph = ({ children }: { children: React.ReactNode }) => (
     className="text-white"
     style={{
       margin: "10px 0",
-      overflowWrap: "break-word",
+      wordBreak: "keep-all",
       lineHeight: "1.8em",
     }}
   >
