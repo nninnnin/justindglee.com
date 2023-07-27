@@ -34,6 +34,13 @@ h2 {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
+.layout-container {
+  background-color: rgb(37, 99, 235);
+  display: flex;
+  width: 100vw;
+  height: 100svh;
+}
+
 .contents-viewer {
   border-radius: 1.5rem;
   position: relative;
@@ -74,7 +81,7 @@ h2 {
   }
 
   .contents-viewer {
-    width: 95%;
+    width: 95vw;
     border-radius: 0.5em;
 
     padding: 1em;

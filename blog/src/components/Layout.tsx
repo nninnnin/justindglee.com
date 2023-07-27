@@ -8,7 +8,7 @@ interface Props {
 
 function Layout({ children, hasPadding = true }: Props) {
   return (
-    <div className={`bg-blue-600 flex w-screen h-screen`}>
+    <div className="layout-container">
       <div className="nav-wrapper w-[200px] h-full fixed">
         <Navigation />
       </div>
@@ -16,7 +16,7 @@ function Layout({ children, hasPadding = true }: Props) {
       <div className="contents-viewer-wrapper flex-1 ml-[200px] py-10">
         <div
           className={`contents-viewer glassmorph overflow-auto mx-auto w-[640px] h-full ${
-            hasPadding && "p-[30px] pt-[26px]"
+            hasPadding && "p-[30px] pt-[26px] flex flex-col"
           }`}
         >
           {children}
