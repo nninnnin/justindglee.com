@@ -14,7 +14,7 @@ exports.createPages = async ({ graphql, actions }) => {
     },
   } = await graphql(`
     query {
-      allStrapiPost {
+      allStrapiPost(sort: { createdAt: DESC }) {
         edges {
           node {
             id
@@ -37,7 +37,7 @@ exports.createPages = async ({ graphql, actions }) => {
     },
   } = await graphql(`
     query {
-      allStrapiReference {
+      allStrapiReference(sort: { createdAt: DESC }) {
         nodes {
           strapiId
           id
@@ -106,6 +106,8 @@ exports.createPages = async ({ graphql, actions }) => {
   );
 
   const allPosts = [...lifePosts, ...techPosts];
+
+  console.log(allPosts);
 
   // index page
   actions.createPage({
