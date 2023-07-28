@@ -124,7 +124,6 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         post,
       },
-      defer: true,
     });
   });
 };
