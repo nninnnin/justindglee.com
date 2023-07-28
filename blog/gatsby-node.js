@@ -107,8 +107,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const allPosts = [...lifePosts, ...techPosts];
 
-  console.log(allPosts);
-
   // index page
   actions.createPage({
     path: "/",

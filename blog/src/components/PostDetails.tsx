@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { HeadingComponent } from "react-markdown/lib/ast-to-react";
 import { useLocation } from "@reach/router";
 import { routes } from "./Navigation";
+import rehypeRaw from "rehype-raw";
 
 import Layout from "@components/Layout";
 
@@ -69,6 +70,41 @@ const UL = styled.ul.withConfig({
   }
 `;
 
+const FrameWrapper = styled.div<{ ratio: number }>`
+  width: 100%;
+  padding-top: ${({ ratio }) => `${ratio}%`};
+
+  position: relative;
+`;
+
+const Frame = styled.iframe`
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
+
+const Iframe = ({
+  width,
+  height,
+  ...props
+}: {
+  width: number;
+  height: number;
+}) => {
+  const ratio = (height / width) * 100;
+
+  return (
+    <FrameWrapper className="glassmorph" ratio={ratio}>
+      <Frame {...props} />
+    </FrameWrapper>
+  );
+};
+
 const PostDetail = ({ pageContext }: Props) => {
   const { post } = pageContext;
   const { title, contents } = post;
@@ -96,8 +132,9 @@ const PostDetail = ({ pageContext }: Props) => {
             img: Image as typeof CustomParagraph,
             hr: HR as typeof CustomParagraph,
             ul: UL as typeof CustomParagraph,
+            iframe: Iframe, // TODO: typing
           }}
-          remarkPlugins={[]}
+          rehypePlugins={[rehypeRaw]}
         >
           {contents}
         </ReactMarkdown>
