@@ -20,7 +20,7 @@ function Navigation() {
 
   return (
     <div className="nav glassmorph text-grey font-[500] w-full h-full p-[20px] whitespace-nowrap">
-      <Link to={"/"}>
+      <Link to={"/about"}>
         <span className="logo text-2xl">저스틴 블로그</span>
       </Link>
 

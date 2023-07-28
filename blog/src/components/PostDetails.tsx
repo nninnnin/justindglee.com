@@ -47,9 +47,11 @@ const H3 = styled.h3`
 `;
 
 const Image = styled.img`
-  margin: 2em 0;
   border: 1px solid gainsboro;
   background-color: #fff;
+
+  display: block;
+  margin: 2em auto;
 `;
 
 const HR = styled.hr`
@@ -84,7 +86,7 @@ const PostDetail = ({ pageContext }: Props) => {
         {title}
       </h1>
 
-      <div>
+      <div className="post-details">
         <ReactMarkdown
           components={{
             p: CustomParagraph,

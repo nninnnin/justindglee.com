@@ -2,7 +2,8 @@ const path = require("path");
 const { go, filter, map } = require("fxjs");
 
 exports.createPages = async ({ graphql, actions }) => {
-  const blogPostTemplate = path.resolve(`./src/components/PostDetails.tsx`);
+  const IndexPageTemplate = path.resolve(`./src/components/Index.tsx`);
+  const PostDetailsTemplate = path.resolve(`./src/components/PostDetails.tsx`);
   const postListTemplate = path.resolve(
     `./src/components/PostListTemplate.tsx`
   );
@@ -48,24 +49,28 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  const lifePosts = filter((post) => post.node.type === "life", posts).map(
-    (edge, index) => ({
+  const releaseNode = (edge) => edge.node;
+  const filterByType = (type) => (post) => post.type === type;
+  const mapIndex = (node, index) => {
+    return {
       index: index + 1,
-      ...edge.node,
-    })
-  );
+      ...node,
+    };
+  };
 
-  const techPosts = filter((post) => post.node.type === "tech", posts).map(
-    (edge, index) => ({
-      index: index + 1,
-      ...edge.node,
-    })
-  );
+  const lifePosts = go(
+    posts,
+    map(releaseNode),
+    filter(filterByType("life"))
+  ).map(mapIndex);
 
-  const referencePosts = references.map((node, index) => ({
-    index: index + 1,
-    ...node,
-  }));
+  const techPosts = go(
+    posts,
+    map(releaseNode),
+    filter(filterByType("tech"))
+  ).map(mapIndex);
+
+  const referencePosts = references.map(mapIndex);
 
   go(lifePosts, (posts) =>
     actions.createPage({
@@ -100,13 +105,25 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   );
 
-  [...lifePosts, ...techPosts].forEach((post) =>
+  const allPosts = [...lifePosts, ...techPosts];
+
+  // index page
+  actions.createPage({
+    path: "/",
+    component: IndexPageTemplate,
+    context: {
+      posts: allPosts,
+    },
+  });
+
+  // post details
+  allPosts.forEach((post) => {
     actions.createPage({
       path: `/${post.type}/${post.index}`,
-      component: blogPostTemplate,
+      component: PostDetailsTemplate,
       context: {
         post,
       },
-    })
-  );
+    });
+  });
 };
