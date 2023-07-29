@@ -7,6 +7,7 @@ import { routes } from "./Navigation";
 import rehypeRaw from "rehype-raw";
 
 import Layout from "@components/Layout";
+import { Link } from "gatsby-link";
 
 interface Props {
   pageContext: {
@@ -105,18 +106,25 @@ const Iframe = ({
   );
 };
 
+const Anchor = styled.a`
+  text-decoration: underline;
+`;
+
 const PostDetail = ({ pageContext }: Props) => {
   const { post } = pageContext;
   const { title, contents } = post;
 
   const params = useLocation();
 
-  const postType =
-    Object.values(routes).find(({ route }) => params.pathname.includes(route))
-      ?.title ?? "";
+  const postType = Object.values(routes).find(({ route }) =>
+    params.pathname.includes(route)
+  );
 
   return (
     <Layout>
+      <Link className="underline" to={postType?.route ?? ""}>
+        {postType?.title ?? ""}
+      </Link>
       <h1 className="header">
         {/* <span>{postType} : </span> */}
         {title}
@@ -133,6 +141,7 @@ const PostDetail = ({ pageContext }: Props) => {
             hr: HR as typeof CustomParagraph,
             ul: UL as typeof CustomParagraph,
             iframe: Iframe, // TODO: typing
+            a: Anchor,
           }}
           rehypePlugins={[rehypeRaw]}
         >
