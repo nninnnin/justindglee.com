@@ -17,6 +17,10 @@
   display: none;
 }
 
+html {
+  font-size: 18px;
+}
+
 h2 {
   font-size: 1.5em;
   margin-top: 0.5em;
@@ -85,6 +89,10 @@ p {
 }
 
 @mixin small-layout {
+  html {
+    font-size: 4.5vw;
+  }
+
   .contents-viewer-wrapper {
     padding: 2.5vw 0;
   }
@@ -92,8 +100,6 @@ p {
   .contents-viewer {
     width: 95vw;
     padding: 1em;
-
-    font-size: 0.9em;
 
     h1 {
       font-size: 1.5em;

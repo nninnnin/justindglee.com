@@ -118,7 +118,7 @@ const PostDetail = ({ pageContext }: Props) => {
   return (
     <Layout>
       <h1 className="header">
-        <span>{postType} : </span>
+        {/* <span>{postType} : </span> */}
         {title}
       </h1>
 
