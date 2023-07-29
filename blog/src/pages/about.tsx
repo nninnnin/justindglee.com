@@ -25,7 +25,7 @@ export default function About() {
 
         <p className="flex-1 mt-5 relative min-h-[100px]">
           <a
-            className="ml-auto absolute bottom-0 right-0 block bg-blue-600 p-5 w-fit rounded-2xl font-medium not-italic"
+            className="ml-auto absolute bottom-0 right-0 block bg-blue-600 py-4 px-5 w-fit rounded-md font-medium not-italic"
             href="mailto:nninnnin7@gmail.com"
           >
             이메일 보내기
