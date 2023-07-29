@@ -12,7 +12,8 @@ https://justindglee.com
   - sass의 @mixin과 @include를 사용한 반응형 디자인 구현
   - `fxjs` 를 사용해 가독성 높은 함수형코드 작성 (gatsby-node.js의 페이지 생성 로직)
 
-### portfolio: Create React App
+### portfolio
+  - Create React App
   - [webpack에서의 빌드타임 gif 최적화 설정을 위해 eject](https://github.com/nninnnin/justindglee.com/commit/a7fd8710bcde80ea603dffc846a8cce7e17ea09e)
   
 ## BE
