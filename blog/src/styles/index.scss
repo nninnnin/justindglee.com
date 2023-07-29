@@ -112,7 +112,7 @@ p {
     align-items: center;
 
     .logo {
-      margin-right: 1.5em;
+      margin-right: 12px;
     }
 
     ul {
@@ -123,8 +123,9 @@ p {
         display: none;
       }
 
-      li {
-        margin-right: 0.5em;
+      > div {
+        margin: 0 8px;
+        text-align: center;
       }
     }
   }
