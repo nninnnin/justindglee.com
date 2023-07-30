@@ -1,13 +1,20 @@
 import React from "react";
+import { shuffle } from "lodash";
 
 import Layout from "@components/Layout";
 import "@styles/index.scss";
+
+const greetings = ["안녕하세요!", "어서오세요 :)", "반갑습니다."];
+
+function pickGreeting(greetings: Array<string>): string {
+  return shuffle(greetings)[0];
+}
 
 export default function About() {
   return (
     <Layout>
       <div className="flex flex-col flex-1">
-        <h1 className="header">소개를 위한 문답</h1>
+        <h1 className="header">{pickGreeting(greetings)}</h1>
 
         <h2 className="mt-0">누구시죠?</h2>
         <p className="pb-[10px]">
