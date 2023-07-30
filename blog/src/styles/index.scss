@@ -22,7 +22,7 @@ html {
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 1em;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 }
@@ -37,7 +37,7 @@ p {
 
 .glassmorph {
   color: white;
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.2);
   text-shadow: 0 2px 4px rgba(71, 97, 206, 0.36);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
@@ -83,14 +83,20 @@ p {
 }
 
 @mixin desktop {
-  @media (min-width: #{$breakpoint-mobile}) {
+  @media (min-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+
+@mixin broad-desktop {
+  @media (min-width: #{$breakpoint-broad-desktop}) {
     @content;
   }
 }
 
 @mixin small-layout {
   html {
-    font-size: 4.5vw;
+    font-size: 16px;
   }
 
   .contents-viewer-wrapper {
@@ -101,56 +107,29 @@ p {
     width: 95vw;
     padding: 1em;
 
-    h1 {
+    .header {
       font-size: 1.5em;
+      padding-bottom: 0.5em;
     }
-  }
-}
-
-@mixin small-medium-layout {
-  .nav-wrapper {
-    width: 100%;
-    height: 100px;
-  }
-
-  .nav {
-    display: flex;
-    align-items: center;
-
-    .logo {
-      margin-right: 12px;
-    }
-
-    ul {
-      display: flex;
-      margin-top: 0;
-
-      hr {
-        display: none;
-      }
-
-      > div {
-        margin: 0 8px;
-        text-align: center;
-      }
-    }
-  }
-
-  .contents-viewer-wrapper {
-    margin-top: 100px;
-    margin-left: 0;
   }
 }
 
 // use mixins
 @include mobile {
-  @include small-medium-layout;
   @include small-layout;
 }
 
 @include tablet {
-  @include small-medium-layout;
 }
 
 @include desktop {
+  .contents-viewer {
+    width: 800px;
+  }
+}
+
+@include broad-desktop {
+  .contents-viewer {
+    width: 1000px;
+  }
 }

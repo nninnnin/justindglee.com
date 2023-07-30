@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { Components } from "react-markdown";
 import { HeadingComponent } from "react-markdown/lib/ast-to-react";
 import { useLocation } from "@reach/router";
 import { routes } from "./Navigation";
@@ -17,6 +17,47 @@ interface Props {
     };
   };
 }
+
+const PostDetail = ({ pageContext }: Props) => {
+  const { post } = pageContext;
+  const { title, contents } = post;
+
+  const params = useLocation();
+
+  console.log(params);
+
+  const postType = Object.values(routes).find(({ route }) =>
+    params.pathname.includes(route)
+  );
+
+  return (
+    <Layout>
+      <h1 className="header">
+        {/* <span>{postType} : </span> */}
+        {title}
+      </h1>
+
+      <div className="post-details">
+        <ReactMarkdown
+          components={{
+            p: CustomParagraph,
+            blockquote: Blockquote as typeof CustomParagraph,
+            h1: H1 as HeadingComponent,
+            h3: H3 as HeadingComponent,
+            img: Image as typeof CustomParagraph,
+            hr: HR as typeof CustomParagraph,
+            ul: UL as typeof CustomParagraph,
+            iframe: Iframe,
+            a: Anchor,
+          }}
+          rehypePlugins={[rehypeRaw]}
+        >
+          {contents}
+        </ReactMarkdown>
+      </div>
+    </Layout>
+  );
+};
 
 const CustomParagraph = ({ children }: { children: React.ReactNode }) => (
   <p
@@ -109,47 +150,5 @@ const Iframe = ({
 const Anchor = styled.a`
   text-decoration: underline;
 `;
-
-const PostDetail = ({ pageContext }: Props) => {
-  const { post } = pageContext;
-  const { title, contents } = post;
-
-  const params = useLocation();
-
-  const postType = Object.values(routes).find(({ route }) =>
-    params.pathname.includes(route)
-  );
-
-  return (
-    <Layout>
-      <Link className="underline" to={postType?.route ?? ""}>
-        {postType?.title ?? ""}
-      </Link>
-      <h1 className="header">
-        {/* <span>{postType} : </span> */}
-        {title}
-      </h1>
-
-      <div className="post-details">
-        <ReactMarkdown
-          components={{
-            p: CustomParagraph,
-            blockquote: Blockquote as typeof CustomParagraph,
-            h1: H1 as HeadingComponent,
-            h3: H3 as HeadingComponent,
-            img: Image as typeof CustomParagraph,
-            hr: HR as typeof CustomParagraph,
-            ul: UL as typeof CustomParagraph,
-            iframe: Iframe, // TODO: typing
-            a: Anchor,
-          }}
-          rehypePlugins={[rehypeRaw]}
-        >
-          {contents}
-        </ReactMarkdown>
-      </div>
-    </Layout>
-  );
-};
 
 export default PostDetail;

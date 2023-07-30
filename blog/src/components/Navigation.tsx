@@ -19,22 +19,21 @@ function Navigation() {
   }, []);
 
   return (
-    <div className="nav glassmorph text-grey font-[500] w-full h-full p-[20px] whitespace-nowrap">
-      <span className="logo text-2xl">
-        <Link to={"/about"}>저스틴 블로그</Link>
-      </span>
-
-      <ul className="mt-5">
+    <div className="nav w-full mb-2">
+      <ul className="flex pb-3">
         {navItems.map((el, index) => {
           return (
-            <div key={el.id ?? index}>
-              <hr />
-              <Link to={el.route}>
-                <li className="cursor-pointer py-3">{el.title}</li>
-              </Link>
-            </div>
+            <Link className="underline mr-3" key={el.id ?? index} to={el.route}>
+              <li className="cursor-pointer">{el.title}</li>
+            </Link>
           );
         })}
+        <Link
+          className="underline ml-auto font-[500] whitespace-nowrap"
+          to="/about"
+        >
+          <li>저스틴 블로그</li>
+        </Link>
       </ul>
     </div>
   );
