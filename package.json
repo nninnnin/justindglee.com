@@ -10,9 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "@types/fxjs": "^0.15.0",
+    "@types/react-syntax-highlighter": "^15.5.7",
     "fxjs": "^0.21.3",
     "gatsby-plugin-google-analytics": "^5.11.0",
     "gatsby-plugin-google-gtag": "^5.11.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "react-syntax-highlighter": "^15.5.0"
   }
 }

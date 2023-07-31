@@ -3,11 +3,11 @@ import React from "react";
 import ReactMarkdown, { Components } from "react-markdown";
 import { HeadingComponent } from "react-markdown/lib/ast-to-react";
 import { useLocation } from "@reach/router";
-import { routes } from "./Navigation";
 import rehypeRaw from "rehype-raw";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
+import { routes } from "./Navigation";
 import Layout from "@components/Layout";
-import { Link } from "gatsby-link";
 
 interface Props {
   pageContext: {
@@ -43,12 +43,31 @@ const PostDetail = ({ pageContext }: Props) => {
             p: CustomParagraph,
             blockquote: Blockquote as typeof CustomParagraph,
             h1: H1 as HeadingComponent,
+            h2: H2 as HeadingComponent,
             h3: H3 as HeadingComponent,
             img: Image as typeof CustomParagraph,
             hr: HR as typeof CustomParagraph,
             ul: UL as typeof CustomParagraph,
             iframe: Iframe,
             a: Anchor,
+            code: ({ node, inline, className, children, ...props }) => {
+              const match = /language-(\w+)/.exec(className || "");
+              const matched = match ? match[1] : "typescript";
+
+              return !inline ? (
+                <SyntaxHighlighter
+                  {...props}
+                  children={String(children).replace(/\n$/, "")}
+                  language={matched}
+                  PreTag="div"
+                  className="glassmorph rounded-md !my-5"
+                />
+              ) : (
+                <code {...props} className="glassmorph p-1 rounded-md mx-1">
+                  {children}
+                </code>
+              );
+            },
           }}
           rehypePlugins={[rehypeRaw]}
         >
@@ -72,14 +91,20 @@ const CustomParagraph = ({ children }: { children: React.ReactNode }) => (
   </p>
 );
 
-const Blockquote = styled.blockquote`
-  margin: 12px 0;
-  padding: 0 1.5em;
-  border-left: 3px solid gainsboro;
-`;
+const Blockquote = ({ children }: { children: React.ReactNode }) => (
+  <blockquote className="glassmorph border-l-2 my-5 p-3 pl-5 pr-2">
+    {children}
+  </blockquote>
+);
 
 const H1 = styled.h1`
   font-size: 2.5em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+`;
+
+const H2 = styled.h2`
+  font-size: 1.5em;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
 `;
@@ -90,7 +115,6 @@ const H3 = styled.h3`
 `;
 
 const Image = styled.img`
-  border: 1px solid gainsboro;
   background-color: #fff;
 
   display: block;
@@ -105,7 +129,7 @@ const UL = styled.ul.withConfig({
   shouldForwardProp: (prop) => !["ordered"].includes(prop),
 })`
   padding-left: 1.3rem;
-  list-style-type: decimal;
+  list-style-type: disc;
 
   & > li {
     margin-top: 4px;
