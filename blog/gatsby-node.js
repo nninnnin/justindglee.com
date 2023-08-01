@@ -25,6 +25,7 @@ exports.createPages = async ({ graphql, actions }) => {
             createdAt
             updatedAt
             publishedAt
+            slug
           }
         }
       }
@@ -119,7 +120,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // post details
   allPosts.forEach((post) => {
     actions.createPage({
-      path: `/${post.type}/${post.index}`,
+      path: `/${post.type}/${post.slug}`,
       component: PostDetailsTemplate,
       context: {
         post,

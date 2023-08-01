@@ -16,6 +16,7 @@ export interface Post {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
+  slug: string;
 }
 
 export interface Reference {

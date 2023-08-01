@@ -12,7 +12,7 @@ const PostList = ({ posts }: Props) => {
     <ul>
       {posts.map((post: Post) => {
         return (
-          <Link to={`/${post.type}/${post.index}`} key={`key-${post.id}`}>
+          <Link to={`/${post.type}/${post.slug}`} key={`key-${post.id}`}>
             <ListItem index={post.index} description={post.title} />
           </Link>
         );
