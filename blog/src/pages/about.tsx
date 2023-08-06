@@ -4,7 +4,7 @@ import { shuffle } from "lodash";
 import Layout from "@components/Layout";
 import "@styles/index.scss";
 
-const greetings = ["안녕하세요!", "어서오세요 :)", "반갑습니다."];
+const greetings = ["안녕하세요!"];
 
 function pickGreeting(greetings: Array<string>): string {
   return shuffle(greetings)[0];
