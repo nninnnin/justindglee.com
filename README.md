@@ -8,7 +8,8 @@
   - `createPage` 액션을 통한 빌드타임 페이지생성(SSG)
   - `react-markdown` 과 `rehype-raw` 를 사용해 마크다운에 첨부된 HTML iframe 비디오 해석
   - sass의 @mixin과 @include를 사용한 반응형 디자인 구현
-  - `fxjs` 를 사용해 가독성 높은 함수형코드 작성 (gatsby-node.js의 페이지 생성 로직)
+  - `fxjs`와 `fxts` 를 사용해 함수형코드 작성으로 좋은 가독성
+  - strapi에서 수정하는 불편함을 보조하기 위한 에디팅모드 구현
 
 ### portfolio
   - Create React App
