@@ -24,6 +24,7 @@ const PostDetail = ({ pageContext }: Props) => {
   const { title, contents, strapiId } = post;
 
   const [isEditable, setIsEditable] = useState<boolean>(false);
+  const [hasToken, setHasToken] = useState<boolean>(false);
   const [editingContents, setEditingContents] = useState(contents);
 
   const params = useLocation();
@@ -35,8 +36,11 @@ const PostDetail = ({ pageContext }: Props) => {
     setIsEditable(isEditable);
   }, [params.search]);
 
-  const token = localStorage.getItem("justinblog-token");
-  const hasToken = token && token.length;
+  useEffect(() => {
+    const token = localStorage.getItem("justinblog-token");
+    const hasToken = Boolean(token) && Boolean(token?.length);
+    setHasToken(hasToken);
+  }, []);
 
   if (isEditable && !hasToken) return <Login />;
 
