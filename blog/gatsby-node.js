@@ -3,7 +3,9 @@ const { go, filter, map } = require("fxjs");
 
 exports.createPages = async ({ graphql, actions }) => {
   const IndexPageTemplate = path.resolve(`./src/components/Index.tsx`);
-  const PostDetailsTemplate = path.resolve(`./src/components/PostDetails.tsx`);
+  const PostDetailsTemplate = path.resolve(
+    `./src/components/PostDetails/index.tsx`
+  );
   const postListTemplate = path.resolve(
     `./src/components/PostListTemplate.tsx`
   );

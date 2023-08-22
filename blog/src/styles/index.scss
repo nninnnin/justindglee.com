@@ -4,6 +4,7 @@
 
 @import "./fonts";
 @import "./variables";
+@import "./animations";
 
 * {
   box-sizing: border-box;
@@ -83,9 +84,9 @@ img {
   display: flex;
   width: 100vw;
   height: 100svh;
-}
 
-.contents-viewer {
+  padding: 2em;
+
   position: relative;
 }
 
@@ -99,7 +100,10 @@ img {
   position: relative;
 }
 
-.post-details {
+.markdown-contents {
+  flex: 1;
+  padding-bottom: 1em;
+
   & > p:first-child > img {
     margin-top: 0;
   }
@@ -135,11 +139,11 @@ img {
     font-size: 16px;
   }
 
-  .contents-viewer-wrapper {
+  .layout-container {
     padding: 2.5vw 0;
   }
 
-  .contents-viewer {
+  .contents-container {
     width: 95vw;
     padding: 1em;
 
@@ -150,22 +154,35 @@ img {
   }
 }
 
+@mixin hide-preview {
+  .contents-viewer {
+    display: none;
+  }
+
+  .contents-editor {
+    margin-right: 0;
+  }
+}
+
 // use mixins
 @include mobile {
   @include small-layout;
+
+  @include hide-preview;
 }
 
 @include tablet {
+  @include hide-preview;
 }
 
 @include desktop {
-  .contents-viewer {
+  .contents-container {
     width: 800px;
   }
 }
 
 @include broad-desktop {
-  .contents-viewer {
+  .contents-container {
     width: 1000px;
   }
 }
