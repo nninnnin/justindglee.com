@@ -117,7 +117,7 @@ const Iframe = ({
 
   return (
     <>
-      <FrameWrapper className="glassmorph" ratio={frameRatio}>
+      <FrameWrapper className="glassmorph !bg-white" ratio={frameRatio}>
         <Frame {...props} ratio={frameRatio} />
       </FrameWrapper>
     </>

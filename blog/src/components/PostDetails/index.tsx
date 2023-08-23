@@ -63,7 +63,7 @@ const PostDetail = ({ pageContext }: Props) => {
 
         <ContentsViewer
           title={title}
-          contents={contents}
+          contents={editingContents}
           isEditable={isEditable}
         />
       </Container>
