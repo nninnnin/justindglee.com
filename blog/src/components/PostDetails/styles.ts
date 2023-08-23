@@ -49,11 +49,14 @@ export const UL = styled.ul.withConfig({
 
 export const FrameWrapper = styled.div<{ ratio: number }>`
   width: 100%;
-  background-color: #fff;
   padding-top: ${({ ratio }) => `${ratio}%`};
   margin-bottom: 1.5em;
 
   position: relative;
+
+  * + & {
+    margin-top: 1em;
+  }
 `;
 
 export const Frame = styled.iframe.withConfig({
