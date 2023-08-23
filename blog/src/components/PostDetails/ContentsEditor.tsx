@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, KeyboardEvent } from "react";
 import axios from "axios";
 
 interface Props {
@@ -52,6 +52,25 @@ const ContentsEditor = ({
         } mt-5 border-none outline-none`}
         value={editingContents}
         onChange={onChangeContents}
+        onKeyDown={(e: KeyboardEvent<HTMLTextAreaElement>) => {
+          if (e.key === "Tab") {
+            e.preventDefault();
+
+            const start = e.currentTarget.selectionStart;
+            const end = e.currentTarget.selectionEnd;
+            const TAB_SIZE = 2;
+
+            const tabAddedValue =
+              e.currentTarget.value.substring(0, start) +
+              " ".repeat(TAB_SIZE) +
+              e.currentTarget.value.substring(end);
+
+            e.currentTarget.value = tabAddedValue;
+
+            e.currentTarget.selectionStart = e.currentTarget.selectionEnd =
+              start + TAB_SIZE;
+          }
+        }}
       />
 
       <button
