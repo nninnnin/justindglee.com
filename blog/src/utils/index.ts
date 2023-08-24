@@ -14,3 +14,7 @@ export const parseQueryString = (qs: string): Record<string, string> => {
     reduce((acc, cur) => ({ ...acc, ...cur }))
   );
 };
+
+export const trimStart = (str: string, n: number): string => {
+  return str.slice(0, n).trimStart() + str.slice(n);
+}
