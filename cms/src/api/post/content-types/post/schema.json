@@ -26,14 +26,16 @@
     },
     "type": {
       "type": "enumeration",
-      "enum": [
-        "tech",
-        "life",
-        "idea"
-      ]
+      "enum": ["tech", "life", "idea"]
     },
     "slug": {
       "type": "uid"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "mappedBy": "posts"
     }
   }
 }
