@@ -1,4 +1,4 @@
-# 저스틴블로그를 위한 Strapi CMS 서버
+# [저스틴 블로그](https://justindglee.com) 를 위한 Strapi CMS 서버
 
 ## 실행
 
