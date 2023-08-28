@@ -1,9 +1,12 @@
-import React, { useState, MouseEvent } from "react";
 import axios from "axios";
+import React, { useState, MouseEvent } from "react";
+import { useLocation } from "@reach/router";
+import { parseQueryString } from "@src/utils";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { search } = useLocation();
 
   const identifyUser = async (
     identifier: string,
@@ -23,14 +26,21 @@ const Login = () => {
     return result.data;
   };
 
-  const handleLoginButtonClick = async (e: MouseEvent<HTMLButtonElement>) => {
+  const handleLoginButtonClick = async (
+    e: MouseEvent<HTMLButtonElement>
+  ) => {
     e.preventDefault();
 
     try {
-      const { jwt, user } = await identifyUser(email, password);
+      const { jwt, user } = await identifyUser(
+        email,
+        password
+      );
 
       if (!jwt || user.blocked || !user.confirmed) {
-        const e = new Error("유효한 유저 정보를 가져오지 못했습니다..");
+        const e = new Error(
+          "유효한 유저 정보를 가져오지 못했습니다.."
+        );
         e.name = "로그인 에러";
 
         throw e;
@@ -39,6 +49,9 @@ const Login = () => {
       alert(`로그인 성공!`);
 
       localStorage.setItem("justinblog-token", jwt);
+
+      location.href =
+        parseQueryString(search)["redirectTo"] ?? "/";
     } catch (error) {
       console.log(error);
 
@@ -50,7 +63,10 @@ const Login = () => {
     <div className="fixed top-0 left-0 w-full h-full z-0 bg-slate-600 select-none">
       <form className="bg-red-400 text-white fixed z-1 top-1/2 left-1/2 -translate-x-[50%] -translate-y-[50%] p-3">
         <div>
-          <label className="inline-block min-w-[65px] mr-3" htmlFor="email">
+          <label
+            className="inline-block min-w-[65px] mr-3"
+            htmlFor="email"
+          >
             아이디
           </label>
 
@@ -66,7 +82,10 @@ const Login = () => {
         </div>
 
         <div className="mt-3">
-          <label className="inline-block min-w-[65px] mr-3" htmlFor="password">
+          <label
+            className="inline-block min-w-[65px] mr-3"
+            htmlFor="password"
+          >
             비밀번호
           </label>
 
