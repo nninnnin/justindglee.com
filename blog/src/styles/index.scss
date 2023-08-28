@@ -14,15 +14,23 @@
   scrollbar-width: none;
 }
 
+input,
+textarea {
+  outline: none;
+  border: none;
+}
+
 code,
 pre {
-  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  font-family: Consolas, Monaco, "Andale Mono",
+    "Ubuntu Mono", monospace;
   text-shadow: none;
   color: white;
   font-size: 0.8em;
 
   & * {
-    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    font-family: Consolas, Monaco, "Andale Mono",
+      "Ubuntu Mono", monospace;
     text-shadow: none;
   }
 
