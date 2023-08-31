@@ -13,6 +13,10 @@ import { Container } from "@components/PostDetails";
 import usePostType from "@src/hooks/usePostType";
 
 const EditorPage = () => {
+  const isBrowser = typeof window !== "undefined";
+
+  if (!isBrowser) return <></>;
+
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
 
