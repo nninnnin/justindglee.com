@@ -9,7 +9,7 @@
   - `react-markdown` 과 `rehype-raw` 를 사용해 마크다운에 첨부된 HTML iframe 비디오 해석
   - sass의 @mixin과 @include를 사용한 반응형 디자인 구현
   - `fxjs`와 `fxts` 를 사용해 함수형코드 작성으로 좋은 가독성
-  - strapi에서 수정하는 불편함을 보조하기 위한 에디팅모드 구현
+  - strapi에서 수정하는 불편함을 보조하기 위한 [에디팅모드 구현](https://github.com/nninnnin/justindglee.com/pull/8)
 
 ### portfolio
   - Create React App
