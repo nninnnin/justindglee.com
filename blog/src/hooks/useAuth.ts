@@ -10,6 +10,8 @@ const useAuth = () => {
     const token = localStorage.getItem("justinblog-token");
 
     if (!token) {
+      setIsAuthorized(false);
+
       return;
     }
 
