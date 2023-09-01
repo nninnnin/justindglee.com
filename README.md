@@ -12,7 +12,7 @@
   - sass의 @mixin과 @include등 문법 사용으로 효율적인 반응형 디자인코드 작성
   - 좋은 가독성을 위한 함수형 프로그래밍 적용
     - `fxjs`, `fxts`
-  - strapi에서 포스트를 수정하는 불편함을 대체하기 위한 [에디팅모드 구현](https://github.com/nninnnin/justindglee.com/pull/8)으로 글의 작성과 수정 가능
+  - Strapi에서 포스트를 관리하는 불편함을 대체하기 위한 에디팅모드 구현으로 [포스트 작성](https://github.com/nninnnin/justindglee.com/pull/8) 및 [포스트 수정](https://github.com/nninnnin/justindglee.com/pull/3) 가능
     - [ ] 저장되었으나 공개되지 않은(draft) 글 리스트 확인 및 수정 기능
     - [ ] 빌드 트리거로 새로운 글 공개 기능
     - 에디터에서 구현된 기능들
