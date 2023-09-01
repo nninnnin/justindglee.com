@@ -4,7 +4,7 @@
 
 ### 블로그
 
-[Gatsby](https://www.gatsbyjs.com/)와 [Strapi](https://strapi.io/)를 사용해 만들어졌습니다.
+Gatsby와 Strapi를 사용해 만들어졌습니다.
 
   - `createPage` 액션을 통한 빌드타임 페이지생성(SSG)으로 원활한 페이지탐색 경험 제공
   - markdown 형식의 문서에서 풍부한 컨텐츠 제공을 위해 비디오 또는 외부 페이지를 iframe으로 첨부 가능
