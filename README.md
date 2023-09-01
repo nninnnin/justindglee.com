@@ -10,6 +10,11 @@
   - sass의 @mixin과 @include를 사용한 반응형 디자인 구현
   - `fxjs`와 `fxts` 를 사용해 함수형코드 작성으로 좋은 가독성
   - strapi에서 수정하는 불편함을 보조하기 위한 [에디팅모드 구현](https://github.com/nninnnin/justindglee.com/pull/8)
+    - 에디터 기능
+      - [x] [탭키를 이용한 들여쓰기와 내어쓰기](https://github.com/nninnnin/justindglee.com/pull/5/files)
+      - [ ] 줄바꿈시 자동 들여쓰기 수준 맞추기
+    - [ ] 저장되었으나 공개되지 않은(draft) 글 리스트 확인 및 수정 기능
+    - [ ] 빌드 트리거로 새로운 글 공개 기능
 
 ### portfolio
   - Create React App
