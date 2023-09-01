@@ -6,16 +6,18 @@
 
 [Gatsby](https://www.gatsbyjs.com/)와 [Strapi](https://strapi.io/)를 사용해 만들어졌습니다.
 
-  - `createPage` 액션을 통한 빌드타임 페이지생성(SSG)
-  - `react-markdown` 과 `rehype-raw` 를 사용해 마크다운에 첨부된 HTML iframe 비디오 해석
-  - sass의 @mixin과 @include를 사용한 반응형 디자인 구현
-  - `fxjs`와 `fxts` 를 사용해 함수형코드 작성으로 좋은 가독성
-  - strapi에서 수정하는 불편함을 보조하기 위한 [에디팅모드 구현](https://github.com/nninnnin/justindglee.com/pull/8)
-    - 에디터 기능
-      - [x] [탭키를 이용한 들여쓰기와 내어쓰기](https://github.com/nninnnin/justindglee.com/pull/5/files)
-      - [ ] 줄바꿈시 자동 들여쓰기 수준 맞추기
+  - `createPage` 액션을 통한 빌드타임 페이지생성(SSG)으로 원활한 페이지탐색 경험 제공
+  - markdown 형식의 문서에서 풍부한 컨텐츠 제공을 위해 비디오 또는 외부 페이지를 iframe으로 첨부 가능
+    - `react-markdown`, `rehype-raw`
+  - sass의 @mixin과 @include등 문법 사용으로 효율적인 반응형 디자인코드 작성
+  - 좋은 가독성을 위한 함수형 프로그래밍 적용
+    - `fxjs`, `fxts`
+  - strapi에서 포스트를 수정하는 불편함을 대체하기 위한 [에디팅모드 구현](https://github.com/nninnnin/justindglee.com/pull/8)으로 글의 작성과 수정 가능
     - [ ] 저장되었으나 공개되지 않은(draft) 글 리스트 확인 및 수정 기능
     - [ ] 빌드 트리거로 새로운 글 공개 기능
+    - 에디터에서 구현된 기능들
+      - [x] [탭키를 이용한 들여쓰기와 내어쓰기](https://github.com/nninnnin/justindglee.com/pull/5/files)
+      - [ ] 줄바꿈시 자동 들여쓰기 수준 맞추기
 
 ### 포트폴리오
 
