@@ -7,6 +7,12 @@ export const Index = styled.div`
 export const Description = styled.div`
   display: inline-block;
   margin-left: 0.4em;
-  white-space: pre-wrap;
   width: 100%;
+  font-size: 1.2em;
+  font-weight: 500;
+
+  width: 60%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 `;
