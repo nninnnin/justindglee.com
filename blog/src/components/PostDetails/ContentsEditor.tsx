@@ -2,7 +2,6 @@ import React, {
   ChangeEvent,
   KeyboardEvent,
   useEffect,
-  useState,
 } from "react";
 import { pipe, map, toArray, filter } from "@fxts/core";
 import { useLocation } from "@reach/router";
@@ -10,6 +9,7 @@ import { useLocation } from "@reach/router";
 import { trimStart } from "@src/utils";
 import useMemoKeys from "@src/hooks/useMemoKeys";
 import usePostType from "@src/hooks/usePostType";
+import { handlePressEnter } from "@src/utils/editor";
 
 const POST_TYPES: Record<string, string> = {
   tech: "기술",
@@ -97,6 +97,10 @@ const ContentsEditor = ({
         onKeyDown={(
           e: KeyboardEvent<HTMLTextAreaElement>
         ) => {
+          if (e.key === "Enter") {
+            handlePressEnter(e);
+          }
+
           if (e.key === "Shift") {
             registerKey(e.key);
           }
@@ -108,8 +112,10 @@ const ContentsEditor = ({
             const end = e.currentTarget.selectionEnd;
             const TAB_SIZE = 2;
             const TAB_SPACE = " ".repeat(TAB_SIZE);
+
             const addSpace = (line: string) =>
               TAB_SPACE + line;
+
             const trimSpace = (line: string) =>
               trimStart(line, TAB_SIZE);
 
@@ -130,7 +136,8 @@ const ContentsEditor = ({
               e.currentTarget.selectionEnd = end;
             };
 
-            if (start === end) {
+            const 블록설정을_하지_않았을_때 = start === end;
+            if (블록설정을_하지_않았을_때) {
               if (isKeyPressed("Shift")) {
                 const contentsBeforeCursor =
                   e.currentTarget.value.substring(0, start);
