@@ -17,7 +17,7 @@ Gatsby와 Strapi를 사용해 만들어졌습니다.
     - [ ] 빌드 트리거로 새로운 글 공개 기능
     - 에디터에서 구현된 기능들
       - [x] [탭키를 이용한 들여쓰기와 내어쓰기](https://github.com/nninnnin/justindglee.com/pull/5/files)
-      - [ ] 줄바꿈시 자동 들여쓰기 수준 맞추기
+      - [x] [줄바꿈시 자동 들여쓰기 수준 맞추기](https://github.com/nninnnin/justindglee.com/pull/9)
 
 ### 포트폴리오
 
