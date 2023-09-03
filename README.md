@@ -18,7 +18,7 @@ Gatsby와 Strapi를 사용해 만들어졌습니다.
     - 에디터에서 구현된 기능들
       - [x] [탭키를 이용한 들여쓰기와 내어쓰기](https://github.com/nninnnin/justindglee.com/pull/5/files)
       - [x] [줄바꿈시 자동 들여쓰기 수준 맞추기](https://github.com/nninnnin/justindglee.com/pull/9)
-      - [ ] 이미지 스타일 프리셋 생성 및 적용
+      - [ ] 이미지 스타일(크기, 경계선, 둥글기..) 프리셋 생성 및 적용
 
 ### 포트폴리오
 
