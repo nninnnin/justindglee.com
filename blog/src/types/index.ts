@@ -6,6 +6,11 @@ export interface PostQueryResult {
   };
 }
 
+export interface Tag {
+  id: string;
+  name: string;
+}
+
 export interface Post {
   index: number;
   id: number;
@@ -17,6 +22,7 @@ export interface Post {
   updatedAt: string;
   publishedAt: string;
   slug: string;
+  tags: null | Array<Tag>;
 }
 
 export interface Reference {
