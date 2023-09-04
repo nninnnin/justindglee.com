@@ -12,12 +12,13 @@ const Authorizer = ({ children, disabled }: Props) => {
   const params = useLocation();
 
   useEffect(() => {
-    console.log(isAuthorized);
+    if (disabled) return;
+
     if (isAuthorized === false) {
       location.href =
         "/login" + `?redirectTo=${params.href}`;
     }
-  }, [isAuthorized]);
+  }, [isAuthorized, disabled]);
 
   if (isAuthorized === null && !disabled)
     return <div>토큰 유효성 판독중..</div>;
