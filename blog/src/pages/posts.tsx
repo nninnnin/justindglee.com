@@ -101,24 +101,24 @@ const PostListPage = ({
 export default PostListPage;
 
 export async function getServerData(ctx: {
-  headers: Map<string, string>;
+  query: Record<string, string>;
 }) {
-  const href = ctx.headers.get("referer") as string;
-  const queried = qs.parse(href.split("?")[1]);
+  let { publicationState, page } = ctx.query;
 
   const filters = {
     slug: { $notNull: true },
   };
 
-  const publicationState =
-    queried["publicationState"] === "published"
-      ? "live"
-      : "preview";
-
-  if (queried["publicationState"] === "draft") {
+  if (publicationState === "draft") {
     Object.assign(filters, {
       publishedAt: { $null: true },
     });
+
+    publicationState = "preview";
+  } else if (publicationState === "published") {
+    publicationState = "live";
+  } else {
+    publicationState = "preview";
   }
 
   const query = qs.stringify(
@@ -127,7 +127,7 @@ export async function getServerData(ctx: {
       publicationState,
       filters,
       pagination: {
-        page: queried.page ? Number(queried.page) : 1,
+        page: page ? Number(page) : 1,
         pageSize: 10,
       },
     },
