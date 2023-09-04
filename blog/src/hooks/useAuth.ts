@@ -8,6 +8,9 @@ const isAuthorizedState = atom<boolean | null>({
 });
 
 const useAuth = () => {
+  if (typeof window === "undefined")
+    return { isAuthorized: true };
+
   const [isAuthorized, setIsAuthorized] = useRecoilState(
     isAuthorizedState
   );
