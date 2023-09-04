@@ -2,46 +2,47 @@ import axios from "axios";
 import React from "react";
 
 import { Post } from "@src/types";
-import PostDetails, {
-  editingContentsState,
-  editingTitleState,
-} from "@components/PostDetails";
 import { useRecoilValue } from "recoil";
+import PostEditor, {
+  editingTitleState,
+  editingContentsState,
+} from "@components/PostEditor";
 
 interface Props {
   serverData: {
     post: Post;
+    publicationState: "published" | "draft";
   };
 }
 
-const PostPage = ({ serverData: { post } }: Props) => {
+const PostPage = ({
+  serverData: { post, publicationState },
+}: Props) => {
   const title = useRecoilValue(editingTitleState);
   const contents = useRecoilValue(editingContentsState);
 
-  const publishPost = async () => {
+  const savePost = async ({
+    publish,
+  }: {
+    publish: boolean;
+  }) => {
     try {
       const token = localStorage.getItem(
         "justinblog-token"
       );
 
-      console.log({
-        title,
-        contents,
-        publishedAt: new Date(),
-      });
-
-      const response = await axios.put(
+      await axios.put(
         `${process.env.GATSBY_STRAPI_API_URL}/api/posts/${post.id}`,
         {
           data: {
-            title,
-            contents,
-            publishedAt: new Date(),
+            title: title,
+            contents: contents,
+            publishedAt: publish ? new Date() : null,
           },
         },
         {
           headers: {
-            Authorization: `bearer ${token}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -58,7 +59,7 @@ const PostPage = ({ serverData: { post } }: Props) => {
   const publishButton = (
     <button
       onClick={async () => {
-        await publishPost();
+        await savePost({ publish: true });
       }}
       className="p-5 bg-pink-400"
     >
@@ -66,12 +67,27 @@ const PostPage = ({ serverData: { post } }: Props) => {
     </button>
   );
 
-  return (
-    <PostDetails
-      pageContext={{
-        post,
+  const editButton = (
+    <button
+      onClick={async () => {
+        await savePost({ publish: true });
       }}
-      buttons={publishButton}
+      className="p-5 bg-green-300"
+    >
+      수정하기
+    </button>
+  );
+
+  const buttons = {
+    draft: publishButton,
+    published: editButton,
+  };
+
+  return (
+    <PostEditor
+      title={post.title}
+      contents={post.contents}
+      button={buttons[publicationState]}
     />
   );
 };
@@ -81,12 +97,12 @@ export default PostPage;
 export async function getServerData(ctx: {
   params: Record<string, string>;
 }) {
-  const { postId } = ctx.params;
+  const { slug } = ctx.params;
 
   const {
     data: { data },
   } = await axios(
-    `${process.env.GATSBY_STRAPI_API_URL}/api/posts/${postId}`,
+    `${process.env.GATSBY_STRAPI_API_URL}/api/post/find-by-slug/${slug}`,
     {
       headers: {
         authorization: `Bearer ${process.env.GATSBY_STRAPI_TOKEN}`,
@@ -94,12 +110,17 @@ export async function getServerData(ctx: {
     }
   );
 
+  const hasPublished = Boolean(data.attributes.publishedAt);
+
   return {
     props: {
       post: {
-        id: postId,
+        id: data.id,
         ...data.attributes,
       },
+      publicationState: hasPublished
+        ? "published"
+        : "draft",
     },
   };
 }

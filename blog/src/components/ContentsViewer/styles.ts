@@ -13,7 +13,8 @@ export const H2 = styled.h2`
 `;
 
 export const H3 = styled.h3.withConfig({
-  shouldForwardProp: (prop) => !["node", "level"].includes(prop),
+  shouldForwardProp: (prop) =>
+    !["node", "level"].includes(prop),
 })`
   font-size: 1.2em;
   margin-bottom: 0.5em;

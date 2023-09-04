@@ -6,7 +6,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `./src/components/Index.tsx`
   );
   const PostDetailsTemplate = path.resolve(
-    `./src/components/PostDetails/index.tsx`
+    `./src/components/PostDetails.tsx`
   );
   const PostListTemplate = path.resolve(
     `./src/components/PostListTemplate.tsx`

@@ -1,18 +1,14 @@
 import axios from "axios";
 import React, { MouseEvent } from "react";
-
-import PostDetails, {
-  editingContentsState,
-  editingTitleState,
-} from "@components/PostDetails";
-import usePostType from "@src/hooks/usePostType";
 import { useRecoilValue } from "recoil";
 
+import usePostType from "@src/hooks/usePostType";
+import PostEditor, {
+  editingTitleState,
+  editingContentsState,
+} from "@components/PostEditor";
+
 const EditorPage = () => {
-  const isBrowser = typeof window !== "undefined";
-
-  if (!isBrowser) return <></>;
-
   const title = useRecoilValue(editingTitleState);
   const contents = useRecoilValue(editingContentsState);
 
@@ -85,14 +81,10 @@ const EditorPage = () => {
   );
 
   return (
-    <PostDetails
-      pageContext={{
-        post: {
-          title,
-          contents,
-        },
-      }}
-      buttons={buttons}
+    <PostEditor
+      title={title}
+      contents={contents}
+      button={buttons}
     />
   );
 };
