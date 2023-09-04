@@ -14,7 +14,7 @@ const PostList = ({ posts }: Props) => {
         let to = `/${post.type}/${post.slug}`;
 
         if (!post.publishedAt) {
-          to = `/post/${post.id}`;
+          to = `/edit/${post.slug}`;
         }
 
         return (

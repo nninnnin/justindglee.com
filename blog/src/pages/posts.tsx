@@ -22,7 +22,7 @@ interface Props {
 const PostListPage = ({
   serverData: { posts, totalPages, currentPage },
 }: Props) => {
-  const { search, href, pathname } = useLocation();
+  const { search, pathname } = useLocation();
 
   const parsedQuery = qs.parse(search.split("?")[1]);
 
@@ -59,6 +59,16 @@ const PostListPage = ({
     <Authorizer>
       <Layout>
         <Filters>
+          <a href="/posts">
+            <li
+              className={clsx(
+                !publicationState && "underline"
+              )}
+            >
+              All
+            </li>
+          </a>
+
           <a href="/posts?publicationState=draft">
             <li
               className={clsx(
@@ -96,7 +106,9 @@ export async function getServerData(ctx: {
   const href = ctx.headers.get("referer") as string;
   const queried = qs.parse(href.split("?")[1]);
 
-  const filters = {};
+  const filters = {
+    slug: { $notNull: true },
+  };
 
   const publicationState =
     queried["publicationState"] === "published"
@@ -168,6 +180,6 @@ const Filters = styled.ul`
   margin-bottom: 1em;
 
   & li {
-    margin-right: 1em;
+    margin-right: 0.5em;
   }
 `;
