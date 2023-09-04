@@ -5,40 +5,58 @@ import { useLocation } from "@reach/router";
 
 import Layout from "@components/Layout";
 import { parseQueryString } from "@src/utils";
-import Login from "../Login";
 import ContentsViewer from "./ContentsViewer";
 import ContentsEditor from "./ContentsEditor";
 import Authorizer from "@components/Authorizer";
+import { atom, useRecoilState } from "recoil";
 
 interface Props {
   pageContext: {
     post: {
-      strapiId: number;
+      strapiId?: number;
       title: string;
       contents: string;
     };
   };
+  buttons?: React.ReactNode;
 }
 
-const PostDetail = ({ pageContext }: Props) => {
+export const editingTitleState = atom({
+  key: "editingTitleState",
+  default: "",
+});
+export const editingContentsState = atom({
+  key: "editingContentsState",
+  default: "",
+});
+
+const PostDetail = ({ pageContext, buttons }: Props) => {
   const { post } = pageContext;
-  const { title, contents, strapiId } = post;
 
   const [isEditable, setIsEditable] =
     useState<boolean>(false);
-  const [editingContents, setEditingContents] =
-    useState(contents);
 
-  const params = useLocation();
+  const [title, setTitle] = useRecoilState(
+    editingTitleState
+  );
+  const [contents, setContents] = useRecoilState(
+    editingContentsState
+  );
+
+  const { search, pathname } = useLocation();
 
   useEffect(() => {
-    const queryString = params.search;
-    const isEditable = Boolean(
-      parseQueryString(queryString)["edit"]
-    );
+    setTitle(post.title);
+    setContents(post.contents);
+  }, [post]);
+
+  useEffect(() => {
+    const isEditable =
+      Boolean(parseQueryString(search)["edit"]) ||
+      Boolean(pathname.includes("editor"));
 
     setIsEditable(isEditable);
-  }, [params.search]);
+  }, [search]);
 
   const savePost = async () => {
     try {
@@ -47,10 +65,11 @@ const PostDetail = ({ pageContext }: Props) => {
       );
 
       const response = await axios.put(
-        `${process.env.GATSBY_STRAPI_API_URL}/api/posts/${strapiId}`,
+        `${process.env.GATSBY_STRAPI_API_URL}/api/posts/${post.strapiId}`,
         {
           data: {
-            contents: editingContents,
+            title: title,
+            contents: contents,
           },
         },
         {
@@ -63,11 +82,24 @@ const PostDetail = ({ pageContext }: Props) => {
       console.log("변경 결과", response);
 
       alert("수정 성공!");
+
+      location.href = "/";
     } catch (error) {
       console.log("변경중 에러 발생");
       console.log(error);
     }
   };
+
+  const editButton = (
+    <button
+      onClick={async () => {
+        await savePost();
+      }}
+      className="p-5 bg-green-300"
+    >
+      수정하기
+    </button>
+  );
 
   return (
     <Authorizer disabled={!isEditable}>
@@ -76,28 +108,20 @@ const PostDetail = ({ pageContext }: Props) => {
           {isEditable && (
             <ContentsEditor
               title={title}
-              editingContents={editingContents}
-              onChangeContents={(e) => {
-                const target = e.currentTarget;
-
-                setEditingContents(target.value);
+              contents={contents}
+              onChangeTitle={(e) => {
+                setTitle(e.currentTarget.value);
               }}
-              buttons={
-                <button
-                  onClick={async () => {
-                    await savePost();
-                  }}
-                  className="p-5 bg-green-300"
-                >
-                  수정하기
-                </button>
-              }
+              onChangeContents={(e) => {
+                setContents(e.currentTarget.value);
+              }}
+              buttons={buttons ? buttons : editButton}
             />
           )}
 
           <ContentsViewer
             title={title}
-            contents={editingContents}
+            contents={contents}
             isEditable={isEditable}
           />
         </Container>

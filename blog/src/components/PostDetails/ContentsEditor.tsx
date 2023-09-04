@@ -18,10 +18,8 @@ const POST_TYPES: Record<string, string> = {
 
 interface Props {
   title: string;
-  editingContents: string;
-  onChangeTitle?: (
-    e: ChangeEvent<HTMLInputElement>
-  ) => void;
+  contents: string;
+  onChangeTitle: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (
     e: ChangeEvent<HTMLTextAreaElement>
   ) => void;
@@ -30,7 +28,7 @@ interface Props {
 
 const ContentsEditor = ({
   title,
-  editingContents,
+  contents,
   onChangeContents,
   onChangeTitle,
   buttons,
@@ -85,7 +83,7 @@ const ContentsEditor = ({
 
       <textarea
         className={`w-full flex-1 bg-white text-blue-500 mt-5 p-3`}
-        value={editingContents}
+        value={contents}
         onChange={onChangeContents}
         onKeyUp={(
           e: KeyboardEvent<HTMLTextAreaElement>

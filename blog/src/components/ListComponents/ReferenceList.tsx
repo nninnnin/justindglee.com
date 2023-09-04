@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "gatsby";
 import { Reference } from "@src/types";
 import ListItem from "./ListItem";
 
@@ -12,9 +11,12 @@ const ReferenceList = ({ references }: Props) => {
     <ul className="bg-red">
       {references.map((refer: Reference) => {
         return (
-          <Link to={refer.url} key={`key-${refer.id}`}>
-            <ListItem index={refer.index} description={refer.caption} />
-          </Link>
+          <a href={refer.url} key={`key-${refer.id}`}>
+            <ListItem
+              index={refer.index}
+              description={refer.caption}
+            />
+          </a>
         );
       })}
     </ul>
