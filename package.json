@@ -11,8 +11,11 @@
   "dependencies": {
     "@radix-ui/react-alert-dialog": "^1.0.4",
     "@types/fxjs": "^0.15.0",
+    "@types/qs": "^6.9.8",
+    "clsx": "^2.0.0",
     "fxjs": "^0.21.3",
     "http-errors": "^2.0.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "qs": "^6.11.2"
   }
 }

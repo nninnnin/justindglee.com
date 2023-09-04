@@ -1,6 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 import React, { useEffect, useState } from "react";
 import { Link } from "gatsby";
+import { useLocation } from "@reach/router";
+import clsx from "clsx";
+
+import useAuth from "@src/hooks/useAuth";
 
 export const routes = {
   tech: { title: "기술", route: "/tech" },
@@ -11,25 +15,59 @@ export const routes = {
 
 function Navigation() {
   const [navItems, setNavItems] = useState<
-    Array<{ id: null | string; title: string; route: string }>
-  >(Object.values(routes).map((route) => ({ id: null, ...route })));
+    Array<{
+      id: null | string;
+      title: string;
+      route: string;
+    }>
+  >(
+    Object.values(routes).map((route) => ({
+      id: null,
+      ...route,
+    }))
+  );
 
   useEffect(() => {
-    setNavItems(navItems.map((el) => ({ ...el, id: uuidv4() })));
+    setNavItems(
+      navItems.map((el) => ({ ...el, id: uuidv4() }))
+    );
   }, []);
+
+  const { isAuthorized } = useAuth();
+  const { pathname } = useLocation();
 
   return (
     <div className="nav w-full mb-2">
       <ul className="flex pb-3">
         {navItems.map((el, index) => {
           return (
-            <Link className="underline mr-3" key={el.id ?? index} to={el.route}>
+            <Link
+              className={clsx(
+                "mr-3",
+                pathname.includes(el.route) && "underline"
+              )}
+              key={el.id ?? index}
+              to={el.route}
+            >
               <li className="cursor-pointer">{el.title}</li>
             </Link>
           );
         })}
+
+        {isAuthorized && (
+          <Link
+            className={clsx(
+              "mr-3",
+              pathname.includes("/posts") && "underline"
+            )}
+            to={"/posts"}
+          >
+            <li className="cursor-pointer">포스트</li>
+          </Link>
+        )}
+
         <Link
-          className="underline ml-auto font-[500] whitespace-nowrap"
+          className="ml-auto font-[500] whitespace-nowrap"
           to="/about"
         >
           <li>저스틴 블로그</li>
