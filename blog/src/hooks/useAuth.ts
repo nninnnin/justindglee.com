@@ -1,10 +1,16 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { atom, useRecoilState } from "recoil";
+
+const isAuthorizedState = atom<boolean | null>({
+  key: "IsAuthorizedState",
+  default: null,
+});
 
 const useAuth = () => {
-  const [isAuthorized, setIsAuthorized] = useState<
-    boolean | null
-  >(null);
+  const [isAuthorized, setIsAuthorized] = useRecoilState(
+    isAuthorizedState
+  );
 
   useEffect(() => {
     const token = localStorage.getItem("justinblog-token");
@@ -20,7 +26,7 @@ const useAuth = () => {
         await axios.post(
           `${process.env.GATSBY_STRAPI_API_URL}/api/users-permissions/token/decrypt`,
           {
-            token: token,
+            token,
           }
         );
 
