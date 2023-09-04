@@ -22,7 +22,11 @@ interface Props {
   contents: string;
 }
 
-const ContentsViewer = ({ isEditable, title, contents }: Props) => {
+const ContentsViewer = ({
+  isEditable,
+  title,
+  contents,
+}: Props) => {
   return (
     <div
       className={`flex-1 h-full ${isEditable && "p-5"} ${
@@ -45,8 +49,12 @@ const ContentsViewer = ({ isEditable, title, contents }: Props) => {
             iframe: Iframe,
             a: Anchor,
             code: ({ inline, className, children }) => {
-              const match = /language-(\w+)/.exec(className || "");
-              const matched = match ? match[1] : "typescript";
+              const match = /language-(\w+)/.exec(
+                className || ""
+              );
+              const matched = match
+                ? match[1]
+                : "typescript";
 
               if (inline)
                 return (
@@ -57,7 +65,10 @@ const ContentsViewer = ({ isEditable, title, contents }: Props) => {
 
               return (
                 <SyntaxHighlighter
-                  children={String(children).replace(/\n$/, "")}
+                  children={String(children).replace(
+                    /\n$/,
+                    ""
+                  )}
                   language={matched}
                   PreTag="div"
                   className="glassmorph rounded-md !my-5 w-full"
@@ -76,13 +87,18 @@ const ContentsViewer = ({ isEditable, title, contents }: Props) => {
         <input
           className="text-blue-500 mx-auto w-[12.5em]"
           value="** 댓글 기능이 준비중입니다 **"
+          onChange={() => {}}
         />
       </footer>
     </div>
   );
 };
 
-const Paragraph = ({ children }: { children: React.ReactNode }) => (
+const Paragraph = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => (
   <p
     className="text-white"
     style={{
@@ -95,7 +111,11 @@ const Paragraph = ({ children }: { children: React.ReactNode }) => (
   </p>
 );
 
-const Blockquote = ({ children }: { children: React.ReactNode }) => (
+const Blockquote = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => (
   <blockquote className="glassmorph border-l-2 my-5 p-3 pl-5 pr-2">
     {children}
   </blockquote>
@@ -117,7 +137,10 @@ const Iframe = ({
 
   return (
     <>
-      <FrameWrapper className="glassmorph !bg-white" ratio={frameRatio}>
+      <FrameWrapper
+        className="glassmorph !bg-white"
+        ratio={frameRatio}
+      >
         <Frame {...props} ratio={frameRatio} />
       </FrameWrapper>
     </>
