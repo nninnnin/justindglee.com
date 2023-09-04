@@ -2,11 +2,13 @@ const path = require("path");
 const { go, filter, map } = require("fxjs");
 
 exports.createPages = async ({ graphql, actions }) => {
-  const IndexPageTemplate = path.resolve(`./src/components/Index.tsx`);
+  const IndexPageTemplate = path.resolve(
+    `./src/components/Index.tsx`
+  );
   const PostDetailsTemplate = path.resolve(
     `./src/components/PostDetails/index.tsx`
   );
-  const postListTemplate = path.resolve(
+  const PostListTemplate = path.resolve(
     `./src/components/PostListTemplate.tsx`
   );
 
@@ -28,6 +30,10 @@ exports.createPages = async ({ graphql, actions }) => {
             updatedAt
             publishedAt
             slug
+            tags {
+              id
+              name
+            }
           }
         }
       }
@@ -53,7 +59,8 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   const releaseNode = (edge) => edge.node;
-  const filterByType = (type) => (post) => post.type === type;
+  const filterByType = (type) => (post) =>
+    post.type === type;
   const mapIndex = (node, index) => {
     return {
       index: index + 1,
@@ -78,7 +85,7 @@ exports.createPages = async ({ graphql, actions }) => {
   go(lifePosts, (posts) =>
     actions.createPage({
       path: "/life",
-      component: postListTemplate,
+      component: PostListTemplate,
       context: {
         header: "생활",
         posts,
@@ -89,7 +96,7 @@ exports.createPages = async ({ graphql, actions }) => {
   go(techPosts, (posts) =>
     actions.createPage({
       path: "/tech",
-      component: postListTemplate,
+      component: PostListTemplate,
       context: {
         header: "기술",
         posts,
@@ -100,7 +107,7 @@ exports.createPages = async ({ graphql, actions }) => {
   go(referencePosts, (references) =>
     actions.createPage({
       path: "/reference",
-      component: postListTemplate,
+      component: PostListTemplate,
       context: {
         header: "자료실",
         references,

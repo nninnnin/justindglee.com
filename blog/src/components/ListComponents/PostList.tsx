@@ -19,6 +19,7 @@ const PostList = ({ posts }: Props) => {
             <ListItem
               index={post.index}
               description={post.title}
+              tags={post.tags}
             />
           </Link>
         );

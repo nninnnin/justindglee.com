@@ -41,7 +41,7 @@ module.exports = {
       options: {
         apiURL: process.env.GATSBY_STRAPI_API_URL,
         token: process.env.GATSBY_STRAPI_TOKEN,
-        collectionTypes: ["Post", "Reference"],
+        collectionTypes: ["Post", "Reference", "Tag"],
       },
     },
     {
