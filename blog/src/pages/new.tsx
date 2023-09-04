@@ -90,3 +90,7 @@ const EditorPage = () => {
 };
 
 export default EditorPage;
+
+export async function getServerData() {
+  return {};
+}
