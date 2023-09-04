@@ -6,12 +6,10 @@ export const Index = styled.div`
 
 export const Description = styled.div`
   display: inline-block;
-  margin-left: 0.4em;
-  width: 100%;
+  flex: 1;
   font-size: 1.2em;
   font-weight: 500;
 
-  width: 60%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
