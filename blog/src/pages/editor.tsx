@@ -1,24 +1,20 @@
 import axios from "axios";
-import React, {
-  ChangeEvent,
-  MouseEvent,
-  useState,
-} from "react";
+import React, { MouseEvent } from "react";
 
-import Layout from "@components/Layout";
-import ContentsEditor from "@components/PostDetails/ContentsEditor";
-import ContentsViewer from "@components/PostDetails/ContentsViewer";
-import Authorizer from "@components/Authorizer";
-import { Container } from "@components/PostDetails";
+import PostDetails, {
+  editingContentsState,
+  editingTitleState,
+} from "@components/PostDetails";
 import usePostType from "@src/hooks/usePostType";
+import { useRecoilValue } from "recoil";
 
 const EditorPage = () => {
   const isBrowser = typeof window !== "undefined";
 
   if (!isBrowser) return <></>;
 
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
+  const title = useRecoilValue(editingTitleState);
+  const contents = useRecoilValue(editingContentsState);
 
   const { selectedPostType } = usePostType();
 
@@ -70,46 +66,34 @@ const EditorPage = () => {
     await savePost("publish");
   };
 
+  const buttons = (
+    <div className="flex">
+      <button
+        onClick={handleSaveButtonClick}
+        className="flex-1 p-5 bg-orange-300"
+      >
+        저장하기
+      </button>
+
+      <button
+        onClick={handleRegisterButtonClick}
+        className="flex-1 p-5 bg-green-300"
+      >
+        작성하기
+      </button>
+    </div>
+  );
+
   return (
-    <Authorizer>
-      <Layout isEditing={true}>
-        <Container>
-          <ContentsEditor
-            title={title}
-            editingContents={contents}
-            onChangeContents={(
-              e: ChangeEvent<HTMLTextAreaElement>
-            ) => setContents(e.currentTarget.value)}
-            onChangeTitle={(
-              e: ChangeEvent<HTMLInputElement>
-            ) => setTitle(e.target.value)}
-            buttons={
-              <div className="flex">
-                <button
-                  onClick={handleSaveButtonClick}
-                  className="flex-1 p-5 bg-orange-300"
-                >
-                  저장하기
-                </button>
-
-                <button
-                  onClick={handleRegisterButtonClick}
-                  className="flex-1 p-5 bg-green-300"
-                >
-                  작성하기
-                </button>
-              </div>
-            }
-          />
-
-          <ContentsViewer
-            isEditable={true}
-            title={title}
-            contents={contents}
-          />
-        </Container>
-      </Layout>
-    </Authorizer>
+    <PostDetails
+      pageContext={{
+        post: {
+          title,
+          contents,
+        },
+      }}
+      buttons={buttons}
+    />
   );
 };
 

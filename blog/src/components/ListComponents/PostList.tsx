@@ -11,11 +11,14 @@ const PostList = ({ posts }: Props) => {
   return (
     <ul>
       {posts.map((post: Post) => {
+        let to = `/${post.type}/${post.slug}`;
+
+        if (!post.publishedAt) {
+          to = `/post/${post.id}`;
+        }
+
         return (
-          <Link
-            key={`key-${post.id}`}
-            to={`/${post.type}/${post.slug}`}
-          >
+          <Link key={`key-${post.id}`} to={to}>
             <ListItem
               index={post.index}
               description={post.title}
