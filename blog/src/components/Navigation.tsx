@@ -4,8 +4,6 @@ import { Link } from "gatsby";
 import { useLocation } from "@reach/router";
 import clsx from "clsx";
 
-import useAuth from "@src/hooks/useAuth";
-
 export const routes = {
   tech: { title: "기술", route: "/tech" },
   life: { title: "생활", route: "/life" },
@@ -33,7 +31,6 @@ function Navigation() {
     );
   }, []);
 
-  const { isAuthorized } = useAuth();
   const { pathname } = useLocation();
 
   return (
@@ -53,18 +50,6 @@ function Navigation() {
             </Link>
           );
         })}
-
-        {isAuthorized && (
-          <Link
-            className={clsx(
-              "mr-3",
-              pathname.includes("/posts") && "underline"
-            )}
-            to={"/posts"}
-          >
-            <li className="cursor-pointer">포스트</li>
-          </Link>
-        )}
 
         <Link
           className="ml-auto font-[500] whitespace-nowrap"
