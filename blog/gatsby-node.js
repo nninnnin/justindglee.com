@@ -27,7 +27,6 @@ exports.createPages = async ({ graphql, actions }) => {
             contents
             type
             createdAt
-            updatedAt
             publishedAt
             slug
             tags {

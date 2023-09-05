@@ -19,7 +19,6 @@ export interface Post {
   contents: string;
   type: string;
   createdAt: string;
-  updatedAt: string;
   publishedAt: string;
   slug: string;
   tags: null | Array<Tag>;
