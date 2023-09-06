@@ -83,13 +83,13 @@ const ContentsViewer = ({
         </ReactMarkdown>
       </div>
 
-      <footer className="footer mt-4 py-20 mx-auto w-full flex border-t-2 border-dashed select-none pointer-events-none">
+      {/* <footer className="footer mt-4 py-20 mx-auto w-full flex border-t-2 border-dashed select-none pointer-events-none">
         <input
           className="text-blue-500 mx-auto w-[12.5em]"
           value="** 댓글 기능이 준비중입니다 **"
           onChange={() => {}}
         />
-      </footer>
+      </footer> */}
     </div>
   );
 };
