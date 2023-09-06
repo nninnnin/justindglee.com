@@ -59,7 +59,7 @@ const PostListPage = ({
     <Authorizer>
       <Layout>
         <Filters>
-          <a href="/posts">
+          <a href={`${pathname}`}>
             <li
               className={clsx(
                 !publicationState && "underline"
@@ -69,7 +69,7 @@ const PostListPage = ({
             </li>
           </a>
 
-          <a href="/posts?publicationState=draft">
+          <a href={`${pathname}?publicationState=draft`}>
             <li
               className={clsx(
                 publicationState === "draft" && "underline"
@@ -79,7 +79,9 @@ const PostListPage = ({
             </li>
           </a>
 
-          <a href="/posts?publicationState=published">
+          <a
+            href={`${pathname}?publicationState=published`}
+          >
             <li
               className={clsx(
                 publicationState === "published" &&

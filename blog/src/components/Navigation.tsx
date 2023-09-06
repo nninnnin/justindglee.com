@@ -51,7 +51,12 @@ function Navigation() {
         {navItems.map((el, index) => {
           if (!el.title && !el.route)
             return (
-              <span className="mr-3 select-none">|</span>
+              <span
+                key={el.id ?? index}
+                className="mr-3 select-none"
+              >
+                |
+              </span>
             );
 
           return (
