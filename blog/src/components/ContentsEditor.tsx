@@ -61,13 +61,11 @@ const ContentsEditor = ({
           onChange={(e) => {
             setSelectedPostType(e.target.value);
           }}
+          value={selectedPostType}
         >
           {Object.keys(POST_TYPES).map(
             (postType: string) => (
-              <option
-                selected={selectedPostType === postType}
-                value={postType}
-              >
+              <option key={postType} value={postType}>
                 {POST_TYPES[postType]}
               </option>
             )
