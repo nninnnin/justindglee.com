@@ -39,16 +39,14 @@ function Navigation() {
   return (
     <div className="nav w-full mb-2 sticky top-0 z-10">
       <ul className="flex pb-3">
-        <li className="mr-auto flex">
-          <Link
-            className={clsx(
-              "font-[500] whitespace-nowrap mr-3"
-            )}
-            to="/"
-          >
-            <li>저스틴 블로그</li>
-          </Link>
-        </li>
+        <Link
+          className={clsx(
+            "font-[500] whitespace-nowrap mr-auto"
+          )}
+          to="/"
+        >
+          <li>저스틴 블로그</li>
+        </Link>
 
         {navItems.map((el, index) => {
           if (!el.title && !el.route)
