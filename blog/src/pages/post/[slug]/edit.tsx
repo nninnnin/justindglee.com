@@ -57,14 +57,24 @@ const PostPage = ({
   };
 
   const publishButton = (
-    <button
-      onClick={async () => {
-        await savePost({ publish: true });
-      }}
-      className="p-5 bg-pink-400"
-    >
-      공개하기
-    </button>
+    <div className="flex">
+      <button
+        onClick={async () => {
+          await savePost({ publish: false });
+        }}
+        className="flex-1 p-5 bg-sky-400"
+      >
+        저장하기
+      </button>
+      <button
+        onClick={async () => {
+          await savePost({ publish: true });
+        }}
+        className="flex-1 p-5 bg-pink-400"
+      >
+        공개하기
+      </button>
+    </div>
   );
 
   const editButton = (
