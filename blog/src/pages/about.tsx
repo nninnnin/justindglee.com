@@ -20,27 +20,18 @@ export default function About() {
 
         <h2 className="mt-0">간단한 소개</h2>
         <p className="pb-[10px]">
-          개발자 이동규입니다. 영어이름이 필요한 경우에는
-          저스틴이라는 이름을 사용합니다.
+          웹 개발자 저스틴입니다. 1인 기업을 꿈꿉니다.
         </p>
-
-        <h2>간단한 이력</h2>
-        <ul className="list-disc pl-5">
-          <li>단국대학교 국제경영학과 졸업</li>
-          <li>캐롯손해보험 인턴</li>
-          <li>바닐라코딩 교육/개발</li>
-          <li>찹스틱스 프론트엔드 개발</li>
-          <li>적극적으로 구직중 (현재)</li>
-        </ul>
 
         <h2>중요하게 생각하는 것?</h2>
         <p className="pb-[10px]">
-          자율성, 독립성, 경험으로부터의 배움.
+          자율성, 독립성, 경험으로부터의 배움
         </p>
 
         <h2>개인적인 관심사?</h2>
         <p className="pb-[10px]">
-          뉴진스, Generative Design, Ethereum, 사이버포뮬러.
+          Generative Design, Ethereum, 메카닉물 애니메이션과
+          게임들, 여러 장르음악
         </p>
 
         <p className="flex-1 mt-5 relative min-h-[100px] flex items-end justify-end">

@@ -94,10 +94,10 @@ exports.createPages = async ({ graphql, actions }) => {
 
   go(techPosts, (posts) =>
     actions.createPage({
-      path: "/tech",
+      path: "/posts",
       component: PostListTemplate,
       context: {
-        header: "기술",
+        header: "포스트",
         posts,
       },
     })
@@ -128,7 +128,7 @@ exports.createPages = async ({ graphql, actions }) => {
   // post details
   allPosts.forEach((post) => {
     actions.createPage({
-      path: `/${post.type}/${post.slug}`,
+      path: `/post/${post.slug}`,
       component: PostDetailsTemplate,
       context: {
         post,

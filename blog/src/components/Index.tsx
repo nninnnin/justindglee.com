@@ -36,13 +36,13 @@ export default function IndexPage({
   return (
     <Layout>
       <div className="flex flex-col flex-1">
-        <h1 className="header">새로운 글</h1>
+        <h1 className="header">새로운 포스트</h1>
 
-        <h2 className="mt-0">기술</h2>
+        {/* <h2 className="mt-0">기술</h2> */}
         <PostList posts={techPosts} />
 
-        <h2>생활</h2>
-        <PostList posts={lifePosts} />
+        {/* <h2>생활</h2>
+        <PostList posts={lifePosts} /> */}
       </div>
     </Layout>
   );

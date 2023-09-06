@@ -11,7 +11,7 @@ const PostList = ({ posts }: Props) => {
   return (
     <ul>
       {posts.map((post: Post) => {
-        let to = `/${post.type}/${post.slug}`;
+        let to = `/post/${post.slug}`;
 
         if (!post.publishedAt) {
           to = `/edit/${post.slug}`;
