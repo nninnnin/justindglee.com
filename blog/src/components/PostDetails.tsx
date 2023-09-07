@@ -36,4 +36,12 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
+export async function config() {
+  return () => {
+    return {
+      defer: true,
+    };
+  };
+}
+
 export default PostDetail;
