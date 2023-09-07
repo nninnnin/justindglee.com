@@ -40,7 +40,7 @@ const EditorPage = () => {
 
       alert("포스트 생성 성공!");
 
-      location.href = "/";
+      location.href = "/posts/edit";
     } catch (error) {
       alert("포스트 생성 실패..");
 

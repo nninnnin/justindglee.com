@@ -5,28 +5,29 @@ import { map, pipe, take, toArray } from "@fxts/core";
 import styled from "styled-components";
 import clsx from "clsx";
 import { useLocation } from "@reach/router";
+import { Link } from "gatsby";
+import { motion } from "framer-motion";
 
 import { Post } from "@src/types";
 import Authorizer from "@components/Authorizer";
 import Layout from "@components/Layout";
 import PostList from "@components/ListComponents/PostList";
+import usePosts from "@src/hooks/usePosts";
 
-interface Props {
-  serverData: {
-    posts: Array<Post>;
-    totalPages: number;
-    currentPage: number;
-  };
-}
-
-const PostListPage = ({
-  serverData: { posts, totalPages, currentPage },
-}: Props) => {
+const PostListPage = () => {
   const { search, pathname } = useLocation();
-
   const parsedQuery = qs.parse(search.split("?")[1]);
 
-  const { publicationState } = parsedQuery;
+  const { publicationState, page } = parsedQuery as {
+    publicationState: string | undefined;
+    page: string | undefined;
+  };
+
+  const [{ posts, totalPages, currentPage }, loading] =
+    usePosts({
+      publicationState,
+      page: Number(page),
+    });
 
   const pages = pipe(
     (function* generatePage() {
@@ -35,12 +36,12 @@ const PostListPage = ({
     })(),
     take(totalPages),
     map((page) => (
-      <a
-        href={`${pathname}?${qs.stringify(
+      <Link
+        key={`page-${page}`}
+        to={`${pathname}?${qs.stringify(
           { ...parsedQuery, page },
           { encode: false }
         )}`}
-        key={`page-${page}`}
       >
         <span
           className={clsx(
@@ -50,7 +51,7 @@ const PostListPage = ({
         >
           {page}
         </span>
-      </a>
+      </Link>
     )),
     toArray
   );
@@ -59,7 +60,7 @@ const PostListPage = ({
     <Authorizer>
       <Layout>
         <Filters>
-          <a href={`${pathname}`}>
+          <Link to={`${pathname}`}>
             <li
               className={clsx(
                 !publicationState && "underline"
@@ -67,9 +68,9 @@ const PostListPage = ({
             >
               All
             </li>
-          </a>
+          </Link>
 
-          <a href={`${pathname}?publicationState=draft`}>
+          <Link to={`${pathname}?publicationState=draft`}>
             <li
               className={clsx(
                 publicationState === "draft" && "underline"
@@ -77,10 +78,10 @@ const PostListPage = ({
             >
               Draft
             </li>
-          </a>
+          </Link>
 
-          <a
-            href={`${pathname}?publicationState=published`}
+          <Link
+            to={`${pathname}?publicationState=published`}
           >
             <li
               className={clsx(
@@ -90,92 +91,48 @@ const PostListPage = ({
             >
               Published
             </li>
-          </a>
+          </Link>
 
-          <li className="ml-auto !mr-0">{pages}</li>
+          {loading ? (
+            <></>
+          ) : (
+            <li className="ml-auto !mr-0">{pages}</li>
+          )}
         </Filters>
-        <PostList posts={posts} />
+
+        {loading ? (
+          <div className="w-full h-full grid place-items-center">
+            <motion.div
+              className="bg-red-400 w-10 h-10"
+              animate={{
+                scale: [1, 2, 2, 1, 1],
+                rotate: [0, 0, 270, 270, 0],
+                borderRadius: [
+                  "20%",
+                  "20%",
+                  "50%",
+                  "50%",
+                  "20%",
+                ],
+              }}
+              transition={{
+                duration: 2,
+                ease: "easeInOut",
+                times: [0, 0.2, 0.5, 0.8, 1],
+                repeat: Infinity,
+                repeatDelay: 1,
+              }}
+            />
+          </div>
+        ) : (
+          <PostList posts={posts} />
+        )}
       </Layout>
     </Authorizer>
   );
 };
 
 export default PostListPage;
-
-export async function getServerData(ctx: {
-  query: Record<string, string>;
-}) {
-  let { publicationState, page } = ctx.query;
-
-  const filters = {
-    slug: { $notNull: true },
-  };
-
-  if (publicationState === "draft") {
-    Object.assign(filters, {
-      publishedAt: { $null: true },
-    });
-
-    publicationState = "preview";
-  } else if (publicationState === "published") {
-    publicationState = "live";
-  } else {
-    publicationState = "preview";
-  }
-
-  const query = qs.stringify(
-    {
-      sort: "createdAt:desc",
-      publicationState,
-      filters,
-      pagination: {
-        page: page ? Number(page) : 1,
-        pageSize: 10,
-      },
-    },
-    { encode: false }
-  );
-
-  const {
-    data: { data, meta },
-  }: {
-    data: {
-      data: Array<{
-        id: number;
-        attributes: Omit<Post, "id">;
-      }>;
-      meta: {
-        pagination: {
-          page: number;
-          pageSize: number;
-          pageCount: number;
-          total: number;
-        };
-      };
-    };
-  } = await axios(
-    `${process.env.GATSBY_STRAPI_API_URL}/api/posts?${query}`,
-    {
-      headers: {
-        authorization: `Bearer ${process.env.GATSBY_STRAPI_TOKEN}`,
-      },
-    }
-  );
-
-  const posts = pipe(
-    data,
-    map(({ id, attributes }) => ({ id, ...attributes })),
-    toArray
-  );
-
-  return {
-    props: {
-      posts,
-      totalPages: meta.pagination.pageCount,
-      currentPage: meta.pagination.page,
-    },
-  };
-}
 
 const Filters = styled.ul`
   display: flex;
