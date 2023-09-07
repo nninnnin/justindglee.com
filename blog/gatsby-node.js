@@ -58,8 +58,10 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   const releaseNode = (edge) => edge.node;
-  const filterByPublishingState = (post) =>
-    Boolean(post.publishedAt);
+  const filterByPublishingState =
+    ({ published }) =>
+    (post) =>
+      published === Boolean(post.publishedAt);
   const mapIndex = (node, index) => {
     return {
       index: index + 1,
@@ -67,11 +69,17 @@ exports.createPages = async ({ graphql, actions }) => {
     };
   };
 
+  const allPosts = go(posts, map(releaseNode)).map(
+    mapIndex
+  );
+  const drafts = go(
+    allPosts,
+    filter(filterByPublishingState({ published: false }))
+  );
   const publishedPosts = go(
-    posts,
-    map(releaseNode),
-    filter(filterByPublishingState)
-  ).map(mapIndex);
+    allPosts,
+    filter(filterByPublishingState({ published: true }))
+  );
 
   // Create pages..
   // Index page
@@ -83,19 +91,8 @@ exports.createPages = async ({ graphql, actions }) => {
     },
   });
 
-  // Post details page
-  publishedPosts.forEach((post) => {
-    actions.createPage({
-      path: `/post/${post.slug}`,
-      component: PostDetailsTemplate,
-      context: {
-        post,
-      },
-    });
-  });
-
   // Post list page
-  go(publishedPosts, (posts) =>
+  go(allPosts, (posts) =>
     actions.createPage({
       path: "/posts",
       component: PostListTemplate,
@@ -105,6 +102,28 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   );
+
+  // Post details page
+  drafts.forEach((post, index) => {
+    actions.createPage({
+      path: `/post/${post.slug}`,
+      component: PostDetailsTemplate,
+      context: {
+        post,
+      },
+      defer: index > 5,
+    });
+  });
+
+  publishedPosts.forEach((post) => {
+    actions.createPage({
+      path: `/post/${post.slug}`,
+      component: PostDetailsTemplate,
+      context: {
+        post,
+      },
+    });
+  });
 
   // Reference list page
   const referencePosts = references.map(mapIndex);

@@ -13,10 +13,6 @@ const PostList = ({ posts }: Props) => {
       {posts.map((post: Post) => {
         let to = `/post/${post.slug}`;
 
-        if (!post.publishedAt) {
-          to = `/post/${post.slug}/edit`;
-        }
-
         return (
           <Link key={`key-${post.id}`} to={to}>
             <ListItem
