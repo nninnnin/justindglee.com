@@ -14,6 +14,14 @@
   scrollbar-width: none;
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  font-size: 26px;
+}
+
 input,
 textarea {
   outline: none;
@@ -41,14 +49,6 @@ pre {
 
 pre {
   margin-bottom: 2em;
-}
-
-*::-webkit-scrollbar {
-  display: none;
-}
-
-html {
-  font-size: 18px;
 }
 
 h2 {

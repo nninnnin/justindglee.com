@@ -8,7 +8,7 @@ export const H1 = styled.h1`
 
 export const H2 = styled.h2`
   font-size: 1.5em;
-  margin-top: 0.5em;
+  margin-top: 1.5em;
   margin-bottom: 0.5em;
 `;
 
@@ -17,6 +17,7 @@ export const H3 = styled.h3.withConfig({
     !["node", "level"].includes(prop),
 })`
   font-size: 1.2em;
+  margin-top: 1em;
   margin-bottom: 0.5em;
 `;
 
@@ -44,7 +45,7 @@ export const UL = styled.ul.withConfig({
   list-style-type: disc;
 
   & > li {
-    margin-top: 4px;
+    line-height: 2em;
   }
 `;
 
