@@ -102,9 +102,9 @@ const Paragraph = ({
   <p
     className="text-white"
     style={{
-      margin: "10px 0",
+      margin: "1em 0",
       wordBreak: "keep-all",
-      lineHeight: "1.8em",
+      lineHeight: "2em",
     }}
   >
     {children}

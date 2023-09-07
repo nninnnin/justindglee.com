@@ -59,6 +59,10 @@ h2 {
 
 p {
   word-break: keep-all;
+
+  blockquote > & {
+    margin: 0 !important;
+  }
 }
 
 .text-theme {
@@ -114,6 +118,10 @@ img {
 
   & > p:first-child > img {
     margin-top: 0;
+  }
+
+  & > *:first-child {
+    margin-top: 0 !important;
   }
 }
 
