@@ -58,8 +58,8 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   const releaseNode = (edge) => edge.node;
-  const filterByType = (type) => (post) =>
-    post.type === type;
+  const filterByPublishingState = (post) =>
+    Boolean(post.publishedAt);
   const mapIndex = (node, index) => {
     return {
       index: index + 1,
@@ -67,32 +67,35 @@ exports.createPages = async ({ graphql, actions }) => {
     };
   };
 
-  const lifePosts = go(
+  const publishedPosts = go(
     posts,
     map(releaseNode),
-    filter(filterByType("life"))
+    filter(filterByPublishingState)
   ).map(mapIndex);
 
-  const techPosts = go(
-    posts,
-    map(releaseNode),
-    filter(filterByType("tech"))
-  ).map(mapIndex);
+  // Create pages..
+  // Index page
+  actions.createPage({
+    path: "/",
+    component: IndexPageTemplate,
+    context: {
+      posts: publishedPosts,
+    },
+  });
 
-  const referencePosts = references.map(mapIndex);
-
-  go(lifePosts, (posts) =>
+  // Post details page
+  publishedPosts.forEach((post) => {
     actions.createPage({
-      path: "/life",
-      component: PostListTemplate,
+      path: `/post/${post.slug}`,
+      component: PostDetailsTemplate,
       context: {
-        header: "생활",
-        posts,
+        post,
       },
-    })
-  );
+    });
+  });
 
-  go(techPosts, (posts) =>
+  // Post list page
+  go(publishedPosts, (posts) =>
     actions.createPage({
       path: "/posts",
       component: PostListTemplate,
@@ -102,6 +105,9 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   );
+
+  // Reference list page
+  const referencePosts = references.map(mapIndex);
 
   go(referencePosts, (references) =>
     actions.createPage({
@@ -113,26 +119,4 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   );
-
-  const allPosts = [...lifePosts, ...techPosts];
-
-  // index page
-  actions.createPage({
-    path: "/",
-    component: IndexPageTemplate,
-    context: {
-      posts: allPosts,
-    },
-  });
-
-  // post details
-  allPosts.forEach((post) => {
-    actions.createPage({
-      path: `/post/${post.slug}`,
-      component: PostDetailsTemplate,
-      context: {
-        post,
-      },
-    });
-  });
 };
