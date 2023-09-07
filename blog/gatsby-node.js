@@ -1,5 +1,5 @@
 const path = require("path");
-const { go, filter, map } = require("fxjs");
+const { go, map } = require("fxjs");
 
 exports.createPages = async ({ graphql, actions }) => {
   const IndexPageTemplate = path.resolve(
@@ -12,6 +12,7 @@ exports.createPages = async ({ graphql, actions }) => {
     `./src/components/PostListTemplate.tsx`
   );
 
+  // cannot get unpublished posts here
   const {
     data: {
       allStrapiPost: { edges: posts },
@@ -58,10 +59,6 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   const releaseNode = (edge) => edge.node;
-  const filterByPublishingState =
-    ({ published }) =>
-    (post) =>
-      published === Boolean(post.publishedAt);
   const mapIndex = (node, index) => {
     return {
       index: index + 1,
@@ -72,14 +69,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const allPosts = go(posts, map(releaseNode)).map(
     mapIndex
   );
-  const drafts = go(
-    allPosts,
-    filter(filterByPublishingState({ published: false }))
-  );
-  const publishedPosts = go(
-    allPosts,
-    filter(filterByPublishingState({ published: true }))
-  );
 
   // Create pages..
   // Index page
@@ -87,7 +76,7 @@ exports.createPages = async ({ graphql, actions }) => {
     path: "/",
     component: IndexPageTemplate,
     context: {
-      posts: publishedPosts,
+      posts: allPosts,
     },
   });
 
@@ -104,18 +93,7 @@ exports.createPages = async ({ graphql, actions }) => {
   );
 
   // Post details page
-  drafts.forEach((post, index) => {
-    actions.createPage({
-      path: `/post/${post.slug}`,
-      component: PostDetailsTemplate,
-      context: {
-        post,
-      },
-      defer: index > 5,
-    });
-  });
-
-  publishedPosts.forEach((post) => {
+  allPosts.forEach((post) => {
     actions.createPage({
       path: `/post/${post.slug}`,
       component: PostDetailsTemplate,
