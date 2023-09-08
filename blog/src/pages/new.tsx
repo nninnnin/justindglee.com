@@ -14,7 +14,11 @@ const EditorPage = () => {
 
   const { selectedPostType } = usePostType();
 
-  const savePost = async (publish: "draft" | "publish") => {
+  const savePost = async ({
+    publish,
+  }: {
+    publish: boolean;
+  }) => {
     const slug = prompt("slug를 입력해주세요 :)");
     const token = localStorage.getItem("justinblog-token");
 
@@ -27,8 +31,7 @@ const EditorPage = () => {
             contents,
             type: selectedPostType,
             slug,
-            publishedAt:
-              publish === "draft" ? null : new Date(),
+            publishedAt: publish ? new Date() : null,
           },
         },
         {
@@ -39,8 +42,6 @@ const EditorPage = () => {
       );
 
       alert("포스트 생성 성공!");
-
-      location.href = "/posts/edit";
     } catch (error) {
       alert("포스트 생성 실패..");
 
@@ -51,7 +52,9 @@ const EditorPage = () => {
   const handleSaveButtonClick = async (e: MouseEvent) => {
     e.preventDefault();
 
-    await savePost("draft");
+    await savePost({ publish: false });
+
+    location.href = "/posts";
   };
 
   const handleRegisterButtonClick = async (
@@ -59,7 +62,9 @@ const EditorPage = () => {
   ) => {
     e.preventDefault();
 
-    await savePost("publish");
+    await savePost({ publish: true });
+
+    location.href = "/posts";
   };
 
   const buttons = (
@@ -75,7 +80,7 @@ const EditorPage = () => {
         onClick={handleRegisterButtonClick}
         className="flex-1 p-5 bg-green-300"
       >
-        작성하기
+        발행하기
       </button>
     </div>
   );

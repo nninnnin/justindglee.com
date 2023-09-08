@@ -48,8 +48,6 @@ const PostPage = ({
       );
 
       alert("수정 성공!");
-
-      location.href = "/";
     } catch (error) {
       console.log("변경중 에러 발생");
       console.log(error);
@@ -66,13 +64,16 @@ const PostPage = ({
       >
         저장하기
       </button>
+
       <button
         onClick={async () => {
           await savePost({ publish: true });
+
+          location.href = "/posts";
         }}
         className="flex-1 p-5 bg-pink-400"
       >
-        공개하기
+        발행하기
       </button>
     </div>
   );
@@ -81,6 +82,8 @@ const PostPage = ({
     <button
       onClick={async () => {
         await savePost({ publish: true });
+
+        location.href = "/posts";
       }}
       className="p-5 bg-green-300"
     >
