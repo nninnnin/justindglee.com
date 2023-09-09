@@ -79,16 +79,28 @@ const PostPage = ({
   );
 
   const editButton = (
-    <button
-      onClick={async () => {
-        await savePost({ publish: true });
+    <>
+      <button
+        onClick={async () => {
+          await savePost({ publish: false });
 
-        location.href = "/posts";
-      }}
-      className="p-5 bg-green-300"
-    >
-      수정하기
-    </button>
+          location.href = "/posts/edit";
+        }}
+        className="p-5 bg-green-300"
+      >
+        숨기기
+      </button>
+      <button
+        onClick={async () => {
+          await savePost({ publish: true });
+
+          location.href = "/posts/edit";
+        }}
+        className="p-5 bg-green-300"
+      >
+        수정하기
+      </button>
+    </>
   );
 
   const buttons = {
