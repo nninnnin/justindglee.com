@@ -1,10 +1,11 @@
 # 저스틴의 블로그와 포트폴리오
 
-개인적인 학습 내용과 이야기들을 정리하기 위한 블로그와 포트폴리오 웹사이트 입니다.
+개인적인 학습 내용과 이야기들을 정리하기 위한 블로그와 포트폴리오 웹사이트입니다.
 
 ### 블로그
 
-Gatsby와 Strapi를 사용해 만들어졌습니다.
+![Gatsby](https://img.shields.io/badge/Gatsby-%23663399.svg?style=for-the-badge&logo=gatsby&logoColor=white)
+![Strapi](https://img.shields.io/badge/strapi-%232E7EEA.svg?style=for-the-badge&logo=strapi&logoColor=white)
 
   - `createPage` 액션을 통한 빌드타임 페이지생성(SSG)으로 원활한 페이지탐색 경험 제공
   - markdown 형식의 문서에서 풍부한 컨텐츠 제공을 위해 비디오 또는 외부 페이지를 iframe으로 첨부 가능
@@ -22,10 +23,10 @@ Gatsby와 Strapi를 사용해 만들어졌습니다.
 
 ### 포트폴리오
 
-Create React App을 기반으로 만들어졌습니다.
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
   - [webpack에서의 빌드타임 gif 최적화 설정을 위해 CRA eject](https://github.com/nninnnin/justindglee.com/commit/a7fd8710bcde80ea603dffc846a8cce7e17ea09e)
 
 ---
 
-템플릿 디자인의 무단도용을 금지합니다.
+템플릿 디자인의 무단도용을 금지합니다
