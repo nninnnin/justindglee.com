@@ -1,10 +1,10 @@
 import React from "react";
 
-import Layout from "@components/Layout";
-import PostList from "@components/ListComponents/PostList";
 import "@styles/index.scss";
 import { Post, Reference } from "@src/types";
-import ReferenceList from "./ListComponents/ReferenceList";
+import Layout from "@components/Layout";
+import PostList from "@components/ContentsList/PostList";
+import ReferenceList from "@components/ContentsList/ReferenceList";
 
 interface Props {
   pageContext: {
@@ -22,7 +22,9 @@ export default function PostListTemplate({
       <h1 className="header">{header}</h1>
 
       {posts && <PostList posts={posts} />}
-      {references && <ReferenceList references={references} />}
+      {references && (
+        <ReferenceList references={references} />
+      )}
     </Layout>
   );
 }

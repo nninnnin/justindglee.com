@@ -4,7 +4,7 @@ import { pipe, filter, take, toArray } from "@fxts/core";
 
 import "@styles/index.scss";
 import { Post } from "@src/types";
-import PostList from "./ListComponents/PostList";
+import PostList from "@components/ContentsList/PostList";
 
 interface Props {
   pageContext: {
