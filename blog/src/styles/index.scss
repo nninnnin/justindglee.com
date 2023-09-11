@@ -22,6 +22,10 @@ html {
   font-size: 20px;
 }
 
+body {
+  overscroll-behavior-y: none;
+}
+
 input,
 textarea {
   outline: none;

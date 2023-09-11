@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import qs from "qs";
 import { map, pipe, take, toArray } from "@fxts/core";
 import styled from "styled-components";
@@ -8,10 +7,9 @@ import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
 import { motion } from "framer-motion";
 
-import { Post } from "@src/types";
 import Authorizer from "@components/Authorizer";
 import Layout from "@components/Layout";
-import PostList from "@components/ListComponents/PostList";
+import PostList from "@components/ContentsList/PostList";
 import usePosts from "@src/hooks/usePosts";
 
 const PostListPage = () => {
