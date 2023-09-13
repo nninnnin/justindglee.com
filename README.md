@@ -19,6 +19,7 @@
     - 에디터에서 구현된 기능들
       - [x] [탭키를 이용한 들여쓰기와 내어쓰기](https://github.com/nninnnin/justindglee.com/pull/5/files)
       - [x] [줄바꿈시 자동 들여쓰기 수준 맞추기](https://github.com/nninnnin/justindglee.com/pull/9)
+      - [ ] 컨텍스트 메뉴를 통한 간편한 태그 생성, 등록, 제거 및 삭제
       - [ ] 드래그-드랍을 통한 이미지 업로드
       - [ ] 이미지 스타일(크기, 경계선, 둥글기..) 프리셋 생성 및 적용
 
@@ -29,5 +30,3 @@
   - [webpack에서의 빌드타임 gif 최적화 설정을 위해 CRA eject](https://github.com/nninnnin/justindglee.com/commit/a7fd8710bcde80ea603dffc846a8cce7e17ea09e)
 
 ---
-
-템플릿 디자인의 무단도용을 금지합니다
