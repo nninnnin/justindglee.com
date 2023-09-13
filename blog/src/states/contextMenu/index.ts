@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { useLocation } from "@reach/router";
 import {
   atom,
   useRecoilTransaction_UNSTABLE,
@@ -25,9 +26,14 @@ const contextMenuState = atom<ContextMenuInterface>({
 });
 
 const useContextMenu = () => {
+  const location = useLocation();
+  const isEditable = location.pathname.includes("edit");
+
   const openContextMenu = useRecoilTransaction_UNSTABLE(
     ({ get, set, reset }) =>
       (newValue: Partial<ContextMenuInterface>) => {
+        if (!isEditable) return;
+
         const prev = get(contextMenuState);
 
         // 이미 열려있는 경우

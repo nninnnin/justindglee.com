@@ -33,7 +33,7 @@ const ContextMenuContainer = ({
       className="glassmorph"
       tabIndex={-1}
       // onBlur={() => closeContextMenu()}
-      position={coordinates}
+      $position={coordinates}
       ref={containerRef}
     >
       {children}
