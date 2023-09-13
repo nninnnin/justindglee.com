@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const Container = styled.div<{
-  position: { x: number; y: number };
+  $position: { x: number; y: number };
 }>`
   background-color: white !important;
   border-radius: 4px;
   overflow: hidden;
 
   position: fixed;
-  top: ${({ position }) => `${position.y}px`};
-  left: ${({ position }) => `${position.x}px`};
+  top: ${({ $position }) => `${$position.y}px`};
+  left: ${({ $position }) => `${$position.x}px`};
 `;
 
 export const List = styled.ul`

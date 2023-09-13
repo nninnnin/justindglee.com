@@ -16,7 +16,6 @@ interface Props {
 
 const ListItem = ({ description, tags }: Props) => {
   const { openContextMenu } = useContextMenu();
-
   const contextId = useRef(uuid());
 
   return (
