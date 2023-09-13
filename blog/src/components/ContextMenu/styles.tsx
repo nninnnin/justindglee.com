@@ -17,21 +17,16 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  color: #525252;
-  padding: 0.2em 0.8em;
+  display: flex;
+
   border-radius: 4px;
-
-  font-size: 0.7em;
   text-shadow: none;
-
-  transition: 0.1s;
+  color: #525252;
 
   cursor: pointer;
   user-select: none;
 
-  &:hover {
-    background-color: #efefef;
-  }
+  transition: 0.1s;
 
   &:last-child {
     border-bottom: 0;
