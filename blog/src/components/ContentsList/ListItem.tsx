@@ -1,17 +1,19 @@
 import clsx from "clsx";
 import { v4 as uuid } from "uuid";
 import React, { useRef } from "react";
+import styled from "styled-components";
 
-import { Tag } from "@src/types";
+import { TagInterface } from "@src/types";
 import { Description } from "./styles";
 import { useContextMenu } from "@src/states/contextMenu";
-import Tags from "@components/ContentsList/Tags";
+import Tag from "@components/ContentsList/Tag";
 import ContextMenu from "@components/ContextMenu";
+import TagEditor from "@components/TagEditor";
 
 interface Props {
   index: number;
   description: string;
-  tags?: null | Array<Tag>;
+  tags?: null | Array<TagInterface>;
 }
 
 const ListItem = ({ description, tags }: Props) => {
@@ -38,13 +40,15 @@ const ListItem = ({ description, tags }: Props) => {
             <ContextMenu.List>
               <ContextMenu.ListItem
                 onClick={() => {
-                  // alert("...");
-
                   openContextMenu({
                     contents: (
                       <ContextMenu.List>
                         <ContextMenu.ListItem>
-                          여기에서 태그를 쥐락펴락..
+                          <TagEditor
+                            tags={
+                              tags as Array<TagInterface>
+                            }
+                          />
                         </ContextMenu.ListItem>
                       </ContextMenu.List>
                     ),
@@ -60,9 +64,22 @@ const ListItem = ({ description, tags }: Props) => {
     >
       <Description>{description}</Description>
 
-      {tags ? <Tags tags={tags} /> : <></>}
+      {tags && (
+        <TagList>
+          {tags.map((tag) => {
+            return <Tag key={tag.id} name={tag.name} />;
+          })}
+        </TagList>
+      )}
     </li>
   );
 };
+
+const TagList = styled.ul`
+  max-width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+`;
 
 export default ListItem;

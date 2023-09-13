@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { pipe, map, toArray } from "@fxts/core";
 import qs from "qs";
 import axios from "axios";
-import { Post } from "@src/types";
+import { Post, TagInterface } from "@src/types";
 
 interface Props {
   publicationState?: string;
@@ -46,6 +46,7 @@ const getPosts = async ({
         page: page ? Number(page) : 1,
         pageSize: 10,
       },
+      populate: ["tags"],
     },
     { encode: false }
   );
@@ -56,7 +57,14 @@ const getPosts = async ({
     data: {
       data: Array<{
         id: number;
-        attributes: Omit<Post, "id">;
+        attributes: Omit<Post, "id" | "tags"> & {
+          tags: {
+            data: Array<{
+              id: number;
+              attributes: Omit<TagInterface, "id">;
+            }>;
+          };
+        };
       }>;
       meta: {
         pagination: {
@@ -78,7 +86,30 @@ const getPosts = async ({
 
   const posts = pipe(
     data,
-    map(({ id, attributes }) => ({ id, ...attributes })),
+    map(({ id, attributes }) => {
+      const tags = [
+        ...attributes.tags.data.map(
+          ({ id, attributes }) => {
+            const tag: TagInterface = {
+              id: String(id),
+              ...attributes,
+            };
+
+            return tag;
+          }
+        ),
+      ];
+
+      const post = {
+        id,
+        ...{
+          ...attributes,
+          tags,
+        },
+      };
+
+      return post;
+    }),
     toArray
   );
 

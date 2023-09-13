@@ -32,9 +32,12 @@ module.exports = {
         alias: {
           "@styles": "./src/styles",
           "@components": "./src/components",
+          "@icons": "./src/icons",
           "@src": "./src",
         },
-        extensions: ["js, jsx, tsx, sass, scss, css"],
+        extensions: [
+          "js, jsx, tsx, sass, scss, css, png, svg",
+        ],
       },
     },
     {

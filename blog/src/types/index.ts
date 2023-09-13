@@ -6,7 +6,7 @@ export interface PostQueryResult {
   };
 }
 
-export interface Tag {
+export interface TagInterface {
   id: string;
   name: string;
 }
@@ -21,7 +21,7 @@ export interface Post {
   createdAt: string;
   publishedAt: string;
   slug: string;
-  tags: null | Array<Tag>;
+  tags: null | Array<TagInterface>;
 }
 
 export interface Reference {
