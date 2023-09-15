@@ -2,9 +2,9 @@
 
 개인적인 학습 내용과 이야기들을 정리하기 위한 블로그입니다.
 
-![Gatsby](https://img.shields.io/badge/Gatsby-%23663399.svg?style=for-the-badge&logo=gatsby&logoColor=white)
-![Strapi](https://img.shields.io/badge/strapi-%232E7EEA.svg?style=for-the-badge&logo=strapi&logoColor=white)
+https://github.com/nninnnin/justindglee.com/assets/34882520/52c7ef25-a15c-4a61-888b-a2b3677c398b
 
+## 기능
 - [x] [포스트 작성](https://github.com/nninnnin/justindglee.com/pull/8)
 - [x] [포스트 수정](https://github.com/nninnnin/justindglee.com/pull/3)
 - [x] 저장되었으나 공개되지 않은(draft) 글 리스트 확인 및 수정 기능
@@ -16,3 +16,8 @@
 - [ ] 이미지 스타일(크기, 경계선, 둥글기..) 프리셋 생성 및 적용
 - [ ] 실시간 자동저장 기능 (Socket, Redis)
 - [ ] 검색 기능
+
+---
+
+![Gatsby](https://img.shields.io/badge/Gatsby-%23663399.svg?style=for-the-badge&logo=gatsby&logoColor=white)
+![Strapi](https://img.shields.io/badge/strapi-%232E7EEA.svg?style=for-the-badge&logo=strapi&logoColor=white)
