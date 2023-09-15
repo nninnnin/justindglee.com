@@ -6,8 +6,7 @@ https://github.com/nninnnin/justindglee.com/assets/34882520/52c7ef25-a15c-4a61-8
 ## 기능
 - [x] [포스트 작성](https://github.com/nninnnin/justindglee.com/pull/8)
 - [x] [포스트 수정](https://github.com/nninnnin/justindglee.com/pull/3)
-- [x] 저장되었으나 공개되지 않은(draft) 글 리스트 확인 및 수정 기능
-- [ ] 빌드 트리거로 새로운 글 공개 기능
+- [x] 공개되지 않은 초안 리스트 확인 및 공개 기능
 - [x] [탭키를 이용한 들여쓰기와 내어쓰기](https://github.com/nninnnin/justindglee.com/pull/5/files)
 - [x] [줄바꿈시 자동 들여쓰기 수준 맞추기](https://github.com/nninnnin/justindglee.com/pull/9)
 - [ ] 컨텍스트 메뉴를 통한 간편한 태그 생성, 등록, 제거 및 삭제
