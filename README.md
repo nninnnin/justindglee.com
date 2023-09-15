@@ -1,5 +1,4 @@
-# 저스틴 블로그
-
+## 소개
 개인적인 학습 내용과 이야기들을 정리하기 위한 블로그입니다.
 
 https://github.com/nninnnin/justindglee.com/assets/34882520/52c7ef25-a15c-4a61-888b-a2b3677c398b
