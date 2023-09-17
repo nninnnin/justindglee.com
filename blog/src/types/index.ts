@@ -6,8 +6,30 @@ export interface PostQueryResult {
   };
 }
 
+export type Populate<Type, Field extends keyof Type> = Omit<
+  Type,
+  Field
+> & {
+  [Field in keyof Type]: StrapiResponseData<Type[Field]>;
+};
+
+export type StrapiResponseData<T> = T extends null
+  ? null
+  : {
+      data: T extends any[]
+        ? Array<{
+            id: number;
+            attributes: Omit<T[number], "id">;
+          }>
+        : {
+            id: number;
+            attributes: Omit<T, "id">;
+          };
+      meta: unknown;
+    };
+
 export interface TagInterface {
-  id: string;
+  id: number;
   name: string;
 }
 

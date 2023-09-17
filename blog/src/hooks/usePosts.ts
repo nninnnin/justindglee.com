@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { pipe, map, toArray } from "@fxts/core";
 import qs from "qs";
-import axios from "axios";
 import { Post, TagInterface } from "@src/types";
+import strapiClient from "./strapiClient";
 
 interface Props {
   publicationState?: string;
@@ -75,14 +75,7 @@ const getPosts = async ({
         };
       };
     };
-  } = await axios(
-    `${process.env.GATSBY_STRAPI_API_URL}/api/posts?${query}`,
-    {
-      headers: {
-        authorization: `Bearer ${process.env.GATSBY_STRAPI_TOKEN}`,
-      },
-    }
-  );
+  } = await strapiClient(`/api/posts?${query}`);
 
   const posts = pipe(
     data,
@@ -91,7 +84,7 @@ const getPosts = async ({
         ...attributes.tags.data.map(
           ({ id, attributes }) => {
             const tag: TagInterface = {
-              id: String(id),
+              id,
               ...attributes,
             };
 
