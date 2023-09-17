@@ -1,5 +1,6 @@
 import { last } from "lodash";
 import { pipe, map, reduce } from "@fxts/core";
+import { StrapiResponseData } from "@src/types";
 
 export const parseQueryString = (
   qs: string
@@ -22,4 +23,35 @@ export const trimStart = (
   n: number
 ): string => {
   return str.slice(0, n).trimStart() + str.slice(n);
+};
+
+export const stripStrapiResponse = <T>(
+  data: StrapiResponseData<T | T[]> | null
+): T | T[] | null => {
+  if (data === null) return null;
+
+  const stripper = ({
+    id,
+    attributes,
+  }: {
+    id: number;
+    attributes: Omit<T, "id">;
+  }): T =>
+    ({
+      id,
+      ...attributes,
+    } as T);
+
+  if (data.data instanceof Array) {
+    const arrayData = data as StrapiResponseData<T[]>;
+
+    return arrayData.data.map(stripper);
+  }
+
+  return stripper(
+    data.data as {
+      id: number;
+      attributes: Omit<T, "id">;
+    }
+  );
 };

@@ -33,6 +33,7 @@ module.exports = {
           "@styles": "./src/styles",
           "@components": "./src/components",
           "@icons": "./src/icons",
+          "@hooks": "./src/hooks",
           "@src": "./src",
         },
         extensions: [
