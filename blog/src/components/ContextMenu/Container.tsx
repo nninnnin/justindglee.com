@@ -1,10 +1,9 @@
-import { useContextMenu } from "@src/states/contextMenu";
+import styled from "styled-components";
 import React, {
   ReactNode,
   useLayoutEffect,
   useRef,
 } from "react";
-import { Container } from "@components/ContextMenu/styles";
 
 interface Props {
   coordinates: {
@@ -24,21 +23,36 @@ const ContextMenuContainer = ({
     if (containerRef.current) {
       containerRef.current.focus();
     }
-  }, [containerRef]);
-
-  const { closeContextMenu } = useContextMenu();
+  }, [containerRef.current]);
 
   return (
     <Container
-      className="glassmorph"
+      className="context-menu-container glassmorph"
       tabIndex={-1}
-      // onBlur={() => closeContextMenu()}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+      }}
       $position={coordinates}
-      ref={containerRef}
+      ref={(ref) => {
+        containerRef.current = ref;
+      }}
     >
       {children}
     </Container>
   );
 };
+
+export const Container = styled.div<{
+  $position: { x: number; y: number };
+}>`
+  background-color: white !important;
+  border-radius: 4px;
+  overflow: hidden;
+
+  position: fixed;
+  top: ${({ $position }) => `${$position.y}px`};
+  left: ${({ $position }) => `${$position.x}px`};
+`;
 
 export default ContextMenuContainer;

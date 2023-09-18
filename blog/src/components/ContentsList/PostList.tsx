@@ -21,6 +21,7 @@ const PostList = ({ posts }: Props) => {
           <Link key={`key-${post.id}`} to={to}>
             <ListItem
               index={post.index}
+              postId={post.id}
               description={post.title}
               tags={post.tags}
             />
