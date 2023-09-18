@@ -13,7 +13,12 @@ interface Props {
 }
 
 const TagEditor = ({ postId }: Props) => {
-  const postTags = usePostTags(postId);
+  const {
+    postTags,
+    registerTag,
+    unregisterTag,
+    loading: postTagLoading,
+  } = usePostTags(postId);
   console.log("포스트 태그..", postTags);
 
   const { tags, loading, addTag, removeTag } = useTags();
@@ -28,7 +33,7 @@ const TagEditor = ({ postId }: Props) => {
   // 3. TODO: 검색기능
   // 유저 태그를 필터링해야한다. useMemo로 메모.
 
-  if (postTags && loading)
+  if (postTagLoading || loading)
     return (
       <Loading widthSize={width} heightSize={height}>
         태그 가져오는 중..
@@ -49,7 +54,14 @@ const TagEditor = ({ postId }: Props) => {
             )}
           >
             {postTags.map((tag) => (
-              <Badge key={tag.id}>{tag.name}</Badge>
+              <Badge
+                key={tag.id}
+                handleRemoveButtonClick={async () => {
+                  await unregisterTag(tag.id);
+                }}
+              >
+                {tag.name}
+              </Badge>
             ))}
           </ul>
         )}
@@ -85,8 +97,9 @@ const TagEditor = ({ postId }: Props) => {
               <li
                 key={tag.id}
                 className="flex justify-between items-center hover:bg-[#f9f9f9] w-full cursor-pointer"
-                onClick={() => {
+                onClick={async () => {
                   // 태그 등록하기
+                  await registerTag(tag.id);
                 }}
               >
                 <Badge removable={false}>{tag.name}</Badge>

@@ -6,9 +6,14 @@ import removeButtonSource from "@icons/cross.png";
 interface Props {
   children: React.ReactNode;
   removable?: boolean;
+  handleRemoveButtonClick?: () => void;
 }
 
-const Badge = ({ children, removable = true }: Props) => {
+const Badge = ({
+  children,
+  removable = true,
+  handleRemoveButtonClick,
+}: Props) => {
   return (
     <Container>
       {children}
@@ -23,9 +28,7 @@ const Badge = ({ children, removable = true }: Props) => {
           src={removeButtonSource}
           width={16}
           height={16}
-          onClick={() => {
-            // 해당 포스트에서 태그 제거
-          }}
+          onClick={handleRemoveButtonClick}
         />
       )}
     </Container>
