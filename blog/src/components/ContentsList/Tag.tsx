@@ -1,51 +1,40 @@
 import React from "react";
 import styled from "styled-components";
-import removeButtonSource from "@icons/cross.png";
-import clsx from "clsx";
 
 const Tag = ({
   name,
-  removable = false,
 }: {
   name: string;
   removable?: boolean;
 }) => {
-  return (
-    <Container>
-      {name}
-      {removable && (
-        <img
-          className={clsx(
-            "!shadow-none mr-[-0.2em]",
-            "hover:bg-slate-100"
-          )}
-          src={removeButtonSource}
-          width={16}
-          height={16}
-          onClick={() => {
-            // 해당 포스트에서 태그 제거
-          }}
-        />
-      )}
-    </Container>
-  );
+  return <Container>{name}</Container>;
 };
 
 const Container = styled.li`
-  padding: 0.05em 0.35em;
   margin: 0.2em;
+  margin-right: 0;
+  padding: 0.05em 0.35em;
+  padding-right: 0;
+
+  &:first-child {
+    margin-left: 0;
+    padding-left: 0;
+  }
+
   border-radius: 3px;
+  width: fit-content;
 
   display: flex;
   align-items: center;
 
-  background-color: gainsboro;
-  color: black;
+  color: rgba(255, 255, 255, 0.3);
   text-shadow: none;
-
-  font-size: 0.6em;
-  width: fit-content;
+  font-size: 0.8em;
   white-space: nowrap;
+
+  &:hover {
+    color: #ececec;
+  }
 `;
 
 export default Tag;

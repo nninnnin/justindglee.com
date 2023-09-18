@@ -1,10 +1,13 @@
-import React from "react";
-import Navigation from "./Navigation";
-import { useRecoilValue } from "recoil";
-import contextMenuState from "@src/states/contextMenu";
-import { createPortal } from "react-dom";
-import ContextMenu from "@components/ContextMenu";
 import clsx from "clsx";
+import React from "react";
+import { createPortal } from "react-dom";
+import { useRecoilValue } from "recoil";
+
+import contextMenuState, {
+  useContextMenu,
+} from "@src/states/contextMenu";
+import Navigation from "@components/Navigation";
+import ContextMenu from "@components/ContextMenu";
 
 interface Props {
   children: React.ReactNode;
@@ -18,6 +21,8 @@ function Layout({
   isEditing = false,
 }: Props) {
   const contextMenu = useRecoilValue(contextMenuState);
+
+  const { closeContextMenu } = useContextMenu();
 
   return (
     <div className="layout-container">
@@ -43,6 +48,12 @@ function Layout({
               "fixed top-0 left-0 z-[1000]",
               "w-[100vw] h-[100vh] bg-transparent"
             )}
+            onClick={() => {
+              closeContextMenu();
+            }}
+            onContextMenu={() => {
+              closeContextMenu();
+            }}
           >
             <ContextMenu.Container
               coordinates={contextMenu.coordinates}

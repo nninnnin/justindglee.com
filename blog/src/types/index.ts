@@ -31,6 +31,7 @@ export type StrapiResponseData<T> = T extends null
 export interface TagInterface {
   id: number;
   name: string;
+  posts: Array<number>;
 }
 
 export interface Post {
