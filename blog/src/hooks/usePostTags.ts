@@ -69,7 +69,13 @@ const usePostTags = (postId: number) => {
     await getPostTags();
   };
 
-  return { postTags, registerTag, unregisterTag, loading };
+  return {
+    postTags,
+    getPostTags,
+    registerTag,
+    unregisterTag,
+    loading,
+  };
 };
 
 export default usePostTags;

@@ -15,6 +15,7 @@ interface Props {
 const TagEditor = ({ postId }: Props) => {
   const {
     postTags,
+    getPostTags,
     registerTag,
     unregisterTag,
     loading: postTagLoading,
@@ -106,7 +107,11 @@ const TagEditor = ({ postId }: Props) => {
                   src={removeButtonSource}
                   onClick={async (e) => {
                     e.preventDefault();
+
                     await removeTag(tag.id, tag.posts);
+
+                    if (tag.posts && tag.posts.length > 0)
+                      await getPostTags();
                   }}
                 />
               </li>
