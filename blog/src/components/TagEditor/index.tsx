@@ -19,10 +19,7 @@ const TagEditor = ({ postId }: Props) => {
     unregisterTag,
     loading: postTagLoading,
   } = usePostTags(postId);
-  console.log("포스트 태그..", postTags);
-
   const { tags, loading, addTag, removeTag } = useTags();
-  console.log("유저 태그..", tags);
 
   const listRef = useRef(null);
   const { width, height } = useContextMenuSize(listRef, [

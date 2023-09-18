@@ -10,57 +10,55 @@ const useTags = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [tags, setTags] = useState<Array<TagInterface>>([]);
 
+  const getTags = async () => {
+    const {
+      data: { data },
+    }: {
+      data: {
+        data: Array<{
+          id: number;
+          attributes: {
+            name: string;
+            createdAt: string;
+            updatedAt: string;
+            posts: StrapiResponseData<Array<Post>>;
+          };
+        }>;
+      };
+    } = await strapiClient.get(
+      "/api/tags?populate[posts][fields][0]=id&populate[posts][publicationState]=preview"
+    );
+
+    const tags = data.map(({ id, attributes }) => ({
+      id,
+      ...{
+        ...attributes,
+        posts: [
+          ...attributes.posts.data.map(({ id }) => id),
+        ],
+      },
+    }));
+
+    setLoading(false);
+    setTags(tags);
+  };
+
   useEffect(() => {
     (async function () {
-      const {
-        data: { data },
-      }: {
-        data: {
-          data: Array<{
-            id: number;
-            attributes: {
-              name: string;
-              createdAt: string;
-              updatedAt: string;
-              posts: StrapiResponseData<Array<Post>>;
-            };
-          }>;
-        };
-      } = await strapiClient.get(
-        "/api/tags?populate[posts][fields][0]=id&populate[posts][publicationState]=preview"
-      );
-
-      const tags = data.map(({ id, attributes }) => ({
-        id,
-        ...{
-          ...attributes,
-          posts: [
-            ...attributes.posts.data.map(({ id }) => id),
-          ],
-        },
-      }));
-
-      setLoading(false);
-      setTags(tags);
+      await getTags();
     })();
   }, []);
 
   const addTag = async (tagName: string) => {
     setLoading(true);
 
-    const result = await strapiClient.post("api/tags", {
+    await strapiClient.post("api/tags", {
       data: {
         name: tagName,
       },
     });
 
-    const newTag = {
-      id: result.data.data.id,
-      ...result.data.data.attributes,
-    };
-
-    setLoading(false);
-    setTags((prev) => [...prev, newTag]);
+    await getTags();
   };
 
   const removeTag = async (
@@ -89,10 +87,7 @@ const useTags = () => {
 
       await strapiClient.delete(`api/tags/${tagId}`);
 
-      setLoading(false);
-      setTags((prev) =>
-        prev.filter((tag) => tag.id !== tagId)
-      );
+      await getTags();
     } catch (error) {
       console.log(error);
     }
