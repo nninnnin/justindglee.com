@@ -9,7 +9,7 @@ https://github.com/nninnnin/justindglee.com/assets/34882520/52c7ef25-a15c-4a61-8
 - [x] 공개되지 않은 초안 리스트 확인 및 공개 기능
 - [x] [탭키를 이용한 들여쓰기와 내어쓰기](https://github.com/nninnnin/justindglee.com/pull/5/files)
 - [x] [줄바꿈시 자동 들여쓰기 수준 맞추기](https://github.com/nninnnin/justindglee.com/pull/9)
-- [ ] 컨텍스트 메뉴를 통한 간편한 태그 생성, 등록, 제거 및 삭제
+- [x] [컨텍스트 메뉴를 통한 간편한 태그 생성, 등록, 제거 및 삭제](https://github.com/nninnnin/justindglee.com/pull/14)
 - [ ] 드래그-드랍을 통한 이미지 업로드
 - [ ] 포스트의 정적 배포 상태 보여주기
 - [ ] 이미지 스타일(크기, 경계선, 둥글기..) 프리셋 생성 및 적용
