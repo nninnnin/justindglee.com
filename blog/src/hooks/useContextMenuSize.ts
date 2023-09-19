@@ -31,7 +31,7 @@ const useContextMenuSize = (
     }
   }, [ref, ref.current, ...deps]);
 
-  return size;
+  return { size };
 };
 
 export default useContextMenuSize;

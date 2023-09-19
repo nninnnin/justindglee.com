@@ -1,5 +1,9 @@
 import styled from "styled-components";
-import React, { useRef } from "react";
+import React, {
+  MutableRefObject,
+  useContext,
+  useRef,
+} from "react";
 import clsx from "clsx";
 
 import Badge from "@components/ContextMenu/Badge";
@@ -7,6 +11,8 @@ import useTags from "@src/hooks/useTags";
 import removeButtonSource from "@icons/cross.png";
 import usePostTags from "@src/hooks/usePostTags";
 import useContextMenuSize from "@hooks/useContextMenuSize";
+import { containerContext } from "@components/ContextMenu/Container";
+import useContextReposition from "@hooks/useContextReposition";
 
 interface Props {
   postId: number;
@@ -22,11 +28,20 @@ const TagEditor = ({ postId }: Props) => {
   } = usePostTags(postId);
   const { tags, loading, addTag, removeTag } = useTags();
 
+  const containerRef = useContext(containerContext);
+
   const listRef = useRef(null);
-  const { width, height } = useContextMenuSize(listRef, [
-    postTags,
-    tags,
+  const {
+    size: { width, height },
+  } = useContextMenuSize(listRef, [
+    postTagLoading,
+    loading,
   ]);
+
+  useContextReposition(
+    containerRef as MutableRefObject<HTMLElement | null>,
+    [postTagLoading, loading]
+  );
 
   // 3. TODO: 검색기능
   // 유저 태그를 필터링해야한다. useMemo로 메모.
