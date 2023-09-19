@@ -10,7 +10,7 @@ https://github.com/nninnnin/justindglee.com/assets/34882520/52c7ef25-a15c-4a61-8
 - [x] [탭키를 이용한 들여쓰기와 내어쓰기](https://github.com/nninnnin/justindglee.com/pull/5/files)
 - [x] [줄바꿈시 자동 들여쓰기 수준 맞추기](https://github.com/nninnnin/justindglee.com/pull/9)
 - [x] [컨텍스트 메뉴를 통한 간편한 태그 생성, 등록, 제거 및 삭제](https://github.com/nninnnin/justindglee.com/pull/14)
-  - [ ] 컨텍스트 메뉴가 뷰포트를 벗어날 때 위치 재정의
+  - [x] [컨텍스트 메뉴가 뷰포트를 벗어날 때 위치 재정의](https://github.com/nninnnin/justindglee.com/pull/15)
   - [ ] 태그 검색
 - [ ] 드래그-드랍을 통한 이미지 업로드
 - [ ] 포스트의 정적 배포 상태 보여주기
