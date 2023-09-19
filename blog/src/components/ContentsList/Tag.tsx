@@ -33,7 +33,8 @@ const Container = styled.li`
   white-space: nowrap;
 
   &:hover {
-    color: #ececec;
+    color: white;
+    text-shadow: inherit;
   }
 `;
 
