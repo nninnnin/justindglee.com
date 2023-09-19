@@ -7,6 +7,7 @@ export const Index = styled.div`
 export const Description = styled.div`
   display: inline-block;
   flex: 1;
+  max-width: 80%;
   font-size: 1.2em;
   font-weight: 500;
 
