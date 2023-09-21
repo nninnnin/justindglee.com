@@ -112,8 +112,6 @@ const getPosts = async ({
     mapDeployed
   );
 
-  console.log("중간체크", posts);
-
   return {
     posts,
     totalPages: meta.pagination.pageCount,
