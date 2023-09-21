@@ -11,10 +11,9 @@ const PostList = ({ posts }: Props) => {
   return (
     <ul>
       {posts.map((post: Post) => {
-        const to =
-          post.publicationState === "published"
-            ? `/post/${post.slug}`
-            : `/post/${post.slug}/edit`;
+        const to = !post.publicationState
+          ? `/post/${post.slug}`
+          : `/post/${post.slug}/edit`;
 
         return (
           <Link key={`key-${post.id}`} to={to}>
