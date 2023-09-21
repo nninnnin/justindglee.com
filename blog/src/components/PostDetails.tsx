@@ -33,7 +33,6 @@ const PostDetail = ({ pageContext }: Props) => {
 export const Container = styled.div`
   display: flex;
   flex: 1;
-  overflow: hidden;
 `;
 
 export default PostDetail;
