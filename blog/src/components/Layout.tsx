@@ -30,9 +30,7 @@ function Layout({
         className={clsx(
           `contents-container`,
           `glassmorph overflow-auto mx-auto`,
-          isEditing
-            ? "!w-full max-w-[1800px]"
-            : "w-[640px]",
+          isEditing ? "!w-full max-w-[1800px]" : "",
           hasPadding && "p-[30px] pt-[26px] flex flex-col",
           contextMenu.isOpen && "overflow-hidden"
         )}

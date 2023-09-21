@@ -19,7 +19,7 @@
 }
 
 html {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 body {
@@ -109,7 +109,7 @@ img {
   width: 100vw;
   height: 100svh;
 
-  padding: 2em;
+  padding: 1em;
 
   position: relative;
 }
@@ -213,16 +213,14 @@ img {
 
 @include tablet {
   @include hide-preview;
+
+  .contents-container {
+    width: 700px;
+  }
 }
 
 @include desktop {
   .contents-container {
-    width: 800px;
-  }
-}
-
-@include broad-desktop {
-  .contents-container {
-    width: 1000px;
+    width: 700px;
   }
 }
