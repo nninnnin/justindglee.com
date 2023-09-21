@@ -48,7 +48,7 @@ function Navigation() {
           <li>저스틴 블로그</li>
         </Link>
 
-        {navItems.map((el, index) => {
+        {navItems.map((el, index, arr) => {
           if (!el.title && !el.route)
             return (
               <span
@@ -59,10 +59,12 @@ function Navigation() {
               </span>
             );
 
+          const isLast = index === arr.length - 1;
+
           return (
             <Link
               className={clsx(
-                "mr-3",
+                !isLast && "mr-3",
                 pathname.includes(el.route) && "underline"
               )}
               key={el.id ?? index}
