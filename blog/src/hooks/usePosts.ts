@@ -155,8 +155,14 @@ async function mapDeployed(posts: Array<Post>) {
   return await Promise.all(
     posts.map(async (post) => {
       try {
+        console.log();
+
         await axios.get(
-          `https://cors-anywhere.herokuapp.com/https://justindglee.com/post/${post.slug}`,
+          `${
+            process.env.NODE_ENV === "development"
+              ? "https://cors-anywhere.herokuapp.com/https://justindglee.com"
+              : ""
+          }/post/${post.slug}`,
           {
             headers: {
               mode: "no-cors",
