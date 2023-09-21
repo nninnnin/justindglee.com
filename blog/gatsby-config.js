@@ -5,6 +5,10 @@ require("dotenv").config({
 });
 
 module.exports = {
+  proxy: {
+    prefix: "/",
+    url: "https://justindglee.com",
+  },
   siteMetadata: {
     title: `저스틴 블로그`,
     siteUrl: `https://justindglee.com`,
