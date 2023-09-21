@@ -11,11 +11,10 @@ const PostList = ({ posts }: Props) => {
   return (
     <ul>
       {posts.map((post: Post) => {
-        let to = `/post/${post.slug}`;
-
-        if (!post.publishedAt) {
-          to = `/post/${post.slug}/edit`;
-        }
+        const to =
+          post.publicationState === "published"
+            ? `/post/${post.slug}`
+            : `/post/${post.slug}/edit`;
 
         return (
           <Link key={`key-${post.id}`} to={to}>
@@ -24,6 +23,7 @@ const PostList = ({ posts }: Props) => {
               postId={post.id}
               description={post.title}
               tags={post.tags}
+              publicationState={post.publicationState}
             />
           </Link>
         );

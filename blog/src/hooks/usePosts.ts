@@ -1,7 +1,12 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { pipe, map, toArray } from "@fxts/core";
+import { pipe, map, toArray, toAsync } from "@fxts/core";
 import qs from "qs";
-import { Post, TagInterface } from "@src/types";
+import {
+  Post,
+  PublicationStates,
+  TagInterface,
+} from "@src/types";
 import strapiClient from "./strapiClient";
 
 interface Props {
@@ -77,7 +82,7 @@ const getPosts = async ({
     };
   } = await strapiClient(`/api/posts?${query}`);
 
-  const posts = pipe(
+  const posts = await pipe(
     data,
     map(({ id, attributes }) => {
       const tags = [
@@ -103,8 +108,11 @@ const getPosts = async ({
 
       return post;
     }),
-    toArray
+    toArray,
+    mapDeployed
   );
+
+  console.log("중간체크", posts);
 
   return {
     posts,
@@ -142,3 +150,39 @@ const usePosts = ({
 };
 
 export default usePosts;
+
+async function mapDeployed(posts: Array<Post>) {
+  return await Promise.all(
+    posts.map(async (post) => {
+      try {
+        await axios.get(
+          `https://cors-anywhere.herokuapp.com/https://justindglee.com/post/${post.slug}`,
+          {
+            headers: {
+              mode: "no-cors",
+              "access-control-allow-origin": "*",
+            },
+          }
+        );
+
+        // TODO: 업데이트를 했는데 반영이 되지 않았다? : updated
+        // 마지막 빌드 시간 가져오기 (https://justindglee.com)
+        // 해당 포스트의 updatedAt 과 비교
+
+        let publicationState: PublicationStates;
+
+        publicationState = "published";
+
+        return { ...post, publicationState };
+      } catch (error) {
+        let publicationState: PublicationStates =
+          post.publishedAt ? "publishing" : "draft";
+
+        return {
+          ...post,
+          publicationState,
+        };
+      }
+    })
+  );
+}

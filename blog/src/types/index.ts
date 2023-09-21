@@ -45,6 +45,7 @@ export interface Post {
   publishedAt: string;
   slug: string;
   tags: null | Array<TagInterface>;
+  publicationState?: PublicationStates;
 }
 
 export interface Reference {
@@ -55,3 +56,8 @@ export interface Reference {
   caption: string;
   createdAt: string;
 }
+
+export type PublicationStates =
+  | "draft"
+  | "publishing"
+  | "published";

@@ -1,5 +1,18 @@
+const fs = require("fs/promises");
 const path = require("path");
 const { go, map } = require("fxjs");
+
+exports.onPostBuild = async () => {
+  fs.appendFile(
+    "public/buildlog.txt",
+    `\n${new Date()}`,
+    function () {
+      if (err) throw err;
+
+      console.log("Build log appended!");
+    }
+  );
+};
 
 exports.createPages = async ({ graphql, actions }) => {
   const IndexPageTemplate = path.resolve(

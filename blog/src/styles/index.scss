@@ -77,6 +77,10 @@ p {
   color: var(--theme-color);
 }
 
+.text-shadow-none {
+  text-shadow: none;
+}
+
 b,
 strong {
   font-weight: 600;

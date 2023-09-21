@@ -3,21 +3,31 @@ import { v4 as uuid } from "uuid";
 import React, { useRef } from "react";
 import styled from "styled-components";
 
-import { TagInterface } from "@src/types";
+import {
+  PublicationStates,
+  TagInterface,
+} from "@src/types";
 import { useContextMenu } from "@src/states/contextMenu";
 import { Description } from "./styles";
 import Tag from "@components/ContentsList/Tag";
 import ContextMenu from "@components/ContextMenu";
 import TagEditor from "@components/TagEditor";
+import PublicationState from "./PublicationState";
 
 interface Props {
   index: number;
   postId?: number;
   description: string;
   tags?: null | Array<TagInterface>;
+  publicationState?: PublicationStates;
 }
 
-const ListItem = ({ postId, description, tags }: Props) => {
+const ListItem = ({
+  postId,
+  description,
+  tags,
+  publicationState,
+}: Props) => {
   const { openContextMenu } = useContextMenu();
   const contextId = useRef(uuid());
 
@@ -62,19 +72,32 @@ const ListItem = ({ postId, description, tags }: Props) => {
     <li
       className={clsx(
         "glassmorph-listitem p-5 mb-3 rounded-lg",
-        "flex flex-col justify-between items-start",
+        "flex justify-between",
         "cursor-pointer relative"
       )}
       onContextMenu={handleContext}
     >
-      <Description>{description}</Description>
+      <div
+        className={clsx(
+          "w-[80%]",
+          "flex flex-col justify-between items-start"
+        )}
+      >
+        <Description>{description}</Description>
 
-      {tags && (
-        <TagList>
-          {tags.map((tag) => {
-            return <Tag key={tag.id} name={tag.name} />;
-          })}
-        </TagList>
+        {tags && (
+          <TagList>
+            {tags.map((tag) => {
+              return <Tag key={tag.id} name={tag.name} />;
+            })}
+          </TagList>
+        )}
+      </div>
+
+      {publicationState && (
+        <PublicationState
+          publicationState={publicationState}
+        />
       )}
     </li>
   );
