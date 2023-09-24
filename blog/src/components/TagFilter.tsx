@@ -204,7 +204,7 @@ const TagFilter = () => {
           className={clsx(
             "absolute left-0 top-0 z-10",
             "text-[0.9rem] text-white/80 hover:text-white transition duration-100",
-            "w-[30px] min-h-full bg-red-500",
+            "w-[30px] min-h-full",
             "flex items-center justify-end",
             "cursor-pointer select-none"
           )}
@@ -216,7 +216,7 @@ const TagFilter = () => {
       <ul
         className={clsx(
           "flex w-full min-h-full",
-          "overflow-x-scroll",
+          "overflow-hidden",
           "min-h-[50px] p-[16px] pl-0 pr-0"
         )}
         ref={listRef}
@@ -230,7 +230,7 @@ const TagFilter = () => {
           className={clsx(
             "absolute right-0 top-0 z-10",
             "text-[0.9rem] text-white/80 hover:text-white transition duration-100",
-            "w-[30px] min-h-full bg-amber-500 pr-3",
+            "w-[30px] min-h-full pr-3",
             "flex items-center justify-end",
             "cursor-pointer select-none"
           )}
