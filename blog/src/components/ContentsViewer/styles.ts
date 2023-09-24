@@ -24,8 +24,8 @@ export const H3 = styled.h3.withConfig({
 export const Image = styled.img.withConfig({
   shouldForwardProp: (prop) => !["node"].includes(prop),
 })`
-  width: 50%;
-  border: 1px solid gainsboro;
+  width: 100%;
+  border: 1px solid white;
   background-color: #fff;
 
   display: block;
