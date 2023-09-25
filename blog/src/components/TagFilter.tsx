@@ -1,9 +1,15 @@
 import clsx from "clsx";
 import { last } from "lodash";
-import { map, pipe, take, toArray } from "@fxts/core";
+import { pipe, toArray } from "@fxts/core";
 import React, { useEffect, useRef, useState } from "react";
+import useTags from "@hooks/useTags";
+import { TagInterface } from "@src/types";
 
-const TagFilter = () => {
+const TagFilter = ({
+  tags,
+}: {
+  tags: Array<TagInterface>;
+}) => {
   const firstButtonRef = useRef<HTMLElement | null>(null);
   const lastButtonRef = useRef<HTMLElement | null>(null);
   const [showPreviousButton, setShowPreviousButton] =
@@ -17,6 +23,8 @@ const TagFilter = () => {
   const [tagPage, setTagPage] = useState(0);
 
   const listRef = useRef<HTMLUListElement | null>(null);
+
+  // const { loading, tags } = useTags();
 
   useEffect(() => {
     if (
@@ -64,6 +72,7 @@ const TagFilter = () => {
     listRef.current,
     firstButtonRef.current,
     lastButtonRef.current,
+    tags,
   ]);
 
   useEffect(() => {
@@ -98,22 +107,13 @@ const TagFilter = () => {
     if (numberOfItems < listRef.current.children.length) {
       setShowNextButton(true);
     }
-  }, [listRef.current]);
+  }, [listRef.current, tags]);
 
-  const list = pipe(
-    (function* () {
-      let i = 0;
-
-      while (true) {
-        yield i;
-        i++;
-      }
-    })(),
-    take(20),
-    toArray,
-    (list) =>
-      map(
-        (i) => (
+  const tagFilters = pipe(
+    tags,
+    (tags) =>
+      tags.map(
+        (tag, i, tags) => (
           <li
             className={clsx(
               "glassmorph-listitem-small rounded-md",
@@ -128,14 +128,14 @@ const TagFilter = () => {
             )}
             ref={(ref) => {
               if (i === 0) firstButtonRef.current = ref;
-              if (i === list.length - 1)
+              if (i === tags.length - 1)
                 lastButtonRef.current = ref;
             }}
           >
-            태그들 ({i})
+            {tag.name}
           </li>
         ),
-        list
+        tags
       ),
     toArray
   );
@@ -195,7 +195,7 @@ const TagFilter = () => {
 
   return (
     <div
-      className={clsx("relative", "mb-5")}
+      className={clsx("relative", "mb-5", "mt-[-1em]")}
       onClick={handleButtonClick}
     >
       {showPreviousButton && (
@@ -221,7 +221,7 @@ const TagFilter = () => {
         )}
         ref={listRef}
       >
-        {list}
+        {tagFilters}
       </ul>
 
       {showNextButton && (
