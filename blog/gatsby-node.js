@@ -71,6 +71,27 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
+  const {
+    data: {
+      allStrapiTag: { edges: tags },
+    },
+  } = await graphql(`
+    query {
+      allStrapiTag {
+        edges {
+          node {
+            id
+            name
+            strapiId
+            posts {
+              strapiId
+            }
+          }
+        }
+      }
+    }
+  `);
+
   const releaseNode = (edge) => edge.node;
   const mapIndex = (node, index) => {
     return {
@@ -82,6 +103,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const allPosts = go(posts, map(releaseNode)).map(
     mapIndex
   );
+  const allTags = go(tags, map(releaseNode));
 
   // Create pages..
   // Index page
@@ -101,6 +123,7 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         header: "포스트",
         posts,
+        tags: allTags,
       },
     })
   );
