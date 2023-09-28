@@ -1,5 +1,5 @@
-import React from "react";
-import { atom } from "recoil";
+import React, { useEffect } from "react";
+import { atom, useSetRecoilState } from "recoil";
 
 import "@styles/index.scss";
 import { Post, Reference, TagInterface } from "@src/types";
@@ -25,6 +25,12 @@ interface Props {
 export default function PostListTemplate({
   pageContext: { header, posts, references, tags },
 }: Props) {
+  const setTagFilter = useSetRecoilState(tagFilterState);
+
+  useEffect(() => {
+    return () => setTagFilter("");
+  }, []);
+
   return (
     <Layout>
       <h1 className="header">{header}</h1>
