@@ -1,4 +1,5 @@
 import React from "react";
+import { atom } from "recoil";
 
 import "@styles/index.scss";
 import { Post, Reference, TagInterface } from "@src/types";
@@ -6,6 +7,11 @@ import Layout from "@components/Layout";
 import PostList from "@components/ContentsList/PostList";
 import ReferenceList from "@components/ContentsList/ReferenceList";
 import TagFilter from "@components/TagFilter";
+
+export const tagFilterState = atom({
+  key: "tagFilterState",
+  default: "",
+});
 
 interface Props {
   pageContext: {
