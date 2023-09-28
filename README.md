@@ -12,6 +12,7 @@ https://github.com/nninnnin/justindglee.com/assets/34882520/52c7ef25-a15c-4a61-8
 - [x] [컨텍스트 메뉴를 통한 간편한 태그 생성, 등록, 제거 및 삭제](https://github.com/nninnnin/justindglee.com/pull/14)
   - [x] [컨텍스트 메뉴가 뷰포트를 벗어날 때 위치 재정의](https://github.com/nninnnin/justindglee.com/pull/15)
   - [ ] 태그 검색
+- [x] [태그를 이용한 포스트 필터링](https://github.com/nninnnin/justindglee.com/pull/16)
 - [ ] 드래그-드랍을 통한 이미지 업로드
 - [x] [포스트의 공개 및 정적 배포 상태 보여주기](https://justin-cms-images.s3.ap-northeast-2.amazonaws.com/publication-state.png)
 - [ ] 이미지 스타일(크기, 경계선, 둥글기..) 프리셋 생성 및 적용
