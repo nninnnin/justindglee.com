@@ -1,15 +1,31 @@
 import clsx from "clsx";
 import { last } from "lodash";
 import { pipe, toArray } from "@fxts/core";
-import React, { useEffect, useRef, useState } from "react";
-import useTags from "@hooks/useTags";
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { TagInterface } from "@src/types";
+import { useSetRecoilState } from "recoil";
+import { tagFilterState } from "./PostListTemplate";
 
 const TagFilter = ({
   tags,
 }: {
   tags: Array<TagInterface>;
 }) => {
+  tags = useMemo(
+    () => [
+      { id: "", strapiId: 0, name: "", posts: [] },
+      ...tags,
+    ],
+    [tags]
+  );
+
+  const setTagFilter = useSetRecoilState(tagFilterState);
+
   const firstButtonRef = useRef<HTMLElement | null>(null);
   const lastButtonRef = useRef<HTMLElement | null>(null);
   const [showPreviousButton, setShowPreviousButton] =
@@ -23,8 +39,6 @@ const TagFilter = ({
   const [tagPage, setTagPage] = useState(0);
 
   const listRef = useRef<HTMLUListElement | null>(null);
-
-  // const { loading, tags } = useTags();
 
   useEffect(() => {
     if (
@@ -107,7 +121,7 @@ const TagFilter = ({
     if (numberOfItems < listRef.current.children.length) {
       setShowNextButton(true);
     }
-  }, [listRef.current, tags]);
+  }, [listRef.current]);
 
   const tagFilters = pipe(
     tags,
@@ -131,8 +145,9 @@ const TagFilter = ({
               if (i === tags.length - 1)
                 lastButtonRef.current = ref;
             }}
+            onClick={() => setTagFilter(tag.name)}
           >
-            {tag.name}
+            {tag.name || "전체보기"}
           </li>
         ),
         tags
