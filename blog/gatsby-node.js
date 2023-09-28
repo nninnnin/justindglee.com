@@ -1,6 +1,6 @@
 const fs = require("fs/promises");
 const path = require("path");
-const { go, map } = require("fxjs");
+const { go, map, filter } = require("fxjs");
 
 exports.onPostBuild = async () => {
   fs.appendFile(
@@ -103,7 +103,13 @@ exports.createPages = async ({ graphql, actions }) => {
   const allPosts = go(posts, map(releaseNode)).map(
     mapIndex
   );
-  const allTags = go(tags, map(releaseNode));
+  const allTags = go(
+    tags,
+    map(releaseNode),
+    filter((tag) => !!tag.posts?.length)
+  );
+
+  console.log("all tags!", allTags);
 
   // Create pages..
   // Index page
