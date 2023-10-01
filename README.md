@@ -18,6 +18,7 @@ https://github.com/nninnnin/justindglee.com/assets/34882520/52c7ef25-a15c-4a61-8
 - [ ] 이미지 스타일(크기, 경계선, 둥글기..) 프리셋 생성 및 적용
 - [ ] 실시간 자동저장 기능 (Socket, Redis)
 - [ ] 검색 기능
+- [ ] 테마 변경 기능
 
 ---
 
