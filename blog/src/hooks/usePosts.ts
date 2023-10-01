@@ -89,7 +89,7 @@ const getPosts = async ({
         ...attributes.tags.data.map(
           ({ id, attributes }) => {
             const tag: TagInterface = {
-              id,
+              strapiId: id,
               ...attributes,
             };
 
@@ -156,7 +156,7 @@ async function mapDeployed(posts: Array<Post>) {
         await axios.get(
           `${
             process.env.NODE_ENV === "development"
-              ? "https://cors-anywhere.herokuapp.com/https://justindglee.com"
+              ? "/api/proxy"
               : ""
           }/post/${post.slug}`,
           {

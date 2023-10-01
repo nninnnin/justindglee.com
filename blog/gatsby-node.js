@@ -109,8 +109,6 @@ exports.createPages = async ({ graphql, actions }) => {
     filter((tag) => !!tag.posts?.length)
   );
 
-  console.log("all tags!", allTags);
-
   // Create pages..
   // Index page
   actions.createPage({
