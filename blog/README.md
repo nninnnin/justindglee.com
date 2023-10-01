@@ -15,6 +15,8 @@
 
 - `GATSBY_STRAPI_API_URL`: 스트라피가 배포된 서버 주소
 - `GATSBY_STRAPI_TOKEN`: 스트라피 어드민에서 얻을 수 있는 API TOKEN
+- `AWS_ACCESS_KEY_ID`: S3 access key id
+- `AWS_SECRET_ACCESS_KEY`: S3 secret access key
 
 ## 할일들
 

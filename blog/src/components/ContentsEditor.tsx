@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, {
   ChangeEvent,
   KeyboardEvent,
@@ -51,6 +52,20 @@ const ContentsEditor = ({
   const { isKeyPressed, registerKey, releaseKey } =
     useMemoKeys();
 
+  const handleFileDrop = async (e: React.DragEvent) => {
+    console.log(e);
+
+    console.log(e.dataTransfer.files[0]);
+    const imageFile = e.dataTransfer.files[0];
+    const url = URL.createObjectURL(imageFile);
+
+    console.log(url);
+
+    const result = await axios.post("/api/upload");
+
+    console.log("upload result..", result);
+  };
+
   return (
     <div className="contents-editor flex flex-col flex-1 pt-5 pr-2">
       <div className="flex">
@@ -83,6 +98,7 @@ const ContentsEditor = ({
         className={`w-full flex-1 bg-white text-blue-500 mt-5 p-3`}
         value={contents}
         onChange={onChangeContents}
+        onDrop={handleFileDrop}
         onKeyUp={(
           e: KeyboardEvent<HTMLTextAreaElement>
         ) => {
