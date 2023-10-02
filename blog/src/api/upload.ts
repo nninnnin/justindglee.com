@@ -22,7 +22,7 @@ export default async function uploadHandler(
 ) {
   try {
     if (req.method === "POST") {
-      console.log(s3Client);
+      console.log(req.body);
 
       const command = new PutObjectCommand({
         Bucket: "justin-cms-images",

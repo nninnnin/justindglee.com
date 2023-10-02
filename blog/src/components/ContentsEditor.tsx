@@ -3,6 +3,7 @@ import React, {
   ChangeEvent,
   KeyboardEvent,
   useEffect,
+  useRef,
 } from "react";
 import { pipe, map, toArray, filter } from "@fxts/core";
 import { useLocation } from "@reach/router";
@@ -34,6 +35,8 @@ const ContentsEditor = ({
   onChangeTitle,
   buttons,
 }: Props) => {
+  const imageFilesRef = useRef(new Map());
+
   const { selectedPostType, setSelectedPostType } =
     usePostType();
 
@@ -52,18 +55,63 @@ const ContentsEditor = ({
   const { isKeyPressed, registerKey, releaseKey } =
     useMemoKeys();
 
-  const handleFileDrop = async (e: React.DragEvent) => {
-    console.log(e);
+  // start from here
+  // function getCaretPositionFromPoint(element, x, y) {
+  //   const range = document.caretRangeFromPoint(x, y);
+  //   const preCaretRange = range.cloneRange();
+  //   preCaretRange.selectNodeContents(element);
+  //   preCaretRange.setEnd(range.endContainer, range.endOffset);
+  //   const caretPosition = preCaretRange.toString().length;
+  //   return caretPosition;
+  // }
 
-    console.log(e.dataTransfer.files[0]);
+  const handleFileDrop = async (
+    e: React.DragEvent<HTMLTextAreaElement>
+  ) => {
+    const getCaretPosition =
+      document.caretPositionFromPoint ||
+      document.caretRangeFromPoint;
+
+    console.log(e.clientX, e.clientY);
+
+    const caretPosition = getCaretPosition.call(
+      document,
+      e.clientX,
+      e.clientY
+    );
+
+    console.log("과연..!", caretPosition);
+
+    const newNode = document.createElement("p");
+    newNode.appendChild(
+      document.createTextNode("New Node Inserted Here")
+    );
+
+    caretPosition.insertNode(newNode);
+
+    const substituteValue = (newValue: string) => {
+      const tabAddedValue =
+        e.currentTarget.value.substring(0, start) +
+        newValue +
+        e.currentTarget.value.substring(end);
+
+      e.currentTarget.value = tabAddedValue;
+    };
+
+    console.log(e.currentTarget);
+
     const imageFile = e.dataTransfer.files[0];
     const url = URL.createObjectURL(imageFile);
 
-    console.log(url);
+    imageFilesRef.current.set(url, imageFile);
 
-    const result = await axios.post("/api/upload");
+    console.log("저장한고아", imageFilesRef.current);
 
-    console.log("upload result..", result);
+    // const result = await axios.post("/api/upload", {
+    //   imageFile,
+    // });
+
+    // console.log("upload result..", result);
   };
 
   return (
