@@ -11,7 +11,10 @@ import { useLocation } from "@reach/router";
 import { trimStart } from "@src/utils";
 import useMemoKeys from "@src/hooks/useMemoKeys";
 import usePostType from "@src/hooks/usePostType";
-import { handlePressEnter } from "@src/utils/editor";
+import {
+  handlePressEnter,
+  resetSelectionToPoint,
+} from "@src/utils/editor";
 
 const POST_TYPES: Record<string, string> = {
   tech: "기술",
@@ -68,50 +71,23 @@ const ContentsEditor = ({
   const handleFileDrop = async (
     e: React.DragEvent<HTMLTextAreaElement>
   ) => {
-    const getCaretPosition =
-      document.caretPositionFromPoint ||
-      document.caretRangeFromPoint;
+    e.preventDefault();
 
-    console.log(e.clientX, e.clientY);
+    // 1. 이미지 렌더링을 위해 파일에서 object URL을 생성
+    const imageFile = e.dataTransfer.files[0];
+    const url = URL.createObjectURL(imageFile);
 
-    const caretPosition = getCaretPosition.call(
-      document,
+    // 1.1 추후 서버에 저장하기 위해 파일을 가져올 수 있도록 기록해둔다
+    imageFilesRef.current.set(url, imageFile);
+
+    // 2. 드랍이 끝난 포인트로 커서를 옮긴다
+    const caretPosition = resetSelectionToPoint(
+      e.currentTarget,
       e.clientX,
       e.clientY
     );
 
-    console.log("과연..!", caretPosition);
-
-    const newNode = document.createElement("p");
-    newNode.appendChild(
-      document.createTextNode("New Node Inserted Here")
-    );
-
-    caretPosition.insertNode(newNode);
-
-    const substituteValue = (newValue: string) => {
-      const tabAddedValue =
-        e.currentTarget.value.substring(0, start) +
-        newValue +
-        e.currentTarget.value.substring(end);
-
-      e.currentTarget.value = tabAddedValue;
-    };
-
-    console.log(e.currentTarget);
-
-    const imageFile = e.dataTransfer.files[0];
-    const url = URL.createObjectURL(imageFile);
-
-    imageFilesRef.current.set(url, imageFile);
-
-    console.log("저장한고아", imageFilesRef.current);
-
-    // const result = await axios.post("/api/upload", {
-    //   imageFile,
-    // });
-
-    // console.log("upload result..", result);
+    // 3. 바뀐 커서를 기준으로 이미지 태그를 만들어 삽입한다
   };
 
   return (
@@ -147,6 +123,7 @@ const ContentsEditor = ({
         value={contents}
         onChange={onChangeContents}
         onDrop={handleFileDrop}
+        onSelect={(e) => console.log("이게 되니", e)}
         onKeyUp={(
           e: KeyboardEvent<HTMLTextAreaElement>
         ) => {
