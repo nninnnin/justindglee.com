@@ -57,3 +57,31 @@ export const handlePressEnter = (
     e.currentTarget.selectionEnd =
       start + startingSpaces + 1;
 };
+
+export const resetSelectionToPoint = (
+  textarea: HTMLTextAreaElement,
+  x: number,
+  y: number
+) => {
+  // Calculate the mouse position relative to the textarea
+  const rect = textarea.getBoundingClientRect();
+  const mouseX = x - rect.left;
+  const mouseY = y - rect.top;
+
+  // Calculate the number of characters per row in the textarea
+  const charsPerRow = textarea.cols;
+  // Calculate the row and column based on the mouse position
+  const row = Math.floor(
+    mouseY / (textarea.scrollHeight / textarea.rows)
+  );
+  const col = Math.floor(
+    mouseX / (textarea.scrollWidth / charsPerRow)
+  );
+
+  // Calculate the selection position based on row and column
+  const selectionPosition = row * charsPerRow + col;
+
+  // Set the selection start and end to the calculated position
+  textarea.selectionStart = selectionPosition;
+  textarea.selectionEnd = selectionPosition;
+};
