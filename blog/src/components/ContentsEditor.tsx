@@ -1,6 +1,7 @@
 import React, {
   ChangeEvent,
   KeyboardEvent,
+  useContext,
   useEffect,
   useRef,
 } from "react";
@@ -15,6 +16,8 @@ import {
   moveSelectionCursor,
   substituteValue,
 } from "@src/utils/editor";
+import { editingImageState } from "@src/pages/post/[slug]/edit";
+import { useRecoilState } from "recoil";
 
 const POST_TYPES: Record<string, string> = {
   tech: "기술",
@@ -42,7 +45,10 @@ const ContentsEditor = ({
   onChangeTitle,
   buttons,
 }: Props) => {
-  const imageFilesRef = useRef(new Map());
+  const [editingImages, setEditingImages] = useRecoilState(
+    editingImageState
+  );
+
   const { pathname } = useLocation();
   const { selectedPostType, setSelectedPostType } =
     usePostType();
@@ -70,7 +76,9 @@ const ContentsEditor = ({
     const url = URL.createObjectURL(imageFile);
 
     // 1.1 추후 서버에 저장하기 위해 파일을 가져올 수 있도록 기록해둔다
-    imageFilesRef.current.set(url, imageFile);
+    setEditingImages((prev) => {
+      return new Map(prev.set(url, imageFile));
+    });
 
     const image = new Image();
     image.src = url;
@@ -209,7 +217,9 @@ const ContentsEditor = ({
     }
   };
 
-  const handlePostTypeChange = (e) => {
+  const handlePostTypeChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setSelectedPostType(e.target.value);
   };
 

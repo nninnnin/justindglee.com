@@ -2,11 +2,13 @@ import axios from "axios";
 import React from "react";
 
 import { Post } from "@src/types";
-import { useRecoilValue } from "recoil";
+import { atom, useRecoilValue } from "recoil";
 import PostEditor, {
   editingTitleState,
   editingContentsState,
 } from "@components/PostEditor";
+import replaceImageUrls from "@src/utils/replaceImageUrls";
+import { curry } from "@fxts/core";
 
 interface Props {
   serverData: {
@@ -15,50 +17,65 @@ interface Props {
   };
 }
 
+export const editingImageState = atom<Map<string, File>>({
+  key: "",
+  default: new Map<string, File>(),
+});
+
 const PostPage = ({
   serverData: { post, publicationState },
 }: Props) => {
   const title = useRecoilValue(editingTitleState);
   const contents = useRecoilValue(editingContentsState);
 
-  const savePost = async ({
-    publish,
-  }: {
-    publish: boolean;
-  }) => {
-    try {
-      const token = localStorage.getItem(
-        "justinblog-token"
-      );
+  const editingImages = useRecoilValue(editingImageState);
 
-      await axios.put(
-        `${process.env.GATSBY_STRAPI_API_URL}/api/posts/${post.id}`,
-        {
-          data: {
-            title: title,
-            contents: contents,
-            publishedAt: publish ? new Date() : null,
-          },
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+  const savePost = curry(
+    async (
+      editingImages: Map<string, File>,
+      title: string,
+      contents: string,
+      publish: boolean
+    ) => {
+      try {
+        const token = localStorage.getItem(
+          "justinblog-token"
+        );
 
-      alert("수정 성공!");
-    } catch (error) {
-      console.log("변경중 에러 발생");
-      console.log(error);
+        const replacedContents = await replaceImageUrls(
+          editingImages,
+          contents
+        );
+
+        await axios.put(
+          `${process.env.GATSBY_STRAPI_API_URL}/api/posts/${post.id}`,
+          {
+            data: {
+              title,
+              contents: replacedContents,
+              publishedAt: publish ? new Date() : null,
+            },
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        alert("수정 성공!");
+      } catch (error) {
+        console.log("변경중 에러 발생");
+        console.log(error);
+      }
     }
-  };
+  )(editingImages);
 
   const publishButton = (
     <div className="flex">
       <button
         onClick={async () => {
-          await savePost({ publish: false });
+          await savePost(title, contents, false);
         }}
         className="flex-1 p-5 bg-sky-400"
       >
@@ -67,7 +84,7 @@ const PostPage = ({
 
       <button
         onClick={async () => {
-          await savePost({ publish: true });
+          await savePost(title, contents, true);
 
           location.href = "/posts";
         }}
@@ -82,7 +99,7 @@ const PostPage = ({
     <>
       <button
         onClick={async () => {
-          await savePost({ publish: false });
+          await savePost(title, contents, false);
 
           location.href = "/posts/edit";
         }}
@@ -92,7 +109,7 @@ const PostPage = ({
       </button>
       <button
         onClick={async () => {
-          await savePost({ publish: true });
+          await savePost(title, contents, true);
 
           location.href = "/posts/edit";
         }}
