@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { HeadingComponent } from "react-markdown/lib/ast-to-react";
 import rehypeRaw from "rehype-raw";
+import clsx from "clsx";
+import { useMediaQuery } from "usehooks-ts";
+import { useRecoilState } from "recoil";
+import { createPortal } from "react-dom";
 
 import {
   H1,
@@ -10,11 +14,11 @@ import {
   H3,
   Image,
   Anchor,
-  Frame,
-  FrameWrapper,
   HR,
   UL,
 } from "./styles";
+import { previewModeState } from "@components/PostEditor";
+import Iframe from "./Iframe";
 
 interface Props {
   isEditable: boolean;
@@ -27,12 +31,41 @@ const ContentsViewer = ({
   title,
   contents,
 }: Props) => {
+  const [previewMode, setPreviewMode] = useRecoilState(
+    previewModeState
+  );
+
+  const maxDesktop = useMediaQuery("(max-width: 1024px");
+
+  useEffect(() => {
+    if (!maxDesktop) {
+      setPreviewMode(false);
+    }
+  }, [maxDesktop]);
+
   return (
     <div
-      className={`flex-1 h-full ${isEditable && "p-5"} ${
-        isEditable && "contents-viewer"
-      } overflow-auto`}
+      className={clsx(
+        isEditable && "contents-viewer p-5",
+        `flex-1 h-full overflow-auto`,
+        previewMode &&
+          maxDesktop &&
+          "!block bg-blue-500 w-full !h-[100svh] overflow-scroll z-50 fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] pb-[3em]"
+      )}
     >
+      {previewMode &&
+        createPortal(
+          <div
+            className="fixed w-full bottom-0 left-0 z-50 bg-white text-black px-5 py-3 select-none"
+            onClick={() => {
+              setPreviewMode(false);
+            }}
+          >
+            끄기
+          </div>,
+          document.body
+        )}
+
       <h1 className="header">{title}</h1>
 
       <div className="markdown-contents">
@@ -82,14 +115,6 @@ const ContentsViewer = ({
           {contents}
         </ReactMarkdown>
       </div>
-
-      {/* <footer className="footer mt-4 py-20 mx-auto w-full flex border-t-2 border-dashed select-none pointer-events-none">
-        <input
-          className="text-blue-500 mx-auto w-[12.5em]"
-          value="** 댓글 기능이 준비중입니다 **"
-          onChange={() => {}}
-        />
-      </footer> */}
     </div>
   );
 };
@@ -120,31 +145,5 @@ const Blockquote = ({
     {children}
   </blockquote>
 );
-
-const Iframe = ({
-  ratio,
-  width,
-  height,
-  ...props
-}: {
-  ratio?: string;
-  width: number;
-  height: number;
-}) => {
-  const frameRatio = ratio
-    ? Number(ratio)
-    : (Number(height) / Number(width)) * 100;
-
-  return (
-    <>
-      <FrameWrapper
-        className="glassmorph !bg-white"
-        ratio={frameRatio}
-      >
-        <Frame {...props} ratio={frameRatio} />
-      </FrameWrapper>
-    </>
-  );
-};
 
 export default ContentsViewer;

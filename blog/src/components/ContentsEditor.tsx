@@ -1,12 +1,11 @@
 import React, {
   ChangeEvent,
   KeyboardEvent,
-  useContext,
   useEffect,
-  useRef,
 } from "react";
-import { pipe, map, toArray, filter } from "@fxts/core";
 import { useLocation } from "@reach/router";
+import { useSetRecoilState } from "recoil";
+import { pipe, map, toArray, filter } from "@fxts/core";
 
 import { trimStart } from "@src/utils";
 import useMemoKeys from "@src/hooks/useMemoKeys";
@@ -14,10 +13,10 @@ import usePostType from "@src/hooks/usePostType";
 import {
   handlePressEnter,
   moveSelectionCursor,
-  substituteValue,
+  substituteTextareaContents,
 } from "@src/utils/editor";
 import { editingImageState } from "@src/pages/post/[slug]/edit";
-import { useRecoilState } from "recoil";
+import { previewModeState } from "./PostEditor";
 
 const POST_TYPES: Record<string, string> = {
   tech: "기술",
@@ -45,8 +44,11 @@ const ContentsEditor = ({
   onChangeTitle,
   buttons,
 }: Props) => {
-  const [editingImages, setEditingImages] = useRecoilState(
+  const setEditingImages = useSetRecoilState(
     editingImageState
+  );
+  const setPreviewMode = useSetRecoilState(
+    previewModeState
   );
 
   const { pathname } = useLocation();
@@ -86,7 +88,10 @@ const ContentsEditor = ({
     const contentsEnd =
       e.currentTarget.selectionEnd + image.outerHTML.length;
 
-    substituteValue(e.currentTarget, image.outerHTML);
+    substituteTextareaContents(
+      e.currentTarget,
+      image.outerHTML
+    );
     moveSelectionCursor(
       e.currentTarget,
       contentsEnd,
@@ -155,7 +160,10 @@ const ContentsEditor = ({
             start - TAB_SIZE
           );
         } else {
-          substituteValue(e.currentTarget, TAB_SPACE);
+          substituteTextareaContents(
+            e.currentTarget,
+            TAB_SPACE
+          );
           moveSelectionCursor(
             e.currentTarget,
             start + TAB_SIZE,
@@ -177,7 +185,10 @@ const ContentsEditor = ({
           (lines) => lines.join("\n")
         );
 
-        substituteValue(e.currentTarget, trimmedContents);
+        substituteTextareaContents(
+          e.currentTarget,
+          trimmedContents
+        );
 
         const trimmedSpaces = selectedContents
           .split("\n")
@@ -205,7 +216,10 @@ const ContentsEditor = ({
           (lines) => lines.join("\n")
         );
 
-        substituteValue(e.currentTarget, selectedContents);
+        substituteTextareaContents(
+          e.currentTarget,
+          selectedContents
+        );
         const addedSpaces =
           selectedContents.split("\n").length * TAB_SIZE;
         moveSelectionCursor(
@@ -260,7 +274,18 @@ const ContentsEditor = ({
         onKeyDown={handleKeyDown}
       />
 
-      {buttons}
+      <div className="w-full flex font-bold">
+        {buttons}
+        <button
+          className="button bg-sky-600 max-tablet"
+          onClick={() => {
+            // ..
+            setPreviewMode(true);
+          }}
+        >
+          미리보기만
+        </button>
+      </div>
     </div>
   );
 };

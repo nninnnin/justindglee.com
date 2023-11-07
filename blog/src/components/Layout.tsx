@@ -8,21 +8,18 @@ import contextMenuState, {
 } from "@src/states/contextMenu";
 import Navigation from "@components/Navigation";
 import ContextMenu from "@components/ContextMenu";
+import useEditingState from "@hooks/useEditingState";
 
 interface Props {
   children: React.ReactNode;
   hasPadding?: boolean;
-  isEditing?: boolean;
 }
 
-function Layout({
-  children,
-  hasPadding = true,
-  isEditing = false,
-}: Props) {
+function Layout({ children, hasPadding = true }: Props) {
   const contextMenu = useRecoilValue(contextMenuState);
-
   const { closeContextMenu } = useContextMenu();
+
+  const isEditing = useEditingState();
 
   return (
     <div className="layout-container">

@@ -17,16 +17,18 @@ const s3Client = new S3Client({
 });
 
 export default async function uploadHandler(
-  req: GatsbyFunctionRequest,
+  req: GatsbyFunctionRequest<{ file: File }>,
   res: GatsbyFunctionResponse
 ) {
   try {
     if (req.method === "POST") {
       console.log(req.body);
 
+      const { file } = req.body;
+
       const command = new PutObjectCommand({
         Bucket: "justin-cms-images",
-        Key: "abc.txt",
+        Key: file.name,
         Body: "ABC!",
       });
 
