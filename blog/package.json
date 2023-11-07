@@ -23,6 +23,7 @@
     "@gatsbyjs/reach-router": "^2.0.1",
     "@mdx-js/react": "^2.3.0",
     "@types/fxjs": "^0.15.0",
+    "@types/gatsbyjs__reach-router": "^2.0.2",
     "@types/qs": "^6.9.8",
     "@types/react-router": "^5.1.20",
     "@types/react-syntax-highlighter": "^15.5.7",
@@ -64,6 +65,7 @@
     "sass": "^1.49.9",
     "styled-components": "^6.0.4",
     "tailwindcss": "^3.0.23",
+    "usehooks-ts": "^2.9.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

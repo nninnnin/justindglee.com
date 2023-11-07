@@ -54,6 +54,10 @@ const useContextMenu = () => {
         set(contextMenuState, {
           ...(newValue as ContextMenuInterface),
           isOpen: true,
+          coordinates: newValue.coordinates ?? {
+            x: 0,
+            y: 0,
+          },
         });
       }
   );

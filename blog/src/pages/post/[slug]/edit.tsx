@@ -72,12 +72,12 @@ const PostPage = ({
   )(editingImages);
 
   const publishButton = (
-    <div className="flex">
+    <>
       <button
         onClick={async () => {
           await savePost(title, contents, false);
         }}
-        className="flex-1 p-5 bg-sky-400"
+        className="button bg-sky-400"
       >
         저장하기
       </button>
@@ -88,11 +88,11 @@ const PostPage = ({
 
           location.href = "/posts";
         }}
-        className="flex-1 p-5 bg-pink-400"
+        className="button bg-pink-400"
       >
         발행하기
       </button>
-    </div>
+    </>
   );
 
   const editButton = (
@@ -103,7 +103,7 @@ const PostPage = ({
 
           location.href = "/posts/edit";
         }}
-        className="p-5 bg-green-300"
+        className="button bg-yellow-400"
       >
         숨기기
       </button>
@@ -113,7 +113,7 @@ const PostPage = ({
 
           location.href = "/posts/edit";
         }}
-        className="p-5 bg-green-300"
+        className="button bg-green-400"
       >
         수정하기
       </button>

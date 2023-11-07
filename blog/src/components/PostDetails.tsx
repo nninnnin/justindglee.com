@@ -18,7 +18,7 @@ const PostDetail = ({ pageContext }: Props) => {
   const { post } = pageContext;
 
   return (
-    <Layout isEditing={false}>
+    <Layout>
       <Container>
         <ContentsViewer
           title={post.title}

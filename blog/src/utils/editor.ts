@@ -58,20 +58,34 @@ export const handlePressEnter = (
       start + startingSpaces + 1;
 };
 
-export const substituteValue = (
+export const substituteTextareaContents = (
   textarea: HTMLTextAreaElement,
   newValue: string
 ) => {
   const { selectionStart, selectionEnd } = textarea;
 
-  const tabAddedValue =
-    textarea.value.substring(0, selectionStart) +
-    newValue +
-    textarea.value.substring(selectionEnd);
+  const tabAddedValue = substituteContents(
+    textarea.value,
+    selectionStart,
+    selectionEnd,
+    newValue
+  );
 
   textarea.value = tabAddedValue;
 
   return textarea.value;
+};
+
+export const substituteContents = (
+  target: string,
+  start: number,
+  end: number,
+  newValue: string
+): string => {
+  const prev = target.substring(0, start);
+  const next = target.substring(end);
+
+  return prev + newValue + next;
 };
 
 export const moveSelectionCursor = (

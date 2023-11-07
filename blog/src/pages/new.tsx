@@ -80,21 +80,21 @@ const EditorPage = () => {
   };
 
   const buttons = (
-    <div className="flex">
+    <>
       <button
         onClick={handleSaveButtonClick}
-        className="flex-1 p-5 bg-orange-300"
+        className="button bg-orange-300"
       >
         저장하기
       </button>
 
       <button
         onClick={handleRegisterButtonClick}
-        className="flex-1 p-5 bg-green-300"
+        className="button bg-green-300"
       >
         발행하기
       </button>
-    </div>
+    </>
   );
 
   return (

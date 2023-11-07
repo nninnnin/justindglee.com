@@ -10,9 +10,15 @@ export const editingTitleState = atom({
   key: "editingTitleState",
   default: "",
 });
+
 export const editingContentsState = atom({
   key: "editingContentsState",
   default: "",
+});
+
+export const previewModeState = atom({
+  key: "previewModeState",
+  default: false,
 });
 
 interface Props {
@@ -35,7 +41,7 @@ const PostEditor = ({ title, contents, button }: Props) => {
 
   return (
     <Authorizer>
-      <Layout isEditing={true}>
+      <Layout>
         <Container>
           <ContentsEditor
             title={editingTitle}
