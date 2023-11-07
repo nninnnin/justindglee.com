@@ -125,7 +125,7 @@ const Iframe = ({
             setShowMessage(false);
           }}
         >
-          {showMessage && (
+          {showMessage && !isEditing && (
             <>
               해당 iframe에는 인터랙션 방어가 적용되어
               있습니다.
