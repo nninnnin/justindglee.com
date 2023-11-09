@@ -12,6 +12,8 @@
   --theme-color: #3c1dff;
   font-family: "Pretendard";
   scrollbar-width: none;
+
+  -webkit-tap-highlight-color: transparent;
 }
 
 *::-webkit-scrollbar {
