@@ -16,10 +16,10 @@ Button.Container = ({
 
 Button.Item = ({
   children,
-  onClick,
+  onClick = () => {},
 }: {
   children: ReactNode;
-  onClick:
+  onClick?:
     | ((e: MouseEvent) => void)
     | ((e: MouseEvent) => Promise<void>);
 }) => {
