@@ -210,7 +210,7 @@ const TagFilter = ({
 
   return (
     <div
-      className={clsx("relative", "mb-5", "mt-[-1em]")}
+      className={clsx("relative", "mt-[-1em]")}
       onClick={handleButtonClick}
     >
       {showPreviousButton && (
