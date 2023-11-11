@@ -20,6 +20,10 @@
   display: none;
 }
 
+*::-webkit-resizer {
+  display: none;
+}
+
 .swiper-slide {
   -webkit-backface-visibility: hidden;
   -webkit-transform: translate3d(0, 0, 0);
@@ -219,26 +223,12 @@ img {
   }
 }
 
-@mixin hide-preview {
-  .contents-viewer {
-    display: none;
-  }
-
-  .contents-editor {
-    margin-right: 0;
-  }
-}
-
 // use mixins
 @include mobile {
   @include small-layout;
-
-  @include hide-preview;
 }
 
 @include tablet {
-  @include hide-preview;
-
   .contents-container {
     width: 700px;
   }

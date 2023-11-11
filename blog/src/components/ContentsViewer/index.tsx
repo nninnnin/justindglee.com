@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { HeadingComponent } from "react-markdown/lib/ast-to-react";
@@ -21,50 +21,27 @@ import { previewModeState } from "@components/PostEditor";
 import Iframe from "./Iframe";
 
 interface Props {
-  isEditable: boolean;
   title: string;
   contents: string;
 }
 
-const ContentsViewer = ({
-  isEditable,
-  title,
-  contents,
-}: Props) => {
+const ContentsViewer = ({ title, contents }: Props) => {
   const [previewMode, setPreviewMode] = useRecoilState(
     previewModeState
   );
 
-  const maxDesktop = useMediaQuery("(max-width: 1024px");
-
-  useEffect(() => {
-    if (!maxDesktop) {
-      setPreviewMode(false);
-    }
-  }, [maxDesktop]);
-
   return (
-    <div
-      className={clsx(
-        isEditable && "contents-viewer p-5",
-        `flex-1 h-full overflow-auto`,
-        previewMode &&
-          maxDesktop &&
-          "!block bg-blue-500 w-full !h-[100svh] overflow-scroll z-50 fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] pb-[3em]"
+    <div className={clsx("contents-viewer")}>
+      {previewMode && (
+        <div
+          className="absolute w-full left-0 bottom-0 z-50 bg-white text-black px-5 py-3 select-none"
+          onClick={() => {
+            setPreviewMode(false);
+          }}
+        >
+          끄기
+        </div>
       )}
-    >
-      {previewMode &&
-        createPortal(
-          <div
-            className="fixed w-full bottom-0 left-0 z-50 bg-white text-black px-5 py-3 select-none"
-            onClick={() => {
-              setPreviewMode(false);
-            }}
-          >
-            끄기
-          </div>,
-          document.body
-        )}
 
       <h1 className="header">{title}</h1>
 

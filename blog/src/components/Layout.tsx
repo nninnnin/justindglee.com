@@ -26,6 +26,7 @@ function Layout({ children, hasPadding = true }: Props) {
       <div
         className={clsx(
           `contents-container`,
+          "relative",
           `glassmorph overflow-auto mx-auto`,
           isEditing ? "!w-full max-w-[1800px]" : "",
           hasPadding && "p-[30px] pt-[26px] flex flex-col",

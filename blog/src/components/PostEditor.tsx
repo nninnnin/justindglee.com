@@ -3,7 +3,11 @@ import Layout from "@components/Layout";
 import ContentsEditor from "@components/ContentsEditor";
 import ContentsViewer from "@components/ContentsViewer";
 import React, { ReactNode, useEffect } from "react";
-import { atom, useRecoilState } from "recoil";
+import {
+  atom,
+  useRecoilState,
+  useRecoilValue,
+} from "recoil";
 import { styled } from "styled-components";
 
 export const editingTitleState = atom({
@@ -39,27 +43,34 @@ const PostEditor = ({ title, contents, button }: Props) => {
     setEditingContents(contents);
   }, [title, contents]);
 
+  const previewMode = useRecoilValue(previewModeState);
+
+  console.log(previewMode);
+
   return (
     <Authorizer>
       <Layout>
         <Container>
-          <ContentsEditor
-            title={editingTitle}
-            contents={editingContents}
-            onChangeTitle={(e) => {
-              setEditingTitle(e.currentTarget.value);
-            }}
-            onChangeContents={(e) => {
-              setEditingContents(e.currentTarget.value);
-            }}
-            buttons={button}
-          />
+          {!previewMode && (
+            <ContentsEditor
+              title={editingTitle}
+              contents={editingContents}
+              onChangeTitle={(e) => {
+                setEditingTitle(e.currentTarget.value);
+              }}
+              onChangeContents={(e) => {
+                setEditingContents(e.currentTarget.value);
+              }}
+              buttons={button}
+            />
+          )}
 
-          <ContentsViewer
-            title={editingTitle}
-            contents={editingContents}
-            isEditable={true}
-          />
+          {previewMode && (
+            <ContentsViewer
+              title={editingTitle}
+              contents={editingContents}
+            />
+          )}
         </Container>
       </Layout>
     </Authorizer>

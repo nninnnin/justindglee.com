@@ -3,8 +3,11 @@ node_modules/
 .env
 .env.development
 .env.production
+
 public/
 !portfolio/public/
+docs
+
 .DS_Store
 
 # Local Netlify folder

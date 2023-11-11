@@ -277,13 +277,13 @@ const ContentsEditor = ({
       <div className="w-full flex font-bold">
         {buttons}
         <button
-          className="button bg-sky-600 max-tablet"
+          className="button bg-sky-600"
           onClick={() => {
             // ..
             setPreviewMode(true);
           }}
         >
-          미리보기만
+          미리보기
         </button>
       </div>
     </div>
