@@ -10,6 +10,7 @@ import PostEditor, {
 import replaceImageUrls from "@src/utils/replaceImageUrls";
 import { curry } from "@fxts/core";
 import { editingImageState } from "./post/[slug]/edit";
+import Button from "@components/common/Button";
 
 const EditorPage = () => {
   const title = useRecoilValue(editingTitleState);
@@ -81,19 +82,13 @@ const EditorPage = () => {
 
   const buttons = (
     <>
-      <button
-        onClick={handleSaveButtonClick}
-        className="button bg-orange-300"
-      >
+      <Button.Item onClick={handleSaveButtonClick}>
         저장하기
-      </button>
+      </Button.Item>
 
-      <button
-        onClick={handleRegisterButtonClick}
-        className="button bg-green-300"
-      >
+      <Button.Item onClick={handleRegisterButtonClick}>
         발행하기
-      </button>
+      </Button.Item>
     </>
   );
 

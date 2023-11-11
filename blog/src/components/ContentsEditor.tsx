@@ -17,6 +17,7 @@ import {
 } from "@src/utils/editor";
 import { editingImageState } from "@src/pages/post/[slug]/edit";
 import { previewModeState } from "./PostEditor";
+import Button from "./common/Button";
 
 const POST_TYPES: Record<string, string> = {
   tech: "기술",
@@ -246,7 +247,7 @@ const ContentsEditor = ({
   );
 
   return (
-    <div className="contents-editor flex flex-col flex-1 pt-5 pr-2">
+    <div className="contents-editor flex flex-col flex-1">
       <div className="flex">
         <select
           className="text-blue-500 border-none outline-none p-3"
@@ -266,7 +267,7 @@ const ContentsEditor = ({
       </div>
 
       <textarea
-        className={`w-full flex-1 bg-white text-blue-500 mt-5 p-3`}
+        className={`w-full flex-1 bg-white text-blue-500 my-5 p-3`}
         value={contents}
         onChange={onChangeContents}
         onDrop={handleFileDrop}
@@ -274,18 +275,18 @@ const ContentsEditor = ({
         onKeyDown={handleKeyDown}
       />
 
-      <div className="w-full flex font-bold">
+      <Button.Container>
         {buttons}
-        <button
-          className="button bg-sky-600"
+
+        <Button.Item
           onClick={() => {
             // ..
             setPreviewMode(true);
           }}
         >
           미리보기
-        </button>
-      </div>
+        </Button.Item>
+      </Button.Container>
     </div>
   );
 };

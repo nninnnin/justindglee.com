@@ -19,6 +19,7 @@ import {
 } from "./styles";
 import { previewModeState } from "@components/PostEditor";
 import Iframe from "./Iframe";
+import Button from "@components/common/Button";
 
 interface Props {
   title: string;
@@ -31,18 +32,7 @@ const ContentsViewer = ({ title, contents }: Props) => {
   );
 
   return (
-    <div className={clsx("contents-viewer")}>
-      {previewMode && (
-        <div
-          className="absolute w-full left-0 bottom-0 z-50 bg-white text-black px-5 py-3 select-none"
-          onClick={() => {
-            setPreviewMode(false);
-          }}
-        >
-          끄기
-        </div>
-      )}
-
+    <div className={clsx("w-full flex flex-col")}>
       <h1 className="header">{title}</h1>
 
       <div className="markdown-contents">
@@ -92,6 +82,20 @@ const ContentsViewer = ({ title, contents }: Props) => {
           {contents}
         </ReactMarkdown>
       </div>
+
+      {previewMode && (
+        <div className="w-full left-0 bottom-0 z-50">
+          <Button.Container>
+            <Button.Item
+              onClick={() => {
+                setPreviewMode(false);
+              }}
+            >
+              미리보기 종료
+            </Button.Item>
+          </Button.Container>
+        </div>
+      )}
     </div>
   );
 };

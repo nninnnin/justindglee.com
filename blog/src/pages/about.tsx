@@ -3,6 +3,7 @@ import { shuffle } from "lodash";
 
 import Layout from "@components/Layout";
 import "@styles/index.scss";
+import Button from "@components/common/Button";
 
 const greetings = ["안녕하세요!"];
 
@@ -35,18 +36,12 @@ export default function About() {
         </p>
 
         <p className="flex-1 mt-5 relative min-h-[100px] flex items-end justify-end">
-          <a
-            className="glassmorph-listitem py-4 px-5 w-fit rounded-md font-medium not-italic"
-            href="https://github.com/nninnnin"
-          >
-            깃허브 구경하기
+          <a href="https://github.com/nninnnin">
+            <Button.Item>깃허브 구경하기</Button.Item>
           </a>
 
-          <a
-            className="glassmorph-listitem ml-4 py-4 px-5 w-fit rounded-md font-medium not-italic"
-            href="mailto:nninnnin7@gmail.com"
-          >
-            이메일 보내기
+          <a href="mailto:nninnnin7@gmail.com">
+            <Button.Item>이메일 보내기</Button.Item>
           </a>
         </p>
       </div>

@@ -9,6 +9,7 @@ import PostEditor, {
 } from "@components/PostEditor";
 import replaceImageUrls from "@src/utils/replaceImageUrls";
 import { curry } from "@fxts/core";
+import Button from "@components/common/Button";
 
 interface Props {
   serverData: {
@@ -97,26 +98,24 @@ const PostPage = ({
 
   const editButton = (
     <>
-      <button
+      <Button.Item
         onClick={async () => {
           await savePost(title, contents, false);
 
           location.href = "/posts/edit";
         }}
-        className="button bg-yellow-400"
       >
         숨기기
-      </button>
-      <button
+      </Button.Item>
+      <Button.Item
         onClick={async () => {
           await savePost(title, contents, true);
 
           location.href = "/posts/edit";
         }}
-        className="button bg-green-400"
       >
         수정하기
-      </button>
+      </Button.Item>
     </>
   );
 
