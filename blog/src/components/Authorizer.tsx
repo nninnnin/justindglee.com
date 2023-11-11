@@ -21,7 +21,11 @@ const Authorizer = ({ children, disabled }: Props) => {
   }, [isAuthorized, disabled]);
 
   if (isAuthorized === null && !disabled)
-    return <div>토큰 유효성 판독중..</div>;
+    return (
+      <div className="w-[100vw] h-[100svh] bg-blue-500 text-white grid place-items-center bounce">
+        토큰 유효성 판독중..
+      </div>
+    );
 
   return <div>{children}</div>;
 };

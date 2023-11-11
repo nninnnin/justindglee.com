@@ -1,0 +1,21 @@
+@keyframes bounce {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  25% {
+    transform: scale3d(1, 2, 1);
+  }
+  50% {
+    transform: scale3d(1, 1, 1);
+  }
+  75% {
+    transform: scale3d(1.5, 1, 1.5);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.bounce {
+  animation: bounce 2s infinite;
+}
