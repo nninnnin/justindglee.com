@@ -1,12 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { HeadingComponent } from "react-markdown/lib/ast-to-react";
 import rehypeRaw from "rehype-raw";
 import clsx from "clsx";
-import { useMediaQuery } from "usehooks-ts";
 import { useRecoilState } from "recoil";
-import { createPortal } from "react-dom";
 
 import {
   H1,
@@ -32,7 +30,11 @@ const ContentsViewer = ({ title, contents }: Props) => {
   );
 
   return (
-    <div className={clsx("w-full flex flex-col")}>
+    <div
+      className={clsx(
+        "w-full flex flex-col overflow-scroll"
+      )}
+    >
       <h1 className="header">{title}</h1>
 
       <div className="markdown-contents">
