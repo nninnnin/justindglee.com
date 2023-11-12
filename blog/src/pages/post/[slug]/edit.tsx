@@ -74,25 +74,23 @@ const PostPage = ({
 
   const publishButton = (
     <>
-      <button
+      <Button.Item
         onClick={async () => {
           await savePost(title, contents, false);
         }}
-        className="button bg-sky-400"
       >
         저장하기
-      </button>
+      </Button.Item>
 
-      <button
+      <Button.Item
         onClick={async () => {
           await savePost(title, contents, true);
 
           location.href = "/posts";
         }}
-        className="button bg-pink-400"
       >
         발행하기
-      </button>
+      </Button.Item>
     </>
   );
 
