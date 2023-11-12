@@ -80,7 +80,9 @@ const Iframe = ({
 
   return (
     <FrameWrapper
-      className={clsx("glassmorph !bg-white relative")}
+      className={clsx(
+        "glassmorph !bg-white relative min-h-[200px]"
+      )}
       ratio={frameRatio}
     >
       <Frame {...props} ratio={frameRatio} />
