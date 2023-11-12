@@ -92,7 +92,7 @@ const Iframe = ({
             "bg-white opacity-0 hover:opacity-80",
             "cursor-pointer",
             "flex items-center justify-center",
-            "text-[18px] text-black text-shadow-none"
+            "text-black text-shadow-none"
           )}
           onContextMenu={(e) => {
             e.preventDefault();
