@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 import { TagInterface } from "@src/types";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { tagFilterState } from "./PostListTemplate";
 
 const TagFilter = ({
@@ -24,7 +24,8 @@ const TagFilter = ({
     [tags]
   );
 
-  const setTagFilter = useSetRecoilState(tagFilterState);
+  const [tagFilter, setTagFilter] =
+    useRecoilState(tagFilterState);
 
   const firstButtonRef = useRef<HTMLElement | null>(null);
   const lastButtonRef = useRef<HTMLElement | null>(null);
@@ -134,11 +135,14 @@ const TagFilter = ({
               "mr-2 p-2 py-1",
               "relative z-1",
               "text-[0.8rem]",
-              "text-[rgba(255,255,255,0.3)]",
-              "hover:text-white",
               "text-shadow-none",
               "whitespace-nowrap",
-              "cursor-pointer"
+              "cursor-pointer",
+              "hover:text-white",
+              tagFilter === tag.name
+                ? "text-white"
+                : "text-[rgba(255,255,255,0.3)]",
+              "select-none"
             )}
             ref={(ref) => {
               if (i === 0) firstButtonRef.current = ref;
