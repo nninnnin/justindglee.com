@@ -86,7 +86,7 @@ const ContentsViewer = ({ title, contents }: Props) => {
       </div>
 
       {previewMode && (
-        <div className="w-full left-0 bottom-0 z-50">
+        <div className="w-full sticky left-0 bottom-0 z-50">
           <Button.Container>
             <Button.Item
               onClick={() => {

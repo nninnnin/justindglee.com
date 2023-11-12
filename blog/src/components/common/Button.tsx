@@ -1,14 +1,22 @@
+import clsx from "clsx";
 import React, { MouseEvent, ReactNode } from "react";
 
 const Button = () => {};
 
 Button.Container = ({
+  className = "",
   children,
 }: {
+  className?: string;
   children: ReactNode;
 }) => {
   return (
-    <div className="w-full flex justify-end font-bold p-5">
+    <div
+      className={clsx(
+        "w-full flex justify-end font-bold p-5",
+        className
+      )}
+    >
       {children}
     </div>
   );

@@ -267,7 +267,7 @@ const ContentsEditor = ({
       </div>
 
       <textarea
-        className={`w-full flex-1 bg-white text-blue-500 my-5 p-3`}
+        className={`w-full flex-1 bg-white text-blue-500 mt-5 p-3`}
         value={contents}
         onChange={onChangeContents}
         onDrop={handleFileDrop}

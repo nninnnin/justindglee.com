@@ -37,8 +37,8 @@ function Navigation() {
   const { pathname } = useLocation();
 
   return (
-    <div className="nav w-full mb-2 sticky top-0 z-10">
-      <ul className="flex pb-3">
+    <div className="nav w-full mb-2 sticky top-0 left-0 z-10">
+      <ul className="flex mb-3">
         <Link
           className={clsx(
             "font-[500] whitespace-nowrap mr-auto"

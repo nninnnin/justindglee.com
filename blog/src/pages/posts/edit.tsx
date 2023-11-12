@@ -5,12 +5,12 @@ import styled from "styled-components";
 import clsx from "clsx";
 import { useLocation } from "@reach/router";
 import { Link } from "gatsby";
-import { motion } from "framer-motion";
 
 import Authorizer from "@components/Authorizer";
 import Layout from "@components/Layout";
 import PostList from "@components/ContentsList/PostList";
 import usePosts from "@src/hooks/usePosts";
+import Loading from "@components/common/Loading";
 
 const PostListPage = () => {
   const { search, pathname } = useLocation();
@@ -99,29 +99,9 @@ const PostListPage = () => {
         </Filters>
 
         {loading ? (
-          <div className="w-full h-full grid place-items-center">
-            <motion.div
-              className="bg-red-400 w-10 h-10"
-              animate={{
-                scale: [1, 2, 2, 1, 1],
-                rotate: [0, 0, 270, 270, 0],
-                borderRadius: [
-                  "20%",
-                  "20%",
-                  "50%",
-                  "50%",
-                  "20%",
-                ],
-              }}
-              transition={{
-                duration: 2,
-                ease: "easeInOut",
-                times: [0, 0.2, 0.5, 0.8, 1],
-                repeat: Infinity,
-                repeatDelay: 1,
-              }}
-            />
-          </div>
+          <Loading className="relative !bg-transparent">
+            로딩중입니다..
+          </Loading>
         ) : (
           <PostList posts={posts} />
         )}
