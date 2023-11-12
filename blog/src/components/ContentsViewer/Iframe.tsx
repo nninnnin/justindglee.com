@@ -126,10 +126,10 @@ const Iframe = ({
           }}
         >
           {showMessage && !isEditing && (
-            <>
-              해당 iframe에는 인터랙션 방어가 적용되어
-              있습니다.
-            </>
+            <span className="text-center">
+              눈으로만 감상해주세요. <br />
+              View only.
+            </span>
           )}
         </div>
       )}
