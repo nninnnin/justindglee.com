@@ -33,7 +33,7 @@ Button.Item = ({
 }) => {
   return (
     <button
-      className="glassmorph-listitem ml-4 py-4 px-5 w-fit rounded-md font-medium not-italic"
+      className="glassmorph-listitem ml-4 py-4 px-5 w-fit rounded-md font-medium not-italic whitespace-nowrap"
       onClick={onClick}
     >
       {children}
