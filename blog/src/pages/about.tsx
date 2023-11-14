@@ -28,8 +28,8 @@ export default function About() {
         <p className="pb-[10px]">게임, 쇼핑, 음악</p>
 
         <p className="flex-1 mt-5 relative min-h-[100px] flex items-end justify-end">
-          <a href="https://github.com/nninnnin">
-            <Button.Item>깃허브 구경하기</Button.Item>
+          <a href="https://justindglee.netlify.com">
+            <Button.Item>작업물 구경하기</Button.Item>
           </a>
 
           <a href="mailto:nninnnin7@gmail.com">
