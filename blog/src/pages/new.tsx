@@ -25,6 +25,9 @@ const EditorPage = () => {
       publish: boolean
     ) => {
       const slug = prompt("slug를 입력해주세요 :)");
+
+      if (!slug) return;
+
       const token = localStorage.getItem(
         "justinblog-token"
       );
