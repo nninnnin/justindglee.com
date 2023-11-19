@@ -54,6 +54,16 @@ const PostListPage = () => {
     toArray
   );
 
+  const triggerDeployment = async () => {
+    const result = await fetch("/api/deploy");
+
+    if (!result.ok) {
+      alert("Failed");
+    }
+
+    alert("Nice.");
+  };
+
   return (
     <Authorizer>
       <Layout>
@@ -90,6 +100,17 @@ const PostListPage = () => {
               Published
             </li>
           </Link>
+
+          <li
+            className={clsx(
+              publicationState === "published" &&
+                "underline",
+              "cursor-pointer"
+            )}
+            onClick={async () => await triggerDeployment()}
+          >
+            Deploy!
+          </li>
 
           {loading ? (
             <></>
