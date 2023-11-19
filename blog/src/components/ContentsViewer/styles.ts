@@ -45,7 +45,14 @@ export const UL = styled.ul.withConfig({
   list-style-type: disc;
 
   & > li {
-    line-height: 2em;
+    line-height: 1.65em;
+    word-break: keep-all;
+
+    margin-top: 0.3em;
+  }
+
+  & > li:first-child {
+    margin-top: 0.1em;
   }
 `;
 
@@ -55,9 +62,11 @@ export const OL = styled.ol.withConfig({
 })`
   list-style-type: decimal;
   padding-left: 1rem;
+  margin-top: 1em;
 
   & > li {
     line-height: 2em;
+    word-break: keep-all;
   }
 `;
 
