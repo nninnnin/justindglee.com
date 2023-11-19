@@ -49,6 +49,18 @@ export const UL = styled.ul.withConfig({
   }
 `;
 
+export const OL = styled.ol.withConfig({
+  shouldForwardProp: (prop) =>
+    !["node", "ordered"].includes(prop),
+})`
+  list-style-type: decimal;
+  padding-left: 1rem;
+
+  & > li {
+    line-height: 2em;
+  }
+`;
+
 export const FrameWrapper = styled.div<{ ratio: number }>`
   width: 100%;
   padding-top: ${({ ratio }) => `${ratio}%`};

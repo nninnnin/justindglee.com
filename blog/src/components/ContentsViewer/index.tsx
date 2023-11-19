@@ -14,6 +14,7 @@ import {
   Anchor,
   HR,
   UL,
+  OL,
 } from "./styles";
 import { previewModeState } from "@components/PostEditor";
 import Iframe from "./Iframe";
@@ -48,6 +49,7 @@ const ContentsViewer = ({ title, contents }: Props) => {
             img: Image as typeof Paragraph,
             hr: HR as typeof Paragraph,
             ul: UL as typeof Paragraph,
+            ol: OL as typeof Paragraph,
             iframe: Iframe,
             a: Anchor,
             code: ({ inline, className, children }) => {
