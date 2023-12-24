@@ -18,7 +18,9 @@ export default function IndexPage({
 
   return (
     <Layout>
-      <div className="flex flex-col flex-1">후후..</div>
+      <div className="flex flex-col flex-1">
+        대문 공사중..
+      </div>
     </Layout>
   );
 }
