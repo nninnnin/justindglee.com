@@ -77,5 +77,13 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        name: "Justin Lee",
+        start_url: "/",
+        icon: "src/images/favicon.png",
+      },
+    },
   ],
 };

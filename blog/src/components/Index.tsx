@@ -1,10 +1,9 @@
 import React from "react";
 import Layout from "@components/Layout";
-import { pipe, filter, take, toArray } from "@fxts/core";
+import { pipe, take, toArray } from "@fxts/core";
 
 import "@styles/index.scss";
 import { Post } from "@src/types";
-import PostList from "@components/ContentsList/PostList";
 
 interface Props {
   pageContext: {
@@ -19,10 +18,7 @@ export default function IndexPage({
 
   return (
     <Layout>
-      <div className="flex flex-col flex-1">
-        <h1 className="header">새로운 포스트</h1>
-        <PostList posts={techPosts} />
-      </div>
+      <div className="flex flex-col flex-1">후후..</div>
     </Layout>
   );
 }
