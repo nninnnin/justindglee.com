@@ -38,7 +38,7 @@ const ContextMenuContainer = ({
   return (
     <containerContext.Provider value={containerRef}>
       <Container
-        className="context-menu-container glassmorph"
+        className="context-menu-container glassmorph-shiny"
         tabIndex={-1}
         onClick={(e) => {
           e.preventDefault();

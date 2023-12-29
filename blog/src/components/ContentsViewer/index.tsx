@@ -62,7 +62,7 @@ const ContentsViewer = ({ title, contents }: Props) => {
 
               if (inline)
                 return (
-                  <code className="glassmorph p-1 rounded-md mx-1">
+                  <code className="glassmorph-shiny p-1 rounded-md mx-1">
                     {children}
                   </code>
                 );
@@ -75,7 +75,7 @@ const ContentsViewer = ({ title, contents }: Props) => {
                   )}
                   language={matched}
                   PreTag="div"
-                  className="glassmorph rounded-md !my-5 w-full"
+                  className="glassmorph-shiny rounded-md !my-5 w-full"
                   wrapLongLines={true}
                 />
               );
@@ -126,7 +126,7 @@ const Blockquote = ({
 }: {
   children: React.ReactNode;
 }) => (
-  <blockquote className="glassmorph border-l-2 my-5 p-3 pl-5 pr-2">
+  <blockquote className="glassmorph-shiny border-l-2 my-5 p-3 pl-5 pr-2">
     {children}
   </blockquote>
 );

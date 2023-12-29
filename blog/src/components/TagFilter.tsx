@@ -135,7 +135,7 @@ const TagFilter = ({
               "mr-2 p-2 py-1",
               "relative z-1",
               "text-[0.8rem]",
-              "text-shadow-none",
+
               "whitespace-nowrap",
               "cursor-pointer",
               "hover:text-white",
