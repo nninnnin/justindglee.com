@@ -53,9 +53,9 @@ export default function About() {
           <div className="flex">
             {/* <a href="https://justindglee.netlify.com">
               Projects
-            </a> */}
+            </a>
 
-            <Navigation.ItemSeperator />
+            <Navigation.ItemSeperator /> */}
 
             <a href="https://www.linkedin.com/in/justindglee/">
               Careers
