@@ -45,10 +45,13 @@ export default function About() {
 
         <hr className="mt-3" />
 
-        <p className="mt-5 relative flex justify-between items-center">
-          <ListItem.Tag name="© 2023-2024. 이동규 블로그" />
+        <p className="mt-5 relative justify-end sm:justify-between items-center flex">
+          <ListItem.Tag
+            className="hidden sm:block"
+            name="© 2023-2024. 이동규 블로그"
+          />
 
-          <div className="flex sm:hidden">
+          <div className="flex">
             <a href="https://justindglee.netlify.com">
               Projects
             </a>
