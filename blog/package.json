@@ -31,6 +31,7 @@
     "autoprefixer": "^10.4.4",
     "babel-plugin-styled-components": "^2.1.4",
     "clsx": "^2.0.0",
+    "date-fns": "^3.0.6",
     "framer-motion": "^10.16.4",
     "fxjs": "^0.21.3",
     "gatsby": "^5.11.0",
