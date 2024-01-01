@@ -25,15 +25,20 @@ Button.Container = ({
 Button.Item = ({
   children,
   onClick = () => {},
+  className = "",
 }: {
   children: ReactNode;
   onClick?:
     | ((e: MouseEvent) => void)
     | ((e: MouseEvent) => Promise<void>);
+  className?: string;
 }) => {
   return (
     <button
-      className="glassmorph-listitem ml-4 py-4 px-5 w-fit rounded-md font-medium not-italic whitespace-nowrap"
+      className={clsx(
+        "glassmorph-listitem ml-4 py-4 px-5 w-fit rounded-md font-medium not-italic whitespace-nowrap",
+        className
+      )}
       onClick={onClick}
     >
       {children}

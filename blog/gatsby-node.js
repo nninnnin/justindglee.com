@@ -15,9 +15,7 @@ exports.onPostBuild = async () => {
 };
 
 exports.createPages = async ({ graphql, actions }) => {
-  const IndexPageTemplate = path.resolve(
-    `./src/components/Index.tsx`
-  );
+  const IntroPage = path.resolve(`./src/pages/intro.tsx`);
   const PostDetailsTemplate = path.resolve(
     `./src/components/PostDetails.tsx`
   );
@@ -109,14 +107,10 @@ exports.createPages = async ({ graphql, actions }) => {
     filter((tag) => !!tag.posts?.length)
   );
 
-  // Create pages..
-  // Index page
+  // Create pages
   actions.createPage({
     path: "/",
-    component: IndexPageTemplate,
-    context: {
-      posts: allPosts,
-    },
+    component: IntroPage,
   });
 
   // Post list page
@@ -143,16 +137,16 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  // Reference list page
-  const referencePosts = references.map(mapIndex);
+  // Archive list page
+  const archiveItems = references.map(mapIndex);
 
-  go(referencePosts, (references) =>
+  go(archiveItems, (archiveItems) =>
     actions.createPage({
       path: "/archive",
       component: PostListTemplate,
       context: {
         header: "Archive",
-        references,
+        references: archiveItems,
       },
     })
   );
