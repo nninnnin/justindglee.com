@@ -53,8 +53,10 @@ export interface Reference {
   index: number;
   id: number;
   strapiId: number;
+  title: string;
   url: string;
   caption: string;
+  publisher: string;
   createdAt: string;
 }
 

@@ -16,15 +16,15 @@ export default function About() {
   return (
     <Layout>
       <div className="flex flex-col flex-1">
-        <p className="pb-[10px]">
+        <p className="py-[10px]">
           안녕하세요, 이렇게 먼 곳까지 찾아와주셔서
           감사합니다. <br />
           <br />
           멋진 말들을 써두고싶은데 어떤 이야기를 해야할지 잘
           모르겠네요.
           <br />
-          아무쪼록 제가 관심있는 내용들에 대해 함께 관심을
-          가져주셔서 기쁜 마음이 듭니다.
+          어떻든 제가 관심있는 내용들에 대해 함께 관심을
+          기울여주셔서 기쁜 마음이 듭니다.
           <br />
           <br />
           그 간에는 블로그를 마치 취업에 필요한
@@ -37,9 +37,7 @@ export default function About() {
           하겠습니다.
           <br />
           <br />
-          2024년 새해 복 많이..많이.
-          <br />
-          받으세요.
+          2024년 새해 복 많이 받으세요.
           <br />
           <br />
         </p>

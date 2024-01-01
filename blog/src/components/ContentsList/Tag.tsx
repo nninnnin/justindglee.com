@@ -3,11 +3,15 @@ import styled from "styled-components";
 
 const Tag = ({
   name,
+  className = "",
 }: {
   name: string;
   removable?: boolean;
+  className?: string;
 }) => {
-  return <Container>{name}</Container>;
+  return (
+    <Container className={className}>{name}</Container>
+  );
 };
 
 const Container = styled.li`

@@ -1,8 +1,12 @@
+import clsx from "clsx";
 import React from "react";
 import { Link } from "gatsby";
+import { useRecoilValue } from "recoil";
+import { format } from "date-fns";
+
 import { Post } from "@src/types";
 import ListItem from "./ListItem";
-import { useRecoilValue } from "recoil";
+
 import { tagFilterState } from "@components/PostListTemplate";
 
 interface Props {
@@ -23,23 +27,63 @@ const PostList = ({ posts }: Props) => {
             (tag) => tag.name === tagFilter
           );
         })
-        .map((post: Post) => {
-          const to = !post.publicationState
-            ? `/post/${post.slug}`
-            : `/post/${post.slug}/edit`;
+        .map(
+          ({
+            id,
+            tags,
+            title,
+            slug,
+            publicationState,
+            publishedAt,
+          }: Post) => {
+            const to = !publicationState
+              ? `/post/${slug}`
+              : `/post/${slug}/edit`;
 
-          return (
-            <Link key={`key-${post.id}`} to={to}>
-              <ListItem
-                index={post.index}
-                postId={post.id}
-                description={post.title}
-                tags={post.tags}
-                publicationState={post.publicationState}
-              />
-            </Link>
-          );
-        })}
+            return (
+              <Link key={`key-${id}`} to={to}>
+                <ListItem postId={id}>
+                  <div
+                    className={clsx(
+                      "w-[80%]",
+                      "flex flex-col justify-between items-start"
+                    )}
+                  >
+                    <ListItem.Description>
+                      {title}
+                    </ListItem.Description>
+
+                    {tags && (
+                      <ul className="flex flex-wrap justify-end">
+                        {tags.map((tag) => {
+                          return (
+                            <ListItem.Tag
+                              key={tag.id}
+                              name={tag.name}
+                            />
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </div>
+
+                  {publicationState ? (
+                    <ListItem.PublicationState
+                      publicationState={publicationState}
+                    />
+                  ) : (
+                    <ListItem.Tag
+                      name={`${format(
+                        new Date(publishedAt),
+                        "MMM d, yyyy"
+                      )}`}
+                    />
+                  )}
+                </ListItem>
+              </Link>
+            );
+          }
+        )}
     </ul>
   );
 };

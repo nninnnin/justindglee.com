@@ -9,16 +9,34 @@ interface Props {
 const ReferenceList = ({ references }: Props) => {
   return (
     <ul className="bg-red">
-      {references.map((refer: Reference) => {
-        return (
-          <a href={refer.url} key={`key-${refer.id}`}>
-            <ListItem
-              index={refer.index}
-              description={refer.caption}
-            />
-          </a>
-        );
-      })}
+      {references.map(
+        ({
+          id,
+          title,
+          caption,
+          publisher,
+          url,
+        }: Reference) => {
+          return (
+            <a href={url} key={`key-${id}`}>
+              <ListItem>
+                <div className="flex flex-col flex-1 overflow-hidden">
+                  <ListItem.Description>
+                    {title}
+                  </ListItem.Description>
+
+                  <ListItem.Tag
+                    className="!ml-0 !pl-0"
+                    name={caption}
+                  />
+                </div>
+
+                <ListItem.Tag name={`by ${publisher}`} />
+              </ListItem>
+            </a>
+          );
+        }
+      )}
     </ul>
   );
 };

@@ -1,33 +1,20 @@
 import clsx from "clsx";
 import { v4 as uuid } from "uuid";
 import React, { useRef } from "react";
-import styled from "styled-components";
 
-import {
-  PublicationStates,
-  TagInterface,
-} from "@src/types";
 import { useContextMenu } from "@src/states/contextMenu";
-import { Description } from "./styles";
 import Tag from "@components/ContentsList/Tag";
 import ContextMenu from "@components/ContextMenu";
 import TagEditor from "@components/TagEditor";
+import { Description } from "./styles";
 import PublicationState from "./PublicationState";
 
 interface Props {
-  index: number;
   postId?: number;
-  description: string;
-  tags?: null | Array<TagInterface>;
-  publicationState?: PublicationStates;
+  children: React.ReactNode;
 }
 
-const ListItem = ({
-  postId,
-  description,
-  tags,
-  publicationState,
-}: Props) => {
+const ListItem = ({ postId, children }: Props) => {
   const { openContextMenu } = useContextMenu();
   const contextId = useRef(uuid());
 
@@ -77,36 +64,13 @@ const ListItem = ({
       )}
       onContextMenu={handleContext}
     >
-      <div
-        className={clsx(
-          "w-[80%]",
-          "flex flex-col justify-between items-start"
-        )}
-      >
-        <Description>{description}</Description>
-
-        {tags && (
-          <TagList>
-            {tags.map((tag) => {
-              return <Tag key={tag.id} name={tag.name} />;
-            })}
-          </TagList>
-        )}
-      </div>
-
-      {publicationState && (
-        <PublicationState
-          publicationState={publicationState}
-        />
-      )}
+      {children}
     </li>
   );
 };
 
-const TagList = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-`;
+ListItem.Description = Description;
+ListItem.PublicationState = PublicationState;
+ListItem.Tag = Tag;
 
 export default ListItem;

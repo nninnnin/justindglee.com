@@ -62,8 +62,10 @@ exports.createPages = async ({ graphql, actions }) => {
           strapiId
           id
           url
-          createdAt
+          title
           caption
+          publisher
+          createdAt
         }
       }
     }
@@ -138,7 +140,13 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   // Archive list page
-  const archiveItems = references.map(mapIndex);
+  console.log(references);
+
+  const archiveItems = references
+    .filter((item) => {
+      return !!item.title;
+    })
+    .map(mapIndex);
 
   go(archiveItems, (archiveItems) =>
     actions.createPage({
