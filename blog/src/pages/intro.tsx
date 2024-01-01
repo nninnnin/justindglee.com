@@ -48,7 +48,7 @@ export default function About() {
         <p className="mt-5 relative flex justify-between items-center">
           <ListItem.Tag name="© 2023-2024. 이동규 블로그" />
 
-          <div className="flex">
+          <div className="flex sm:hidden">
             <a href="https://justindglee.netlify.com">
               Projects
             </a>
