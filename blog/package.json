@@ -37,6 +37,7 @@
     "gatsby": "^5.11.0",
     "gatsby-link": "^5.11.0",
     "gatsby-plugin-alias-imports": "^1.0.5",
+    "gatsby-plugin-fix-fouc": "^1.0.5",
     "gatsby-plugin-google-gtag": "^4.24.0",
     "gatsby-plugin-image": "^3.11.0",
     "gatsby-plugin-manifest": "^5.13.0",

@@ -14,6 +14,7 @@ module.exports = {
     siteUrl: `https://justindglee.com`,
   },
   plugins: [
+    "gatsby-plugin-fix-fouc",
     "gatsby-plugin-netlify",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
