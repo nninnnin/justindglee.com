@@ -18,8 +18,7 @@ export default function About() {
     <Layout>
       <div className="flex flex-col flex-1">
         <p className="py-[10px]">
-          안녕하세요, 이렇게 먼 곳까지 찾아와주셔서
-          감사합니다. <br />
+          이렇게 먼 곳까지 찾아와주셔서 감사합니다. <br />
           <br />
           멋진 말들을 써두고싶은데 어떤 이야기를 해야할지 잘
           모르겠네요.
