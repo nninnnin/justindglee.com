@@ -5,12 +5,12 @@ import { useLocation } from "@reach/router";
 import clsx from "clsx";
 
 export const routes = {
-  about: { title: "소개", route: "/about" },
+  about: { title: "Letter", route: "/letters" },
   bar1: { title: "", route: "" },
-  tech: { title: "포스트", route: "/posts" },
+  tech: { title: "Posts", route: "/posts" },
   // life: { title: "생활", route: "/life" },
   bar2: { title: "", route: "" },
-  reference: { title: "자료실", route: "/reference" },
+  archive: { title: "Archive", route: "/archive" },
   // portfolio: { title: "작업물", route: "/portfolio" },
 };
 

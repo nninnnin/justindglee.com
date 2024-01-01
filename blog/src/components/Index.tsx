@@ -4,6 +4,7 @@ import { pipe, take, toArray } from "@fxts/core";
 
 import "@styles/index.scss";
 import { Post } from "@src/types";
+import PostList from "@components/ContentsList/PostList";
 
 interface Props {
   pageContext: {
@@ -19,7 +20,8 @@ export default function IndexPage({
   return (
     <Layout>
       <div className="flex flex-col flex-1">
-        대문 공사중..
+        <h1 className="header">News</h1>
+        <PostList posts={techPosts} />
       </div>
     </Layout>
   );

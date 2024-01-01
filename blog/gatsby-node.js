@@ -125,7 +125,7 @@ exports.createPages = async ({ graphql, actions }) => {
       path: "/posts",
       component: PostListTemplate,
       context: {
-        header: "포스트",
+        header: "Posts",
         posts,
         tags: allTags,
       },
@@ -148,10 +148,10 @@ exports.createPages = async ({ graphql, actions }) => {
 
   go(referencePosts, (references) =>
     actions.createPage({
-      path: "/reference",
+      path: "/archive",
       component: PostListTemplate,
       context: {
-        header: "자료실",
+        header: "Archive",
         references,
       },
     })
