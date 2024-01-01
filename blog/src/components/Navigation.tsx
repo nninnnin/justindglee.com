@@ -45,7 +45,7 @@ function Navigation() {
           )}
           to="/"
         >
-          <li>저스틴 블로그</li>
+          <li>이동규 블로그</li>
         </Link>
 
         {navItems.map((el, index, arr) => {

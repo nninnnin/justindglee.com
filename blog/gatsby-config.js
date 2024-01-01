@@ -10,7 +10,7 @@ module.exports = {
     url: "https://justindglee.com",
   },
   siteMetadata: {
-    title: `저스틴 블로그`,
+    title: `이동규 블로그`,
     siteUrl: `https://justindglee.com`,
   },
   plugins: [
