@@ -5,6 +5,7 @@ import Layout from "@components/Layout";
 import "@styles/index.scss";
 import Button from "@components/common/Button";
 import Navigation from "@components/Navigation";
+import ListItem from "@components/ContentsList/ListItem";
 
 const greetings = [".."];
 
@@ -44,20 +45,26 @@ export default function About() {
 
         <hr className="mt-3" />
 
-        <p className="flex-1 mt-5 relative min-h-[100px] flex justify-end">
-          <a href="https://justindglee.netlify.com">
-            Projects
-          </a>
+        <p className="mt-5 relative flex justify-between items-center">
+          <ListItem.Tag name="© 2023-2024. 이동규 블로그" />
 
-          <Navigation.ItemSeperator />
+          <div className="flex">
+            <a href="https://justindglee.netlify.com">
+              Projects
+            </a>
 
-          <a href="https://www.linkedin.com/in/justindglee/">
-            Careers
-          </a>
+            <Navigation.ItemSeperator />
 
-          <Navigation.ItemSeperator />
+            <a href="https://www.linkedin.com/in/justindglee/">
+              Careers
+            </a>
 
-          <a href="mailto:nninnnin7@gmail.com">Email to</a>
+            <Navigation.ItemSeperator />
+
+            <a href="mailto:nninnnin7@gmail.com">
+              Email to
+            </a>
+          </div>
         </p>
       </div>
     </Layout>
