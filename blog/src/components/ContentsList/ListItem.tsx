@@ -56,7 +56,7 @@ const ListItem = ({ postId, children }: Props) => {
   };
 
   return (
-    <li
+    <div
       className={clsx(
         "glassmorph-listitem p-5 mb-3 rounded-lg",
         "flex justify-between",
@@ -65,7 +65,7 @@ const ListItem = ({ postId, children }: Props) => {
       onContextMenu={handleContext}
     >
       {children}
-    </li>
+    </div>
   );
 };
 
