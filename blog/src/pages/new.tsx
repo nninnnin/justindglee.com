@@ -57,10 +57,14 @@ const EditorPage = () => {
         );
 
         alert("포스트 생성 성공!");
+
+        return true;
       } catch (error) {
         alert("포스트 생성 실패..");
 
         console.log(error);
+
+        return false;
       }
     }
   )(editingImages);
@@ -68,7 +72,10 @@ const EditorPage = () => {
   const handleSaveButtonClick = async (e: MouseEvent) => {
     e.preventDefault();
 
-    await savePost(false);
+    const isSaved = await savePost(false);
+    if (!isSaved) {
+      return;
+    }
 
     location.href = "/posts";
   };
