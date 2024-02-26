@@ -24,9 +24,7 @@ const EditorPage = () => {
       editingImages: Map<string, File>,
       publish: boolean
     ) => {
-      const slug = prompt("slug를 입력해주세요 :)");
-
-      if (!slug) return;
+      const slug = prompt("slug를 입력해주세요 :)") ?? "";
 
       const token = localStorage.getItem(
         "justinblog-token"
