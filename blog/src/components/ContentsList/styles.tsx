@@ -8,8 +8,8 @@ export const Description = styled.div`
   display: inline-block;
   flex: 1;
   max-width: 100%;
-  font-size: 1.2em;
-  font-weight: 500;
+  font-size: 1em;
+  font-weight: 600;
 
   overflow: hidden;
   white-space: nowrap;

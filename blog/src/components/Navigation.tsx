@@ -7,8 +7,10 @@ import clsx from "clsx";
 export const routes = {
   posts: { title: "Tech", route: "/tech" },
   bar1: { title: "", route: "" },
-  life: { title: "Life", route: "/life" },
+  idea: { title: "Idea", route: "/idea" },
   bar2: { title: "", route: "" },
+  life: { title: "Life", route: "/life" },
+  bar3: { title: "", route: "" },
   archive: { title: "Archives", route: "/archive" },
   // portfolio: { title: "작업물", route: "/portfolio" },
 };

@@ -126,6 +126,25 @@ exports.createPages = async ({ graphql, actions }) => {
         component: PostListTemplate,
         context: {
           header: "Tech",
+          description:
+            "기술적인 배움 또는 궁금증과 관련된 이야기들이 모여있습니다.",
+          posts,
+          tags: allTags,
+        },
+      })
+  );
+
+  // Idea posts
+  go(
+    allPosts.filter((post) => post.type === "idea"),
+    (posts) =>
+      actions.createPage({
+        path: "/idea",
+        component: PostListTemplate,
+        context: {
+          header: "Idea",
+          description:
+            "과거와 현재, 그리고 미래에 관한 여러가지 생각들을 가끔 정리해둡니다.",
           posts,
           tags: allTags,
         },
@@ -141,6 +160,8 @@ exports.createPages = async ({ graphql, actions }) => {
         component: PostListTemplate,
         context: {
           header: "Life",
+          description:
+            "개인적인 일상과 관련된 이야기들 입니다.",
           posts,
           tags: allTags,
         },
@@ -173,6 +194,8 @@ exports.createPages = async ({ graphql, actions }) => {
       component: PostListTemplate,
       context: {
         header: "Archive",
+        description:
+          "관심과 흥미가 기울여지는 자료들을 모아둔 곳입니다.",
         references: archiveItems,
       },
     })

@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import React, { useEffect } from "react";
 import { atom, useSetRecoilState } from "recoil";
 
@@ -16,6 +17,7 @@ export const tagFilterState = atom({
 interface Props {
   pageContext: {
     header: string;
+    description?: string;
     posts?: Array<Post>;
     tags?: Array<TagInterface>;
     references?: Array<Reference>;
@@ -23,7 +25,13 @@ interface Props {
 }
 
 export default function PostListTemplate({
-  pageContext: { header, posts, references, tags },
+  pageContext: {
+    header,
+    description,
+    posts,
+    references,
+    tags,
+  },
 }: Props) {
   const setTagFilter = useSetRecoilState(tagFilterState);
 
@@ -33,7 +41,17 @@ export default function PostListTemplate({
 
   return (
     <Layout>
-      <h1 className="header">{header}</h1>
+      <h1
+        className={clsx("header", description && "!pb-0")}
+      >
+        {header}
+      </h1>
+
+      {description && (
+        <p className="text-[0.8em] mt-[10px] mb-[30px]">
+          {description}
+        </p>
+      )}
 
       {tags && <TagFilter tags={tags} />}
 

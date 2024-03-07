@@ -58,7 +58,7 @@ const ListItem = ({ postId, children }: Props) => {
   return (
     <div
       className={clsx(
-        "glassmorph-listitem p-5 mb-3 rounded-lg",
+        "glassmorph-listitem p-5 pt-4 mb-3 rounded-lg",
         "flex justify-between",
         "cursor-pointer relative"
       )}
