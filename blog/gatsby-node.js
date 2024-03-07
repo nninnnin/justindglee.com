@@ -115,17 +115,36 @@ exports.createPages = async ({ graphql, actions }) => {
     component: IntroPage,
   });
 
-  // Post list page
-  go(allPosts, (posts) =>
-    actions.createPage({
-      path: "/posts",
-      component: PostListTemplate,
-      context: {
-        header: "Posts",
-        posts,
-        tags: allTags,
-      },
-    })
+  console.log("올포", allPosts);
+
+  // Tech posts
+  go(
+    allPosts.filter((post) => post.type === "tech"),
+    (posts) =>
+      actions.createPage({
+        path: "/tech",
+        component: PostListTemplate,
+        context: {
+          header: "Tech",
+          posts,
+          tags: allTags,
+        },
+      })
+  );
+
+  // Life posts
+  go(
+    allPosts.filter((post) => post.type === "life"),
+    (posts) =>
+      actions.createPage({
+        path: "/life",
+        component: PostListTemplate,
+        context: {
+          header: "Life",
+          posts,
+          tags: allTags,
+        },
+      })
   );
 
   // Post details page

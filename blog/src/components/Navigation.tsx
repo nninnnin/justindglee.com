@@ -5,10 +5,11 @@ import { useLocation } from "@reach/router";
 import clsx from "clsx";
 
 export const routes = {
-  posts: { title: "Posts", route: "/posts" },
-  // life: { title: "생활", route: "/life" },
+  posts: { title: "Tech", route: "/tech" },
+  bar1: { title: "", route: "" },
+  life: { title: "Life", route: "/life" },
   bar2: { title: "", route: "" },
-  archive: { title: "Archive", route: "/archive" },
+  archive: { title: "Archives", route: "/archive" },
   // portfolio: { title: "작업물", route: "/portfolio" },
 };
 
@@ -48,7 +49,9 @@ function Navigation() {
         </Link>
 
         {navItems.map((el, index) => {
-          if (!el.title && !el.route)
+          const isBar = !el.title && !el.route;
+
+          if (isBar)
             return (
               <Navigation.ItemSeperator
                 key={el.id ?? index}
@@ -73,7 +76,7 @@ function Navigation() {
 }
 
 Navigation.ItemSeperator = () => {
-  return <span className="mx-3 select-none">|</span>;
+  return <span className="mx-2 select-none">|</span>;
 };
 
 export default Navigation;
