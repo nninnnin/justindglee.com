@@ -161,7 +161,7 @@ exports.createPages = async ({ graphql, actions }) => {
         context: {
           header: "Life",
           description:
-            "개인적인 일상과 관련된 이야기들 입니다.",
+            "개인적인 일상과 관련된 이야기들입니다.",
           posts,
           tags: allTags,
         },
