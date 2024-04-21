@@ -1,53 +1,35 @@
 import React from "react";
-import { shuffle } from "lodash";
 
 import Layout from "@components/Layout";
 import "@styles/index.scss";
-import Button from "@components/common/Button";
 import Navigation from "@components/Navigation";
 import ListItem from "@components/ContentsList/ListItem";
-
-const greetings = [".."];
-
-function pickGreeting(greetings: Array<string>): string {
-  return shuffle(greetings)[0];
-}
 
 export default function About() {
   return (
     <Layout>
       <div className="flex flex-col flex-1">
-        <p className="mb-auto">
+        <About.Contents>
           <About.Greeting2 />
-        </p>
 
-        <hr className="mt-3" />
+          <About.ContentsDivider />
 
-        <p className="mt-5 relative justify-end sm:justify-between items-center hidden sm:flex">
-          <ListItem.Tag name="© 2023-2024. 이동규 블로그" />
+          <About.Interests />
+        </About.Contents>
 
-          <div className="flex">
-            {/* <a href="https://justindglee.netlify.com">
-              Projects
-            </a>
-
-            <Navigation.ItemSeperator /> */}
-
-            <a href="https://www.linkedin.com/in/justindglee/">
-              Careers
-            </a>
-
-            <Navigation.ItemSeperator />
-
-            <a href="mailto:nninnnin7@gmail.com">
-              Email to
-            </a>
-          </div>
-        </p>
+        <About.Footer />
       </div>
     </Layout>
   );
 }
+
+About.Contents = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  return <div className="mb-auto">{children}</div>;
+};
 
 About.Greeting1 = () => (
   <>
@@ -90,3 +72,46 @@ About.Greeting2 = () => (
     God bless you and me..
   </>
 );
+
+About.Footer = () => {
+  return (
+    <>
+      <hr className="mt-3" />
+      <p className="mt-5 relative justify-end sm:justify-between items-center hidden sm:flex">
+        <ListItem.Tag name="© 2023-2024. 이동규 블로그" />
+
+        <div className="flex">
+          {/* <a href="https://justindglee.netlify.com">
+      Projects
+    </a>
+
+    <Navigation.ItemSeperator /> */}
+
+          <a href="https://www.linkedin.com/in/justindglee/">
+            Careers
+          </a>
+
+          <Navigation.ItemSeperator />
+
+          <a href="mailto:nninnnin7@gmail.com">Email to</a>
+        </div>
+      </p>
+    </>
+  );
+};
+
+About.ContentsDivider = () => {
+  return <hr className="my-4" />;
+};
+
+About.Interests = () => {
+  return (
+    <div>
+      <h2>요즘의 관심사들</h2>
+      <ul className="space-y-1 list-disc ml-[1.5em]">
+        <li>postMessage with Iframes</li>
+        <li>Flocking algorithm</li>
+      </ul>
+    </div>
+  );
+};
