@@ -5,17 +5,21 @@ import { useLocation } from "@reach/router";
 import clsx from "clsx";
 
 export const routes = {
-  posts: { title: "Tech", route: "/tech" },
+  posts: { title: "기술", route: "/tech" },
   bar1: { title: "", route: "" },
-  idea: { title: "Idea", route: "/idea" },
+  idea: { title: "아이디어", route: "/idea" },
   bar2: { title: "", route: "" },
-  life: { title: "Life", route: "/life" },
+  life: { title: "사는 이야기", route: "/life" },
   bar3: { title: "", route: "" },
   archive: { title: "Archives", route: "/archive" },
   // portfolio: { title: "작업물", route: "/portfolio" },
 };
 
-function Navigation() {
+function Navigation({
+  className = "",
+}: {
+  className?: string;
+}) {
   const [navItems, setNavItems] = useState<
     Array<{
       id: null | string;
@@ -31,15 +35,21 @@ function Navigation() {
 
   useEffect(() => {
     setNavItems(
-      navItems.map((el) => ({ ...el, id: uuidv4() }))
+      navItems.map((item) => ({ ...item, id: uuidv4() }))
     );
   }, []);
 
   const { pathname } = useLocation();
 
   return (
-    <div className="nav w-full mb-2 sticky top-0 left-0 z-10">
-      <ul className="flex mb-3">
+    <div
+      className={clsx(
+        "nav w-full sticky top-0 left-0 z-10",
+        "text-[0.8em]",
+        className
+      )}
+    >
+      <ul className="flex">
         <Link
           className={clsx(
             "font-[500] whitespace-nowrap mr-auto",
@@ -50,25 +60,23 @@ function Navigation() {
           <li>이동규 블로그</li>
         </Link>
 
-        {navItems.map((el, index) => {
-          const isBar = !el.title && !el.route;
+        {navItems.map(({ id, title, route }, index) => {
+          const isBar = !title && !route;
 
           if (isBar)
             return (
-              <Navigation.ItemSeperator
-                key={el.id ?? index}
-              />
+              <Navigation.ItemSeperator key={id ?? index} />
             );
 
           return (
             <Link
               className={clsx(
-                pathname.includes(el.route) && "underline"
+                pathname.includes(route) && "underline"
               )}
-              key={el.id ?? index}
-              to={el.route}
+              key={id ?? index}
+              to={route}
             >
-              <li className="cursor-pointer">{el.title}</li>
+              <li className="cursor-pointer">{title}</li>
             </Link>
           );
         })}
@@ -78,7 +86,13 @@ function Navigation() {
 }
 
 Navigation.ItemSeperator = () => {
-  return <span className="mx-2 select-none">|</span>;
+  return (
+    <span
+      className={clsx("mx-1", "select-none opacity-[0.5]")}
+    >
+      /
+    </span>
+  );
 };
 
 export default Navigation;

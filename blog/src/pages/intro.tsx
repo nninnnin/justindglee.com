@@ -29,15 +29,23 @@ IntroPage.Contents = ({
 }: {
   children: React.ReactNode;
 }) => {
-  return <div className="mb-auto">{children}</div>;
+  return <div className="mb-[30vh]">{children}</div>;
 };
 
 IntroPage.Footer = () => {
   return (
-    <>
-      <hr className="mt-3" />
-      <p className="mt-5 relative justify-end sm:justify-between items-center hidden sm:flex">
-        <ListItem.Tag name="© 2023-2024. 이동규 블로그" />
+    <div
+      style={{
+        textShadow: "none",
+        color: "rgba(255, 255, 255, 0.8) !important",
+        fontSize: "0.8em",
+        whiteSpace: "nowrap",
+      }}
+    >
+      <hr className="my-5 opacity-[0.2]" />
+
+      <p className="relative justify-end sm:justify-between items-center hidden sm:flex">
+        <span>© 2023-2024. 이동규 블로그</span>
 
         <div className="flex">
           {/* <a href="https://justindglee.netlify.com">
@@ -55,12 +63,12 @@ IntroPage.Footer = () => {
           <a href="mailto:nninnnin7@gmail.com">Email to</a>
         </div>
       </p>
-    </>
+    </div>
   );
 };
 
 IntroPage.ContentsDivider = () => {
-  return <hr className="my-4" />;
+  return <hr className="my-8 opacity-[0.2]" />;
 };
 
 IntroPage.Interests = () => {

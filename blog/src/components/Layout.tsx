@@ -29,12 +29,22 @@ function Layout({ children, hasPadding = true }: Props) {
           "relative",
           `glassmorph-shiny overflow-auto mx-auto`,
           isEditing ? "!w-full max-w-[1800px]" : "",
-          hasPadding && "p-[30px] pt-[26px] flex flex-col",
           contextMenu.isOpen && "overflow-hidden"
         )}
       >
-        <Navigation />
-        {children}
+        <Navigation
+          className={clsx(
+            hasPadding && "p-[30px] py-[20px]"
+          )}
+        />
+
+        <div
+          className={clsx(
+            hasPadding && "p-[30px] pt-[26px] flex flex-col"
+          )}
+        >
+          {children}
+        </div>
       </div>
 
       {contextMenu.isOpen &&
