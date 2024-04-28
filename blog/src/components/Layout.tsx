@@ -38,7 +38,8 @@ function Layout({ children, hasPadding = true }: Props) {
 
         <div
           className={clsx(
-            hasPadding && "p-[3vw] pt-[26px] flex flex-col"
+            hasPadding &&
+              "p-[3vw] pt-[2vw] sm:pt-[1vw] flex flex-col"
           )}
         >
           {children}

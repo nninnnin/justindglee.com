@@ -7,7 +7,7 @@ import clsx from "clsx";
 export const routes = {
   posts: { title: "기술", route: "/tech" },
   bar1: { title: "", route: "" },
-  idea: { title: "아이디어", route: "/idea" },
+  idea: { title: "생각", route: "/idea" },
   bar2: { title: "", route: "" },
   life: { title: "사는 이야기", route: "/life" },
   bar3: { title: "", route: "" },
