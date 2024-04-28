@@ -1,9 +1,11 @@
 import React from "react";
 
-const GreetingHeader = () => {
-  return (
-    <h2 className="header !pb-0 mt-0">GreetingHeader</h2>
-  );
+const GreetingHeader = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  return <h2 className="header !pb-2 mt-0">{children}</h2>;
 };
 
 export default GreetingHeader;
