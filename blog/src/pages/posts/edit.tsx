@@ -11,6 +11,7 @@ import Layout from "@components/Layout";
 import PostList from "@components/ContentsList/PostList";
 import usePosts from "@src/hooks/usePosts";
 import Loading from "@components/common/Loading";
+import { triggerDeployment } from "@src/utils";
 
 const PostListPage = () => {
   const { search, pathname } = useLocation();
@@ -53,16 +54,6 @@ const PostListPage = () => {
     )),
     toArray
   );
-
-  const triggerDeployment = async () => {
-    const result = await fetch("/api/deploy");
-
-    if (!result.ok) {
-      alert("Failed");
-    }
-
-    alert("Nice.");
-  };
 
   return (
     <Authorizer>

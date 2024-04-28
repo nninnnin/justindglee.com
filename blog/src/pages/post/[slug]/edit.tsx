@@ -10,6 +10,10 @@ import PostEditor, {
 import replaceImageUrls from "@src/utils/replaceImageUrls";
 import { curry } from "@fxts/core";
 import Button from "@components/common/Button";
+import {
+  redirectToEditingPosts,
+  triggerDeployment,
+} from "@src/utils";
 
 interface Props {
   serverData: {
@@ -72,46 +76,45 @@ const PostPage = ({
     }
   )(editingImages);
 
+  const handleSaveButtonClick = async () => {
+    await savePost(title, contents, false);
+  };
+
+  const handlePublishButtonClick = async () => {
+    await savePost(title, contents, true);
+    await triggerDeployment();
+    await redirectToEditingPosts();
+  };
+
   const publishButton = (
     <>
-      <Button.Item
-        onClick={async () => {
-          await savePost(title, contents, false);
-        }}
-      >
+      <Button.Item onClick={handleSaveButtonClick}>
         저장하기
       </Button.Item>
 
-      <Button.Item
-        onClick={async () => {
-          await savePost(title, contents, true);
-
-          location.href = "/posts";
-        }}
-      >
+      <Button.Item onClick={handlePublishButtonClick}>
         발행하기
       </Button.Item>
     </>
   );
 
+  const handleHidingArticleButtonClick = async () => {
+    await savePost(title, contents, false);
+    await triggerDeployment();
+  };
+
+  const handleUpdateArticleButtonClick = async () => {
+    await savePost(title, contents, true);
+    await triggerDeployment();
+  };
+
   const editButton = (
     <>
-      <Button.Item
-        onClick={async () => {
-          await savePost(title, contents, false);
-
-          location.href = "/posts/edit";
-        }}
-      >
+      <Button.Item onClick={handleHidingArticleButtonClick}>
         숨기기
       </Button.Item>
-      <Button.Item
-        onClick={async () => {
-          await savePost(title, contents, true);
 
-          location.href = "/posts/edit";
-        }}
-      >
+      <Button.Item onClick={handleUpdateArticleButtonClick}>
         수정하기
       </Button.Item>
     </>

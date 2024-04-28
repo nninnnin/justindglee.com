@@ -55,3 +55,17 @@ export const stripStrapiResponse = <T>(
     }
   );
 };
+
+export const redirectToEditingPosts = () => {
+  location.href = "/posts/edit";
+};
+
+export const triggerDeployment = async () => {
+  const result = await fetch("/api/deploy");
+
+  if (!result.ok) {
+    alert("Deployment Failed");
+  }
+
+  alert("Deployment triggered!");
+};
