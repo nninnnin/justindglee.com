@@ -11,7 +11,7 @@ export const routes = {
   bar2: { title: "", route: "" },
   life: { title: "사는 이야기", route: "/life" },
   bar3: { title: "", route: "" },
-  archive: { title: "Archives", route: "/archive" },
+  archive: { title: "창고", route: "/archive" },
   // portfolio: { title: "작업물", route: "/portfolio" },
 };
 
@@ -44,7 +44,7 @@ function Navigation({
   return (
     <div
       className={clsx(
-        "nav w-full sticky top-0 left-0 z-10",
+        "w-full sticky top-0 left-0 z-10",
         "text-[0.8em]",
         className
       )}

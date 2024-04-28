@@ -44,7 +44,7 @@ IntroPage.Footer = () => {
     >
       <hr className="my-5 opacity-[0.2]" />
 
-      <p className="relative justify-end sm:justify-between items-center hidden sm:flex">
+      <p className="relative flex justify-between items-center">
         <span>© 2023-2024. 이동규 블로그</span>
 
         <div className="flex">

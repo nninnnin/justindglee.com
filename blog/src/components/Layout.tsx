@@ -33,14 +33,12 @@ function Layout({ children, hasPadding = true }: Props) {
         )}
       >
         <Navigation
-          className={clsx(
-            hasPadding && "p-[30px] py-[20px]"
-          )}
+          className={clsx(hasPadding && "p-[3vw] py-[2vw]")}
         />
 
         <div
           className={clsx(
-            hasPadding && "p-[30px] pt-[26px] flex flex-col"
+            hasPadding && "p-[3vw] pt-[26px] flex flex-col"
           )}
         >
           {children}
