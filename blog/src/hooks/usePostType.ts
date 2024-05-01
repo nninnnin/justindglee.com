@@ -4,6 +4,7 @@ import { atom, useRecoilState } from "recoil";
 export const POST_TYPES: Record<string, string> = {
   tech: "기술",
   life: "생활",
+  idea: "아이디어",
 };
 
 const defaultValue = Object.keys(POST_TYPES)[0];

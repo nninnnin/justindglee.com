@@ -1,15 +1,12 @@
-import React, {
-  ChangeEvent,
-  KeyboardEvent,
-  useEffect,
-} from "react";
-import { useLocation } from "@reach/router";
+import React, { ChangeEvent, KeyboardEvent } from "react";
 import { useSetRecoilState } from "recoil";
 import { pipe, map, toArray, filter } from "@fxts/core";
 
 import { trimStart } from "@src/utils";
 import useMemoKeys from "@src/hooks/useMemoKeys";
-import usePostType from "@src/hooks/usePostType";
+import usePostType, {
+  POST_TYPES,
+} from "@src/hooks/usePostType";
 import {
   handlePressEnter,
   moveSelectionCursor,
@@ -18,11 +15,6 @@ import {
 import { editingImageState } from "@src/pages/post/[slug]/edit";
 import { previewModeState } from "./PostEditor";
 import Button from "./common/Button";
-
-const POST_TYPES: Record<string, string> = {
-  tech: "기술",
-  life: "생활",
-};
 
 const TAB_SIZE = 2;
 
@@ -51,20 +43,6 @@ const ContentsEditor = ({
   const setPreviewMode = useSetRecoilState(
     previewModeState
   );
-
-  const { pathname } = useLocation();
-  const { selectedPostType, setSelectedPostType } =
-    usePostType();
-
-  useEffect(() => {
-    const hasPostType = Object.keys(POST_TYPES).includes(
-      pathname.split("/")[1]
-    );
-
-    if (hasPostType) {
-      setSelectedPostType(pathname.split("/")[1]);
-    }
-  }, [pathname]);
 
   const { isKeyPressed, registerKey, releaseKey } =
     useMemoKeys();
@@ -232,32 +210,10 @@ const ContentsEditor = ({
     }
   };
 
-  const handlePostTypeChange = (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    setSelectedPostType(e.target.value);
-  };
-
-  const postTypes = Object.keys(POST_TYPES).map(
-    (postType: string) => (
-      <option key={postType} value={postType}>
-        {POST_TYPES[postType]}
-      </option>
-    )
-  );
-
   return (
     <div className="contents-editor flex flex-col flex-1">
       <div className="flex">
-        <select
-          className="text-blue-500 border-none outline-none p-3"
-          name="포스트타입"
-          id=""
-          onChange={handlePostTypeChange}
-          value={selectedPostType}
-        >
-          {postTypes}
-        </select>
+        <ContentsEditor.PostTypeSelector />
 
         <input
           className={`flex-1 p-3 !text-blue-500`}
@@ -280,7 +236,6 @@ const ContentsEditor = ({
 
         <Button.Item
           onClick={() => {
-            // ..
             setPreviewMode(true);
           }}
         >
@@ -288,6 +243,36 @@ const ContentsEditor = ({
         </Button.Item>
       </Button.Container>
     </div>
+  );
+};
+
+ContentsEditor.PostTypeSelector = () => {
+  const { selectedPostType, setSelectedPostType } =
+    usePostType();
+
+  const handlePostTypeChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSelectedPostType(e.target.value);
+  };
+
+  const postTypes = Object.entries(POST_TYPES).map(
+    ([postTypeKey, postTypeValue]) => (
+      <option key={postTypeKey} value={postTypeKey}>
+        {postTypeValue}
+      </option>
+    )
+  );
+
+  return (
+    <select
+      className="text-blue-500 border-none outline-none p-3"
+      name="포스트타입"
+      onChange={handlePostTypeChange}
+      value={selectedPostType}
+    >
+      {postTypes}
+    </select>
   );
 };
 

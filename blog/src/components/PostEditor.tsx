@@ -45,8 +45,6 @@ const PostEditor = ({ title, contents, button }: Props) => {
 
   const previewMode = useRecoilValue(previewModeState);
 
-  console.log(previewMode);
-
   return (
     <Authorizer>
       <Layout>

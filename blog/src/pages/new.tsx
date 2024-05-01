@@ -11,6 +11,10 @@ import replaceImageUrls from "@src/utils/replaceImageUrls";
 import { curry } from "@fxts/core";
 import { editingImageState } from "./post/[slug]/edit";
 import Button from "@components/common/Button";
+import {
+  redirectToEditingPosts,
+  triggerDeployment,
+} from "@src/utils";
 
 const EditorPage = () => {
   const title = useRecoilValue(editingTitleState);
@@ -24,7 +28,22 @@ const EditorPage = () => {
       editingImages: Map<string, File>,
       publish: boolean
     ) => {
-      const slug = prompt("slug를 입력해주세요 :)") ?? "";
+      if (!title) {
+        alert("제목 없이 글을 쓸 생각을 하다니..");
+        return false;
+      }
+
+      if (!contents) {
+        alert("내용을 써야 글을 쓸 수 있어요..");
+        return false;
+      }
+
+      const slug = prompt("slug를 입력해주세욧..");
+
+      if (!slug) {
+        alert("slug 없이는 글을 등록할 수 없답니다..");
+        return false;
+      }
 
       const token = localStorage.getItem(
         "justinblog-token"
@@ -75,7 +94,7 @@ const EditorPage = () => {
       return;
     }
 
-    location.href = "/posts";
+    triggerDeployment();
   };
 
   const handleRegisterButtonClick = async (
@@ -83,9 +102,12 @@ const EditorPage = () => {
   ) => {
     e.preventDefault();
 
-    await savePost(true);
+    const registerRequested = await savePost(true);
 
-    location.href = "/posts";
+    if (registerRequested) {
+      triggerDeployment();
+      redirectToEditingPosts();
+    }
   };
 
   const buttons = (
